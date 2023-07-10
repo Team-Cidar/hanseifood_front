@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
+import styled from "styled-components";
+import { Background } from "./Home.styled";
 
 export const HomeCardView = () => {
-  return (
-    <div>asdfa</div>
-  )
-}
+  return <Background>??</Background>;
+};
