@@ -1,9 +1,13 @@
-import { Background } from './Home.styled';
+import { Background, CardView, TitleText } from './Home.styled';
 
 export const HomeCardView = () => {
   return (
     <Background>
-      Hello world
+      <CardView>
+        <TitleText>
+          Hansei Weekly Food
+        </TitleText>
+      </CardView>
     </Background>
   );
 };
