@@ -19,11 +19,11 @@ export const CardView = styled.div`
   background: ${EColor.TEXT_200};
   border-radius: 50px;
   box-shadow: 5px 5px 5px ${EColor.TEXT_400};
-  padding: 48px
+  padding: 48px;
 `;
 
 export const TitleText = styled.div`
   font-size: 32px;
   font-weight: 900;
-  color: ${EColor.COLOR_PRIMARY}
+  color: ${EColor.COLOR_PRIMARY};
 `;
