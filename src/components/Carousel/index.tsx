@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { TouchEventHandler, useEffect, useRef, useState } from "react";
 
 import {
   CarouselItem,
@@ -25,13 +25,15 @@ interface Props {
 }
 
 const Carousel = ({ dailyMenu }: Props) => {
-  const [currCarousel, setCurrCarousel] = useState(0);
+  let touchStartX: number;
+  let touchEndX: number;
 
+  const [currCarousel, setCurrCarousel] = useState(0);
   const carouselRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
     if (carouselRef.current != null) {
-      console.log(carouselRef.current);
+      // console.log(carouselRef.current);
       carouselRef.current.style.transform = `translateX(-${currCarousel}00%)`;
     }
   }, [currCarousel]);
@@ -50,9 +52,29 @@ const Carousel = ({ dailyMenu }: Props) => {
     }
   };
 
+  // 터치 이벤트
+
+  const handleTouchStart: TouchEventHandler<HTMLDivElement> = (e) => {
+    touchStartX = e.nativeEvent.touches[0].clientX;
+    console.log("start", touchStartX);
+  };
+
+  const handleTouchEnd: TouchEventHandler<HTMLDivElement> = (e) => {
+    touchEndX = e.nativeEvent.changedTouches[0].clientX;
+    console.log("touch", touchEndX);
+    if (touchStartX >= touchEndX) {
+      handleSwipe(1); // 오른쪽페이지로 이동
+    } else {
+      handleSwipe(-1); // 왼쪽페이지로 이동
+    }
+  };
+
   return (
     <Container>
-      <CarouselWrapper>
+      <CarouselWrapper
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         <SwipeLeftBtn onClick={() => handleSwipe(-1)}>{"<"}</SwipeLeftBtn>
         <Carousels ref={carouselRef}>
           {dailyMenu.map((menu, idx) => {
@@ -60,8 +82,8 @@ const Carousel = ({ dailyMenu }: Props) => {
               <CarouselItem key={idx}>
                 <Date>{menu.date}일</Date>
                 <Menu>
-                  {menu.employee_menu.map((daily) => {
-                    return <MenuList>{daily}</MenuList>;
+                  {menu.employee_menu.map((daily, idx) => {
+                    return <MenuList key={idx}>{daily}</MenuList>;
                   })}
                 </Menu>
               </CarouselItem>

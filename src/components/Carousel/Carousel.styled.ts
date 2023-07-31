@@ -16,11 +16,14 @@ export const CarouselWrapper = styled.div`
   width: 100%;
   height: 420px;
   padding: 0 10%;
+
   overflow: hidden;
+  z-index: 1;
+  pointer-events: auto;
 
   & > ul {
     // 식단표 중앙정렬을 위한 padding
-    display: flex;
+    // display: flex;
     padding-right: 14px;
   }
 `;
@@ -72,6 +75,6 @@ export const Date = styled.h2``;
 
 export const Menu = styled.div``;
 
-export const MenuList = styled.li`
+export const MenuList = styled.p`
   list-style: square;
 `;
