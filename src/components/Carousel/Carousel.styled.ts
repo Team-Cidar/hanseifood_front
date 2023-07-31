@@ -28,7 +28,7 @@ export const CarouselWrapper = styled.div`
   }
 `;
 
-export const SwipeLeftBtn = styled.button`
+export const SwipeLeftBtn = styled.div`
   position: absolute;
   width: 24px;
   height: 28px;
@@ -38,7 +38,7 @@ export const SwipeLeftBtn = styled.button`
   z-index: 1; // 컴포넌트들 중 가장 위에 위치!
 `;
 
-export const SwipeRightBtn = styled.button`
+export const SwipeRightBtn = styled.div`
   position: absolute;
   width: 24px;
   height: 28px;

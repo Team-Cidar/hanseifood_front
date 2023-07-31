@@ -17,6 +17,7 @@ import {
   SwipeLeftBtn,
   SwipeRightBtn,
 } from "./Carousel.styled";
+import SvgIcon from "@components/SvgIcon";
 
 type DailyMenu = {
   date: string;
@@ -89,7 +90,9 @@ const Carousel = ({ dailyMenu }: Props) => {
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseEnd}
       >
-        <SwipeLeftBtn onClick={() => handleSwipe(-1)}>{"<"}</SwipeLeftBtn>
+        <SwipeLeftBtn onClick={() => handleSwipe(-1)}>
+          <SvgIcon name={"chevron_left"} width={36} height={36} fill={"black"} />
+        </SwipeLeftBtn>
         <Carousels ref={carouselRef}>
           {dailyMenu.map((menu, idx) => {
             return (
@@ -104,7 +107,9 @@ const Carousel = ({ dailyMenu }: Props) => {
             );
           })}
         </Carousels>
-        <SwipeRightBtn onClick={() => handleSwipe(1)}>{">"}</SwipeRightBtn>
+        <SwipeRightBtn onClick={() => handleSwipe(1)}>
+          <SvgIcon name={"chevron_right"} width={36} height={36} fill={"black"} />
+        </SwipeRightBtn>
       </CarouselWrapper>
     </Container>
   );
