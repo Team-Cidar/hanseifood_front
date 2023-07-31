@@ -1,4 +1,10 @@
-import React, { TouchEventHandler, useEffect, useRef, useState } from "react";
+import React, {
+  MouseEventHandler,
+  TouchEventHandler,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 import {
   CarouselItem,
@@ -54,17 +60,24 @@ const Carousel = ({ dailyMenu }: Props) => {
 
   // 터치 이벤트
 
-  const handleTouchStart: TouchEventHandler<HTMLDivElement> = (e) => {
-    touchStartX = e.nativeEvent.touches[0].clientX;
+  const handleMouseStart: MouseEventHandler<HTMLDivElement> = (e) => {
+    touchStartX = e.nativeEvent.clientX;
     console.log("start", touchStartX);
   };
+  const handleMouseMove: MouseEventHandler<HTMLDivElement> = (e) => {
+    const currTouchX = e.nativeEvent.clientX;
 
-  const handleTouchEnd: TouchEventHandler<HTMLDivElement> = (e) => {
-    touchEndX = e.nativeEvent.changedTouches[0].clientX;
-    console.log("touch", touchEndX);
-    if (touchStartX >= touchEndX) {
+    if (carouselRef.current != null) {
+      carouselRef.current.style.transform = `translateX(-${currCarousel}00%)`;
+    }
+  };
+
+  const handleMouseEnd: MouseEventHandler<HTMLDivElement> = (e) => {
+    touchEndX = e.nativeEvent.clientX;
+    console.log("end", touchEndX);
+    if (touchStartX > touchEndX) {
       handleSwipe(1); // 오른쪽페이지로 이동
-    } else {
+    } else if (touchStartX < touchEndX) {
       handleSwipe(-1); // 왼쪽페이지로 이동
     }
   };
@@ -72,8 +85,9 @@ const Carousel = ({ dailyMenu }: Props) => {
   return (
     <Container>
       <CarouselWrapper
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
+        onMouseDown={handleMouseStart}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseEnd}
       >
         <SwipeLeftBtn onClick={() => handleSwipe(-1)}>{"<"}</SwipeLeftBtn>
         <Carousels ref={carouselRef}>
