@@ -85,19 +85,20 @@ const Carousel = ({ dailyMenu }: Props) => {
 
   return (
     <Container>
+      <SwipeLeftBtn onClick={() => handleSwipe(-1)}>
+        <SvgIcon name={"chevron_left"} width={36} height={36} fill={"black"} />
+      </SwipeLeftBtn>
       <CarouselWrapper
         onMouseDown={handleMouseStart}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseEnd}
       >
-        <SwipeLeftBtn onClick={() => handleSwipe(-1)}>
-          <SvgIcon name={"chevron_left"} width={36} height={36} fill={"black"} />
-        </SwipeLeftBtn>
+
         <Carousels ref={carouselRef}>
           {dailyMenu.map((menu, idx) => {
             return (
               <CarouselItem key={idx}>
-                <Date>{menu.date}일</Date>
+                <Date>{menu.date}</Date>
                 <Menu>
                   {menu.employee_menu.map((daily, idx) => {
                     return <MenuList key={idx}>{daily}</MenuList>;
@@ -107,10 +108,10 @@ const Carousel = ({ dailyMenu }: Props) => {
             );
           })}
         </Carousels>
-        <SwipeRightBtn onClick={() => handleSwipe(1)}>
+      </CarouselWrapper>
+      <SwipeRightBtn onClick={() => handleSwipe(1)}>
           <SvgIcon name={"chevron_right"} width={36} height={36} fill={"black"} />
         </SwipeRightBtn>
-      </CarouselWrapper>
     </Container>
   );
 };

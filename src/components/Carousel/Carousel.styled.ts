@@ -5,15 +5,17 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 48px auto;
+  flex-direction: row;
+  margin: 44px 44px 44px 0px;
   width: 100%;
 `;
 
 export const CarouselWrapper = styled.div`
   position: relative;
   display: flex;
+  align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 80%;
   height: 420px;
   padding: 0 10%;
 
@@ -29,23 +31,15 @@ export const CarouselWrapper = styled.div`
 `;
 
 export const SwipeLeftBtn = styled.div`
-  position: absolute;
   width: 24px;
   height: 28px;
-  top: 45%;
-  left: 0%;
-  display: block;
-  z-index: 1; // 컴포넌트들 중 가장 위에 위치!
+  display: flex;
 `;
 
 export const SwipeRightBtn = styled.div`
-  position: absolute;
   width: 24px;
   height: 28px;
-  top: 45%;
-  right: 0%;
-  display: block;
-  z-index: 1;
+  display: flex;
 `;
 
 export const Carousels = styled.ul`
@@ -56,25 +50,35 @@ export const Carousels = styled.ul`
 export const CarouselItem = styled.li`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  background: #82aef5;
-
+  background: #a3b3c9;
   width: 100%;
-  height: 400px;
+  height: 324px;
 
   flex: none;
   object-fit: contain;
 
   // 식단표 중앙정렬을 위한 margin
   margin-left: 14px;
-  box-shadow: 8px 4px 4px grey;
+  box-shadow: 8px 4px 4px ${EColor.TEXT_400};
+  border-radius: 22px;
 `;
 
-export const Date = styled.h2``;
+export const Date = styled.h2`
+  color: ${EColor.TEXT_200};
+  margin-bottom: 28px;
+`;
 
-export const Menu = styled.div``;
+export const Menu = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
 
 export const MenuList = styled.p`
-  list-style: square;
+  color: ${EColor.TEXT_200};
+  font-size: larger;
+  padding: 4px;
 `;

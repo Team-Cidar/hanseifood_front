@@ -14,11 +14,11 @@ export const Background = styled.div`
 `;
 
 export const CardView = styled.div`
-  width: 600px;
-  height: 600px;
+  width: 592px;
+  height: 584px;
   background: ${EColor.TEXT_200};
   border-radius: 50px;
-  box-shadow: 5px 5px 5px ${EColor.TEXT_400};
+  box-shadow: 8px 4px 4px ${EColor.TEXT_400};
   padding: 48px;
 `;
 
