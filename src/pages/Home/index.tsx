@@ -1,6 +1,15 @@
-import React from 'react';
-import { HomeCardView } from './HomeView';
+import { Default, Mobile } from '@utils/MediaQuery';
+import { HomeView } from './HomeView';
 
 export const Home = () => {
-  return <HomeCardView />;
+  return (
+    <>
+      <Default>
+        <HomeView />
+      </Default>
+      <Mobile>
+        <HomeView />
+      </Mobile>
+    </>
+  );
 };

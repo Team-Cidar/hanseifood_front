@@ -74,7 +74,7 @@ const Daily_Menu = [
   },
 ];
 
-export const HomeCardView = () => {
+export const HomeView = () => {
   return (
     <Background>
       <CardView>
