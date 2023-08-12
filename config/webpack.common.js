@@ -15,6 +15,10 @@ module.exports = {
         test: /\.svg$/,
         use: ['@svgr/webpack', 'file-loader'],
       },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        use: ['file-loader'],
+      },
     ],
   },
   plugins: [
@@ -28,6 +32,7 @@ module.exports = {
   resolve: {
     alias: {
       "@apis": path.resolve(__dirname, "../src/apis"),
+      "@assets": path.resolve(__dirname, "../src/assets"),
       "@components": path.resolve(__dirname, "../src/components"),
       "@hooks": path.resolve(__dirname, "../src/hooks"),
       "@modules": path.resolve(__dirname, "../src/modules"),

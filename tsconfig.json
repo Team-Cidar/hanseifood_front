@@ -18,6 +18,7 @@
     "baseUrl": ".",
     "paths": {
       "@apis/*": ["src/apis/*"],
+      "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
       "@hooks/*": ["src/hooks/*"],
       "@modules/*": ["src/modules/*"],

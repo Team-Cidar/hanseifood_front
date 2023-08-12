@@ -1,4 +1,4 @@
-import * as Icons from "../../../public/svgs";
+import * as Icons from "@assets/svgs";
 
 export type SvgIconProps = {
   name: keyof typeof Icons;

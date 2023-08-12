@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { EColor } from "@styles/color";
+import { Title1 } from "@styles/font";
 
 const end = EColor.GRAD_END;
 const start = EColor.GRAD_START;
@@ -23,7 +24,6 @@ export const CardView = styled.div`
 `;
 
 export const TitleText = styled.div`
-  font-size: 32px;
-  font-weight: 900;
+  ${Title1}
   color: ${EColor.COLOR_PRIMARY};
 `;

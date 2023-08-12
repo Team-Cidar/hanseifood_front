@@ -1,14 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "@pages/Home";
-import styled, { createGlobalStyle } from "styled-components";
+import { GlobalStyle } from "./GlobalStyle";
 
-const GlobalStyle = createGlobalStyle`
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-`;
 
 const App = () => {
   return (

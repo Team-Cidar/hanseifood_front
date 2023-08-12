@@ -1,4 +1,5 @@
 import { EColor } from "@styles/color";
+import { Title1, Title2, Title3, Title4, body1, body2, body3 } from "@styles/font";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -66,6 +67,7 @@ export const CarouselItem = styled.li`
 `;
 
 export const Date = styled.h2`
+  ${Title3}
   color: ${EColor.TEXT_200};
   margin-bottom: 28px;
 `;
@@ -78,7 +80,6 @@ export const Menu = styled.div`
 `;
 
 export const MenuList = styled.p`
+  ${body1}
   color: ${EColor.TEXT_200};
-  font-size: larger;
-  padding: 4px;
 `;
