@@ -29,9 +29,10 @@ type DailyMenu = {
 
 interface Props {
   dailyMenu: DailyMenu[];
+  isMobile: boolean;
 }
 
-const Carousel = ({ dailyMenu }: Props) => {
+const Carousel = ({ dailyMenu, isMobile }: Props) => {
   let touchStartX: number;
   let touchEndX: number;
 
@@ -84,20 +85,20 @@ const Carousel = ({ dailyMenu }: Props) => {
   };
 
   return (
-    <Container>
+    <Container isMobile={isMobile}>
       <SwipeLeftBtn onClick={() => handleSwipe(-1)}>
         <SvgIcon name={"chevron_left"} width={36} height={36} fill={"black"} />
       </SwipeLeftBtn>
       <CarouselWrapper
+        isMobile={isMobile}
         onMouseDown={handleMouseStart}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseEnd}
       >
-
         <Carousels ref={carouselRef}>
           {dailyMenu.map((menu, idx) => {
             return (
-              <CarouselItem key={idx}>
+              <CarouselItem key={idx} isMobile={isMobile}>
                 <Date>{menu.date}</Date>
                 <Menu>
                   {menu.employee_menu.map((daily, idx) => {
@@ -110,8 +111,8 @@ const Carousel = ({ dailyMenu }: Props) => {
         </Carousels>
       </CarouselWrapper>
       <SwipeRightBtn onClick={() => handleSwipe(1)}>
-          <SvgIcon name={"chevron_right"} width={36} height={36} fill={"black"} />
-        </SwipeRightBtn>
+        <SvgIcon name={"chevron_right"} width={36} height={36} fill={"black"} />
+      </SwipeRightBtn>
     </Container>
   );
 };

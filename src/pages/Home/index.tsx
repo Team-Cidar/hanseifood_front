@@ -1,14 +1,14 @@
-import { Default, Mobile } from '@utils/MediaQuery';
-import { HomeView } from './HomeView';
+import { Default, Mobile } from "@utils/MediaQuery";
+import { HomeView } from "./HomeView";
 
 export const Home = () => {
   return (
     <>
       <Default>
-        <HomeView />
+        <HomeView isMobile={false} />
       </Default>
       <Mobile>
-        <HomeView />
+        <HomeView isMobile={true} />
       </Mobile>
     </>
   );

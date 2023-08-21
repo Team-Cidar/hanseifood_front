@@ -1,5 +1,9 @@
+import { CardView } from "@components/CardView/CardView.styled";
+
 import Carousel from "@components/Carousel";
-import { Background, CardView, TitleText } from "./Home.styled";
+import { Default, Mobile } from "@utils/MediaQuery";
+import { Background, TitleText } from "./Home.styled";
+import { BackgroundMobile, TitleTextMobile } from "./Home.styled.mobile";
 
 const Daily_Menu = [
   {
@@ -74,13 +78,32 @@ const Daily_Menu = [
   },
 ];
 
-export const HomeView = () => {
+interface Props {
+  isMobile: boolean;
+}
+
+export const HomeView = ({ isMobile }: Props) => {
   return (
-    <Background>
-      <CardView>
-        <TitleText>Hansei Weekly Food</TitleText>
-        <Carousel dailyMenu={Daily_Menu} />
-      </CardView>
-    </Background>
+    <>
+      {isMobile ? (
+        <Mobile>
+          <BackgroundMobile>
+            <CardView isMobile={isMobile}>
+              <TitleTextMobile>Hansei Weekly Food</TitleTextMobile>
+              <Carousel dailyMenu={Daily_Menu} isMobile={isMobile} />
+            </CardView>
+          </BackgroundMobile>
+        </Mobile>
+      ) : (
+        <Default>
+          <Background>
+            <CardView isMobile={isMobile}>
+              <TitleText>Hansei Weekly Food</TitleText>
+              <Carousel dailyMenu={Daily_Menu} isMobile={isMobile} />
+            </CardView>
+          </Background>
+        </Default>
+      )}
+    </>
   );
 };
