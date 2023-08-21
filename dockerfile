@@ -4,7 +4,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY frontend/package.json frontend/package-lock.json ./
 RUN npm ci
 COPY frontend /app
-RUN npm run dev-build
+RUN npm run build
 
 FROM nginx:alpine
 COPY --from=react-builder /app/build /usr/share/nginx/html
