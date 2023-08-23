@@ -1,8 +1,26 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
+import { Desktop, Mobile } from '@utils/MediaQuery';
+import { StyledMobileView } from './CardView.mobile.styled';
+import { StyledView } from './CardView.styled';
 
-const CardView = () => {
+type CardViewComponentProps = {
+  children: ReactNode;
+}
+
+const CardView = ({ children }: CardViewComponentProps) => {
   return (
-    <div>index</div>
+    <>
+      <Desktop>
+        <StyledView>
+          {children}
+        </StyledView>
+      </Desktop>
+      <Mobile>
+        <StyledMobileView>
+          {children}
+        </StyledMobileView>
+      </Mobile>
+    </>
   )
 }
 

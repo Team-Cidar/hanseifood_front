@@ -18,6 +18,7 @@ import {
   SwipeRightBtn,
 } from "./Carousel.styled";
 import SvgIcon from "@components/SvgIcon";
+import { Desktop, Mobile } from "@utils/MediaQuery";
 
 type DailyMenu = {
   date: string;
@@ -84,35 +85,71 @@ const Carousel = ({ dailyMenu }: Props) => {
   };
 
   return (
-    <Container>
-      <SwipeLeftBtn onClick={() => handleSwipe(-1)}>
-        <SvgIcon name={"chevron_left"} width={36} height={36} fill={"black"} />
-      </SwipeLeftBtn>
-      <CarouselWrapper
-        onMouseDown={handleMouseStart}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseEnd}
-      >
+    <>
+      <Desktop>
+        <Container>
+          <SwipeLeftBtn onClick={() => handleSwipe(-1)}>
+            <SvgIcon name={"chevron_left"} width={36} height={36} fill={"black"} />
+          </SwipeLeftBtn>
+          <CarouselWrapper
+            onMouseDown={handleMouseStart}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseEnd}
+          >
 
-        <Carousels ref={carouselRef}>
-          {dailyMenu.map((menu, idx) => {
-            return (
-              <CarouselItem key={idx}>
-                <Date>{menu.date}</Date>
-                <Menu>
-                  {menu.employee_menu.map((daily, idx) => {
-                    return <MenuList key={idx}>{daily}</MenuList>;
-                  })}
-                </Menu>
-              </CarouselItem>
-            );
-          })}
-        </Carousels>
-      </CarouselWrapper>
-      <SwipeRightBtn onClick={() => handleSwipe(1)}>
-          <SvgIcon name={"chevron_right"} width={36} height={36} fill={"black"} />
-        </SwipeRightBtn>
-    </Container>
+            <Carousels ref={carouselRef}>
+              {dailyMenu.map((menu, idx) => {
+                return (
+                  <CarouselItem key={idx}>
+                    <Date>{menu.date}</Date>
+                    <Menu>
+                      {menu.employee_menu.map((daily, idx) => {
+                        return <MenuList key={idx}>{daily}</MenuList>;
+                      })}
+                    </Menu>
+                  </CarouselItem>
+                );
+              })}
+            </Carousels>
+          </CarouselWrapper>
+          <SwipeRightBtn onClick={() => handleSwipe(1)}>
+              <SvgIcon name={"chevron_right"} width={36} height={36} fill={"black"} />
+            </SwipeRightBtn>
+        </Container>
+      </Desktop>
+      <Mobile>
+        <Container>
+          <SwipeLeftBtn onClick={() => handleSwipe(-1)}>
+            <SvgIcon name={"chevron_left"} width={36} height={36} fill={"black"} />
+          </SwipeLeftBtn>
+          <CarouselWrapper
+            onMouseDown={handleMouseStart}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseEnd}
+          >
+
+            <Carousels ref={carouselRef}>
+              {dailyMenu.map((menu, idx) => {
+                return (
+                  <CarouselItem key={idx}>
+                    <Date>{menu.date}</Date>
+                    <Menu>
+                      {menu.employee_menu.map((daily, idx) => {
+                        return <MenuList key={idx}>{daily}</MenuList>;
+                      })}
+                    </Menu>
+                  </CarouselItem>
+                );
+              })}
+            </Carousels>
+          </CarouselWrapper>
+          <SwipeRightBtn onClick={() => handleSwipe(1)}>
+            <SvgIcon name={"chevron_right"} width={36} height={36} fill={"black"} />
+          </SwipeRightBtn>
+        </Container>
+      </Mobile>
+    </>
+
   );
 };
 export default Carousel;

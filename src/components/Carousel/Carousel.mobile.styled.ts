@@ -7,7 +7,8 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  width: 324px;
+  margin: 44px 44px 44px 0px;
+  width: 100%;
 `;
 
 export const CarouselWrapper = styled.div`

@@ -1,5 +1,7 @@
 import Carousel from "@components/Carousel";
-import { Background, CardView, TitleText } from "./Home.styled";
+import { Background, TitleText, TitleTextBox, TitleTextMobile, TitleTextMobileRight, TitleTextRight } from "./Home.styled";
+import CardView from "@components/CardView";
+import { Desktop, Mobile } from "@utils/MediaQuery";
 
 const Daily_Menu = [
   {
@@ -74,13 +76,27 @@ const Daily_Menu = [
   },
 ];
 
+/* 그 외 컴포넌트 사이징 */
 export const HomeView = () => {
   return (
     <Background>
-      <CardView>
-        <TitleText>Hansei Weekly Food</TitleText>
-        <Carousel dailyMenu={Daily_Menu} />
-      </CardView>
+      <Desktop>
+        <CardView>
+          <TitleText>Hansei Weekly Food</TitleText>
+          <Carousel dailyMenu={Daily_Menu} />
+          <TitleTextRight>매 주 월요일 오전 8:00에 식단표가 업데이트됩니다.</TitleTextRight>
+        </CardView>
+      </Desktop>
+      <Mobile>
+        <CardView>
+          <TitleTextBox>
+            <TitleTextMobile>Hansei</TitleTextMobile>
+            <TitleTextMobile>Weekly Food</TitleTextMobile>
+          </TitleTextBox>
+          <Carousel dailyMenu={Daily_Menu} />
+          <TitleTextMobileRight>매 주 월요일 오전 8:00에 식단표가 업데이트됩니다.</TitleTextMobileRight>
+        </CardView>
+      </Mobile>
     </Background>
   );
 };
