@@ -29,10 +29,9 @@ type DailyMenu = {
 
 interface Props {
   dailyMenu: DailyMenu[];
-  isMobile: boolean;
 }
 
-const Carousel = ({ dailyMenu, isMobile }: Props) => {
+const Carousel = ({ dailyMenu }: Props) => {
   let touchStartX: number;
   let touchEndX: number;
 
@@ -42,9 +41,7 @@ const Carousel = ({ dailyMenu, isMobile }: Props) => {
   useEffect(() => {
     if (carouselRef.current != null) {
       // console.log(carouselRef.current);
-      carouselRef.current.style.transform = `translateX(-${
-        isMobile ? currCarousel * 98 : currCarousel * 101
-      }%)`;
+      carouselRef.current.style.transform = `translateX(-${currCarousel}00%)`;
     }
   }, [currCarousel]);
 
@@ -72,9 +69,7 @@ const Carousel = ({ dailyMenu, isMobile }: Props) => {
     const currTouchX = e.nativeEvent.clientX;
 
     if (carouselRef.current != null) {
-      carouselRef.current.style.transform = `translateX(-${
-        isMobile ? currCarousel * 98 : currCarousel * 101
-      }%)`;
+      carouselRef.current.style.transform = `translateX(-${currCarousel}00%)`;
     }
   };
 
@@ -89,20 +84,20 @@ const Carousel = ({ dailyMenu, isMobile }: Props) => {
   };
 
   return (
-    <Container isMobile={isMobile}>
+    <Container>
       <SwipeLeftBtn onClick={() => handleSwipe(-1)}>
         <SvgIcon name={"chevron_left"} width={36} height={36} fill={"black"} />
       </SwipeLeftBtn>
       <CarouselWrapper
-        isMobile={isMobile}
         onMouseDown={handleMouseStart}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseEnd}
       >
+
         <Carousels ref={carouselRef}>
           {dailyMenu.map((menu, idx) => {
             return (
-              <CarouselItem key={idx} isMobile={isMobile}>
+              <CarouselItem key={idx}>
                 <Date>{menu.date}</Date>
                 <Menu>
                   {menu.employee_menu.map((daily, idx) => {
@@ -115,8 +110,8 @@ const Carousel = ({ dailyMenu, isMobile }: Props) => {
         </Carousels>
       </CarouselWrapper>
       <SwipeRightBtn onClick={() => handleSwipe(1)}>
-        <SvgIcon name={"chevron_right"} width={36} height={36} fill={"black"} />
-      </SwipeRightBtn>
+          <SvgIcon name={"chevron_right"} width={36} height={36} fill={"black"} />
+        </SwipeRightBtn>
     </Container>
   );
 };

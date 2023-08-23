@@ -14,6 +14,15 @@ export const Background = styled.div`
   background: linear-gradient(to bottom, ${end}, ${start});
 `;
 
+export const CardView = styled.div`
+  width: 592px;
+  height: 584px;
+  background: ${EColor.TEXT_200};
+  border-radius: 50px;
+  box-shadow: 8px 4px 4px ${EColor.TEXT_400};
+  padding: 48px;
+`;
+
 export const TitleText = styled.div`
   ${Title1}
   color: ${EColor.COLOR_PRIMARY};

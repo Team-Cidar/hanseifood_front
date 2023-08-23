@@ -1,32 +1,24 @@
 import { EColor } from "@styles/color";
-import {
-  Title1,
-  Title2,
-  Title3,
-  Title4,
-  body1,
-  body2,
-  body3,
-} from "@styles/font";
+import { Title1, Title2, Title3, Title4, body1, body2, body3 } from "@styles/font";
 import styled from "styled-components";
 
-export const Container = styled.div<{ isMobile: boolean }>`
+export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  margin: ${({ isMobile }) => (isMobile ? "0" : "44px 44px 44px 0px")};
+  margin: 44px 44px 44px 0px;
   width: 100%;
 `;
 
-export const CarouselWrapper = styled.div<{ isMobile: boolean }>`
+export const CarouselWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: ${({ isMobile }) => (isMobile ? "300px" : "80%")};
+  width: 80%;
   height: 420px;
-  padding: ${({ isMobile }) => (isMobile ? "0 8%" : "0 10%")};
+  padding: 0 10%;
 
   overflow: hidden;
   z-index: 1;
@@ -56,7 +48,7 @@ export const Carousels = styled.ul`
   width: 100%;
 `;
 
-export const CarouselItem = styled.li<{ isMobile: boolean }>`
+export const CarouselItem = styled.li`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -69,7 +61,7 @@ export const CarouselItem = styled.li<{ isMobile: boolean }>`
   object-fit: contain;
 
   // 식단표 중앙정렬을 위한 margin
-  margin-left: ${({ isMobile }) => (isMobile ? "10px" : "14px")};
+  margin-left: 14px;
   box-shadow: 8px 4px 4px ${EColor.TEXT_400};
   border-radius: 22px;
 `;
