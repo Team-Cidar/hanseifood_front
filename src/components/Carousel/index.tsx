@@ -42,7 +42,9 @@ const Carousel = ({ dailyMenu, isMobile }: Props) => {
   useEffect(() => {
     if (carouselRef.current != null) {
       // console.log(carouselRef.current);
-      carouselRef.current.style.transform = `translateX(-${currCarousel}00%)`;
+      carouselRef.current.style.transform = `translateX(-${
+        isMobile ? currCarousel * 98 : currCarousel * 101
+      }%)`;
     }
   }, [currCarousel]);
 
@@ -70,7 +72,9 @@ const Carousel = ({ dailyMenu, isMobile }: Props) => {
     const currTouchX = e.nativeEvent.clientX;
 
     if (carouselRef.current != null) {
-      carouselRef.current.style.transform = `translateX(-${currCarousel}00%)`;
+      carouselRef.current.style.transform = `translateX(-${
+        isMobile ? currCarousel * 98 : currCarousel * 101
+      }%)`;
     }
   };
 
