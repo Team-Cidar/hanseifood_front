@@ -1,7 +1,7 @@
 import Carousel from "@components/Carousel";
 import { Background, TitleText, TitleTextBox, TitleTextMobile, TitleTextMobileRight, TitleTextRight } from "./Home.styled";
 import CardView from "@components/CardView";
-import { Desktop, Mobile } from "@utils/MediaQuery";
+import { Default, Mobile } from "@utils/MediaQuery";
 
 const Daily_Menu = [
   {
@@ -80,13 +80,13 @@ const Daily_Menu = [
 export const HomeView = () => {
   return (
     <Background>
-      <Desktop>
+      <Default>
         <CardView>
           <TitleText>Hansei Weekly Food</TitleText>
           <Carousel dailyMenu={Daily_Menu} />
           <TitleTextRight>매 주 월요일 오전 8:00에 식단표가 업데이트됩니다.</TitleTextRight>
         </CardView>
-      </Desktop>
+      </Default>
       <Mobile>
         <CardView>
           <TitleTextBox>

@@ -8,5 +8,5 @@ export const StyledView = styled.div`
   background: ${EColor.TEXT_200};
   border-radius: 50px;
   box-shadow: 8px 4px 4px ${EColor.TEXT_400};
-  padding: 24px;
+  padding: 48px;
 `;

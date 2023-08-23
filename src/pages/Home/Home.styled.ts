@@ -40,8 +40,8 @@ export const TitleTextMobile = styled.div`
 
 export const TitleTextMobileRight = styled.div`
   position: absolute;
-  bottom: 34px;
-  right: 28px;
+  bottom: 24px;
+  right: 12px;
   ${body6}
-  color: ${EColor.TEXT_200};
+  color: ${EColor.TEXT_600};
 `;

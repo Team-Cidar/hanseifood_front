@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { Desktop, Mobile } from '@utils/MediaQuery';
+import { Default, Mobile } from '@utils/MediaQuery';
 import { StyledMobileView } from './CardView.mobile.styled';
 import { StyledView } from './CardView.styled';
 
@@ -10,11 +10,11 @@ type CardViewComponentProps = {
 const CardView = ({ children }: CardViewComponentProps) => {
   return (
     <>
-      <Desktop>
+      <Default>
         <StyledView>
           {children}
         </StyledView>
-      </Desktop>
+      </Default>
       <Mobile>
         <StyledMobileView>
           {children}
