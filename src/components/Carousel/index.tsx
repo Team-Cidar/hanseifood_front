@@ -12,7 +12,7 @@ import {
   CarouselWrapper,
   Container,
   Date,
-  Menu,
+  MenuCard,
   MenuList,
   SwipeLeftBtn,
   SwipeRightBtn,
@@ -23,20 +23,13 @@ import {
 } from "./Carousel.mobile.styled";
 import SvgIcon from "@components/SvgIcon";
 import { Default, Mobile } from "@utils/MediaQuery";
+import { Menu } from "@type/index";
 
-type DailyMenu = {
-  date: string;
-  only_employee: boolean;
-  has_two_menus: boolean;
-  student_menu: never[];
-  employee_menu: string[];
-};
-
-interface Props {
-  dailyMenu: DailyMenu[];
+interface CarouselProps {
+  weeklyMenu: Menu[];
 }
 
-const Carousel = ({ dailyMenu }: Props) => {
+const Carousel = ({ weeklyMenu }: CarouselProps) => {
   let touchStartX: number;
   let touchEndX: number;
 
@@ -51,7 +44,7 @@ const Carousel = ({ dailyMenu }: Props) => {
   }, [currCarousel]);
 
   const handleSwipe = (move: number) => {
-    const totalMenus = dailyMenu.length;
+    const totalMenus = weeklyMenu.length;
     let nextCarousel = (currCarousel + move) % totalMenus; //nextCarousel의 값이 1~5사이 이도록 totalMenus(5)로 나눈 나머지값을 사용!
     if (nextCarousel < 0) {
       //nextCarousel이 음수 : 0번 슬라이드에서 왼쪽으로 이동 할 때!
@@ -102,15 +95,15 @@ const Carousel = ({ dailyMenu }: Props) => {
         >
 
           <Carousels ref={carouselRef}>
-            {dailyMenu.map((menu, idx) => {
+            {weeklyMenu.map((menu, idx) => {
               return (
                 <CarouselItem key={idx}>
                   <Date>{menu.date}</Date>
-                  <Menu>
+                  <MenuCard>
                     {menu.employee_menu.map((daily, idx) => {
                       return <MenuList key={idx}>{daily}</MenuList>;
                     })}
-                  </Menu>
+                  </MenuCard>
                 </CarouselItem>
               );
             })}
@@ -132,15 +125,15 @@ const Carousel = ({ dailyMenu }: Props) => {
           onMouseUp={handleMouseEnd}
         >
           <Carousels ref={carouselRef}>
-            {dailyMenu.map((menu, idx) => {
+            {weeklyMenu.map((menu, idx) => {
               return (
                 <CarouselItem key={idx}>
                   <Date>{menu.date}</Date>
-                  <Menu>
+                  <MenuCard>
                     {menu.employee_menu.map((daily, idx) => {
                       return <MenuList key={idx}>{daily}</MenuList>;
                     })}
-                  </Menu>
+                  </MenuCard>
                 </CarouselItem>
               );
             })}

@@ -72,7 +72,7 @@ export const Date = styled.h2`
   margin-bottom: 28px;
 `;
 
-export const Menu = styled.div`
+export const MenuCard = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
