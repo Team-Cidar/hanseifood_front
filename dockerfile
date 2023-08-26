@@ -1,6 +1,5 @@
 FROM node:18.16.0 AS react-builder
 WORKDIR /app
-ENV PATH /app/node_modules/.bin:$PATH
 COPY package*.json ./
 RUN npm ci
 COPY . .
