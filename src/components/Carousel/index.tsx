@@ -19,7 +19,7 @@ import {
 } from "./Carousel.styled";
 import {
   MobileCarouselWrapper,
-  MobileContainer
+  MobileContainer,
 } from "./Carousel.mobile.styled";
 import SvgIcon from "@components/SvgIcon";
 import { Default, Mobile } from "@utils/MediaQuery";
@@ -38,10 +38,15 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
 
   useEffect(() => {
     if (carouselRef.current != null) {
-      // console.log(carouselRef.current);
-      carouselRef.current.style.transform = `translateX(-${currCarousel}00%)`;
+      applyCarouselStyles(`translateX(-${currCarousel}00%)`)
     }
   }, [currCarousel]);
+
+  const applyCarouselStyles = (transform: string = "", transition: string = "") => {
+    if (carouselRef.current != null) {
+      carouselRef.current.style.transform = transform;
+      carouselRef.current.style.transition = transition;
+    }
 
   const handleSwipe = (move: number) => {
     const totalMenus = weeklyMenu.length;
@@ -52,28 +57,22 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
     }
     setCurrCarousel(nextCarousel);
 
-    if (carouselRef.current != null) {
-      carouselRef.current.style.transition = "all 0.5s ease-in-out"; // 부드럽게 이동
-    }
+    applyCarouselStyles("","all 0.3s ease-in-out")
+
   };
 
   // 터치 이벤트
 
   const handleMouseStart: MouseEventHandler<HTMLDivElement> = (e) => {
     touchStartX = e.nativeEvent.clientX;
-    console.log("start", touchStartX);
   };
   const handleMouseMove: MouseEventHandler<HTMLDivElement> = (e) => {
-    const currTouchX = e.nativeEvent.clientX;
-
-    if (carouselRef.current != null) {
-      carouselRef.current.style.transform = `translateX(-${currCarousel}00%)`;
-    }
+    applyCarouselStyles(`translateX(-${currCarousel}00%)`);
   };
 
   const handleMouseEnd: MouseEventHandler<HTMLDivElement> = (e) => {
     touchEndX = e.nativeEvent.clientX;
-    console.log("end", touchEndX);
+
     if (touchStartX > touchEndX) {
       handleSwipe(1); // 오른쪽페이지로 이동
     } else if (touchStartX < touchEndX) {
@@ -81,70 +80,116 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
     }
   };
 
-  return (
-  <>
-    <Default>
-      <Container>
-        <SwipeLeftBtn onClick={() => handleSwipe(-1)}>
-          <SvgIcon name={"chevron_left"} width={36} height={36} fill={"black"} />
-        </SwipeLeftBtn>
-        <CarouselWrapper
-          onMouseDown={handleMouseStart}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseEnd}
-        >
+  // 모바일용 터치 이벤트
+  const handleTouchStart: TouchEventHandler<HTMLDivElement> = (e) => {
+    touchStartX = e.touches[0].clientX;
+  };
 
-          <Carousels ref={carouselRef}>
-            {weeklyMenu.map((menu, idx) => {
-              return (
-                <CarouselItem key={idx}>
-                  <Date>{menu.date}</Date>
-                  <MenuCard>
-                    {menu.employee_menu.map((daily, idx) => {
-                      return <MenuList key={idx}>{daily}</MenuList>;
-                    })}
-                  </MenuCard>
-                </CarouselItem>
-              );
-            })}
-          </Carousels>
-        </CarouselWrapper>
-        <SwipeRightBtn onClick={() => handleSwipe(1)}>
-            <SvgIcon name={"chevron_right"} width={36} height={36} fill={"black"} />
+  const handleTouchMove: TouchEventHandler<HTMLDivElement> = (e) => {
+    const currTouchX = e.touches[0].clientX;
+    const deltaX = currTouchX - touchStartX;
+    const newX = currCarousel * 100 - deltaX;
+
+    applyCarouselStyles(`translateX(-${newX}%)`,"all ease-in-out")
+  };
+
+  const handleTouchEnd: TouchEventHandler<HTMLDivElement> = (e) => {
+    e.preventDefault();
+
+    touchEndX = e.changedTouches[0].clientX;
+
+    if (touchStartX - touchEndX > 50) {
+      handleSwipe(1);
+    } else if (touchEndX - touchStartX > 50) {
+      handleSwipe(-1);
+    } else {
+      applyCarouselStyles(`translateX(-${currCarousel}00%)`,"all 0.3s ease-in-out")
+    }
+  };
+
+  return (
+    <>
+      <Default>
+        <Container>
+          <SwipeLeftBtn onClick={() => handleSwipe(-1)}>
+            <SvgIcon
+              name={"chevron_left"}
+              width={36}
+              height={36}
+              fill={"black"}
+            />
+          </SwipeLeftBtn>
+          <CarouselWrapper
+            onMouseDown={handleMouseStart}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseEnd}
+          >
+            <Carousels ref={carouselRef}>
+              {weeklyMenu.map((menu, idx) => {
+                return (
+                  <CarouselItem key={idx}>
+                    <Date>{menu.date}</Date>
+                    <MenuCard>
+                      {menu.employee_menu.map((daily, idx) => {
+                        return <MenuList key={idx}>{daily}</MenuList>;
+                      })}
+                    </MenuCard>
+                  </CarouselItem>
+                );
+              })}
+            </Carousels>
+          </CarouselWrapper>
+          <SwipeRightBtn onClick={() => handleSwipe(1)}>
+            <SvgIcon
+              name={"chevron_right"}
+              width={36}
+              height={36}
+              fill={"black"}
+            />
           </SwipeRightBtn>
-      </Container>
-    </Default>
-    <Mobile>
-      <MobileContainer>
-        <SwipeLeftBtn onClick={() => handleSwipe(-1)}>
-          <SvgIcon name={"chevron_left"} width={36} height={36} fill={"black"} />
-        </SwipeLeftBtn>
-        <MobileCarouselWrapper
-          onMouseDown={handleMouseStart}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseEnd}
-        >
-          <Carousels ref={carouselRef}>
-            {weeklyMenu.map((menu, idx) => {
-              return (
-                <CarouselItem key={idx}>
-                  <Date>{menu.date}</Date>
-                  <MenuCard>
-                    {menu.employee_menu.map((daily, idx) => {
-                      return <MenuList key={idx}>{daily}</MenuList>;
-                    })}
-                  </MenuCard>
-                </CarouselItem>
-              );
-            })}
-          </Carousels>
-        </MobileCarouselWrapper>
-        <SwipeRightBtn onClick={() => handleSwipe(1)}>
-          <SvgIcon name={"chevron_right"} width={36} height={36} fill={"black"} />
-        </SwipeRightBtn>
-      </MobileContainer>
-    </Mobile>
-  </>
+        </Container>
+      </Default>
+      <Mobile>
+        <MobileContainer>
+          <SwipeLeftBtn onClick={() => handleSwipe(-1)}>
+            <SvgIcon
+              name={"chevron_left"}
+              width={36}
+              height={36}
+              fill={"black"}
+            />
+          </SwipeLeftBtn>
+          <MobileCarouselWrapper
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            <Carousels ref={carouselRef}>
+              {weeklyMenu.map((menu, idx) => {
+                return (
+                  <CarouselItem key={idx}>
+                    <Date>{menu.date}</Date>
+                    <MenuCard>
+                      {menu.employee_menu.map((daily, idx) => {
+                        return <MenuList key={idx}>{daily}</MenuList>;
+                      })}
+                    </MenuCard>
+                  </CarouselItem>
+                );
+              })}
+            </Carousels>
+          </MobileCarouselWrapper>
+          <SwipeRightBtn onClick={() => handleSwipe(1)}>
+            <SvgIcon
+              name={"chevron_right"}
+              width={36}
+              height={36}
+              fill={"black"}
+            />
+          </SwipeRightBtn>
+        </MobileContainer>
+      </Mobile>
+    </>
   );
 };
 export default Carousel;
