@@ -38,16 +38,19 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
 
   useEffect(() => {
     if (carouselRef.current != null) {
-      applyCarouselStyles(`translateX(-${currCarousel}00%)`)
+      applyCarouselStyles(`translateX(-${currCarousel}00%)`);
     }
   }, [currCarousel]);
 
-  const applyCarouselStyles = (transform: string = "", transition: string = "") => {
+  const applyCarouselStyles = (
+    transform: string = "",
+    transition: string = ""
+  ) => {
     if (carouselRef.current != null) {
       carouselRef.current.style.transform = transform;
       carouselRef.current.style.transition = transition;
     }
-
+  };
   const handleSwipe = (move: number) => {
     const totalMenus = weeklyMenu.length;
     let nextCarousel = (currCarousel + move) % totalMenus; //nextCarousel의 값이 1~5사이 이도록 totalMenus(5)로 나눈 나머지값을 사용!
@@ -57,8 +60,7 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
     }
     setCurrCarousel(nextCarousel);
 
-    applyCarouselStyles("","all 0.3s ease-in-out")
-
+    applyCarouselStyles("", "all 0.3s ease-in-out");
   };
 
   // 터치 이벤트
@@ -90,7 +92,7 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
     const deltaX = currTouchX - touchStartX;
     const newX = currCarousel * 100 - deltaX;
 
-    applyCarouselStyles(`translateX(-${newX}%)`,"all ease-in-out")
+    applyCarouselStyles(`translateX(-${newX}%)`, "all ease-in-out");
   };
 
   const handleTouchEnd: TouchEventHandler<HTMLDivElement> = (e) => {
@@ -103,7 +105,10 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
     } else if (touchEndX - touchStartX > 50) {
       handleSwipe(-1);
     } else {
-      applyCarouselStyles(`translateX(-${currCarousel}00%)`,"all 0.3s ease-in-out")
+      applyCarouselStyles(
+        `translateX(-${currCarousel}00%)`,
+        "all 0.3s ease-in-out"
+      );
     }
   };
 
