@@ -13,4 +13,6 @@ export enum EColor {
   TEXT_200 = "#FFFFFF",
   GRAD_START = "#1b4378",
   GRAD_END = "#4593d2",
+  GRAY = "#A5A5A5",
+  WHITE = "#FFFFFF",
 }
