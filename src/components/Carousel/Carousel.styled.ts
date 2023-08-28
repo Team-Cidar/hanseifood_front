@@ -60,7 +60,7 @@ export const CarouselItem = styled.li`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #a3b3c9;
+  background: ${EColor.COLOR_COMPLEMENTARY};
   width: 100%;
   height: 324px;
   padding: 42px 24px 4px 24px;
@@ -70,7 +70,7 @@ export const CarouselItem = styled.li`
 
   // 식단표 중앙정렬을 위한 margin
   margin-left: 14px;
-  box-shadow: 8px 4px 4px ${EColor.TEXT_400};
+  box-shadow: 0 3px 3px ${EColor.TEXT_400};
   border-radius: 22px;
 `;
 

@@ -45,3 +45,9 @@ export const TitleTextMobileRight = styled.div`
   ${body6}
   color: ${EColor.TEXT_600};
 `;
+
+export const ToggleLayout = styled.div`
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+`
