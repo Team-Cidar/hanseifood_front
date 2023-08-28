@@ -59,11 +59,11 @@ export const Carousels = styled.ul`
 export const CarouselItem = styled.li`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   background: #a3b3c9;
   width: 100%;
   height: 324px;
+  padding: 42px 24px 4px 24px;
 
   flex: none;
   object-fit: contain;
@@ -88,6 +88,9 @@ export const MenuCard = styled.div`
 `;
 
 export const MenuList = styled.p`
+  display: flex;
+  text-align: center;
   ${body1}
   color: ${EColor.TEXT_200};
+  white-space: normal;
 `;
