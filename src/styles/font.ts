@@ -21,7 +21,7 @@ export const Title4 = css`
 `
 
 export const Title5 = css`
-  font-family: NotoSansBlack;
+  font-family: NotoSansBold;
   font-size: 14px;
 `
 

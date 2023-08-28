@@ -3,7 +3,7 @@ import { Default, Mobile } from '@utils/MediaQuery';
 import { StyledMobileView } from './CardView.mobile.styled';
 import { StyledView } from './CardView.styled';
 
-type CardViewComponentProps = {
+interface CardViewComponentProps {
   children: ReactNode;
 }
 

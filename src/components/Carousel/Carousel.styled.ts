@@ -62,7 +62,7 @@ export const CarouselItem = styled.li`
 
   // 식단표 중앙정렬을 위한 margin
   margin-left: 14px;
-  box-shadow: 8px 4px 4px ${EColor.TEXT_400};
+  box-shadow: 0 3px 3px ${EColor.TEXT_400};
   border-radius: 22px;
 `;
 

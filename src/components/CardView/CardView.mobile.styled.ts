@@ -7,5 +7,5 @@ export const StyledMobileView = styled.div`
   height: 546px;
   background: ${EColor.TEXT_200};
   border-radius: 50px;
-  box-shadow: 8px 4px 4px ${EColor.TEXT_400};
+  box-shadow: 5px 5px 20px;
 `;
