@@ -38,7 +38,10 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
 
   useEffect(() => {
     if (carouselRef.current != null) {
-      applyCarouselStyles(`translateX(-${currCarousel}00%)`);
+      applyCarouselStyles(
+        `translateX(-${currCarousel}00%)`,
+        "all 0.5s ease-in-out"
+      );
     }
   }, [currCarousel]);
 
@@ -60,7 +63,7 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
     }
     setCurrCarousel(nextCarousel);
 
-    applyCarouselStyles("", "all 0.3s ease-in-out");
+    applyCarouselStyles("", "all 0.5s ease-in-out");
   };
 
   // 터치 이벤트
