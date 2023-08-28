@@ -37,6 +37,7 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
   const carouselRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
+    document.body.style.overflow = "hidden";
     if (carouselRef.current != null) {
       applyCarouselStyles(
         `translateX(-${currCarousel}00%)`,
@@ -72,7 +73,10 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
     touchStartX = e.nativeEvent.clientX;
   };
   const handleMouseMove: MouseEventHandler<HTMLDivElement> = (e) => {
-    applyCarouselStyles(`translateX(-${currCarousel}00%)`);
+    applyCarouselStyles(
+      `translateX(-${currCarousel}00%)`,
+      "all 0.3s ease-in-out"
+    );
   };
 
   const handleMouseEnd: MouseEventHandler<HTMLDivElement> = (e) => {
