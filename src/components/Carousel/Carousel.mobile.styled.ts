@@ -7,7 +7,7 @@ export const MobileContainer = styled.div`
   align-items: center;
   flex-direction: row;
   width: 324px;
-`
+`;
 
 export const MobileCarouselItem = styled.li`
   display: flex;
@@ -45,4 +45,4 @@ export const MobileCarouselWrapper = styled.div`
     // display: flex;
     padding-right: 14px;
   }
-`
+`;
