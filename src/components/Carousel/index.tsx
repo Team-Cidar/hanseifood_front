@@ -39,7 +39,7 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
 
   // 요일에 따른 초기 화면 렌더링
   useEffect(() => {
-    const date = new Date("2023-08-30");
+    const date = new Date();
 
     // 월, 화, 수, 목, 금 => 1, 2, 3, 4, 5
     // 토, 일 => 6, 0
