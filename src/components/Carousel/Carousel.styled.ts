@@ -1,5 +1,13 @@
 import { EColor } from "@styles/color";
-import { Title1, Title2, Title3, Title4, body1, body2, body3 } from "@styles/font";
+import {
+  Title1,
+  Title2,
+  Title3,
+  Title4,
+  body1,
+  body2,
+  body3,
+} from "@styles/font";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -66,7 +74,7 @@ export const CarouselItem = styled.li`
   border-radius: 22px;
 `;
 
-export const Date = styled.h2`
+export const DateText = styled.h2`
   ${Title3}
   color: ${EColor.TEXT_200};
   margin-bottom: 28px;

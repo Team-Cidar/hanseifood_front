@@ -2,6 +2,7 @@ import React, {
   MouseEventHandler,
   TouchEventHandler,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -11,7 +12,7 @@ import {
   Carousels,
   CarouselWrapper,
   Container,
-  Date,
+  DateText,
   MenuCard,
   MenuList,
   SwipeLeftBtn,
@@ -35,6 +36,21 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
 
   const [currCarousel, setCurrCarousel] = useState(0);
   const carouselRef = useRef<HTMLUListElement>(null);
+
+  // 요일에 따른 초기 화면 렌더링
+  useEffect(() => {
+    const date = new Date();
+
+    // 월, 화, 수, 목, 금 => 1, 2, 3, 4, 5
+    // 토, 일 => 6, 0
+    let day = date.getDay();
+    if (day == 6 || day == 0) {
+      day = 1; // 토, 일 이면 월요일로 설정
+    }
+
+    // Carousel index : 0, 1, 2, 3, 4
+    setCurrCarousel(day - 1);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -140,7 +156,7 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
               {weeklyMenu.map((menu, idx) => {
                 return (
                   <CarouselItem key={idx}>
-                    <Date>{menu.date}</Date>
+                    <DateText>{menu.date}</DateText>
                     <MenuCard>
                       {menu.employee_menu.map((daily, idx) => {
                         return <MenuList key={idx}>{daily}</MenuList>;
@@ -180,7 +196,7 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
               {weeklyMenu.map((menu, idx) => {
                 return (
                   <CarouselItem key={idx}>
-                    <Date>{menu.date}</Date>
+                    <DateText>{menu.date}</DateText>
                     <MenuCard>
                       {menu.employee_menu.map((daily, idx) => {
                         return <MenuList key={idx}>{daily}</MenuList>;
