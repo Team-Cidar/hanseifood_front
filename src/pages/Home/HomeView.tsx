@@ -27,6 +27,7 @@ export const HomeView = ({ weeklyMenu }: HomeViewProps) => {
 
   const toggleHandler = () => {
     set_checked(!checked);
+    checked ? set_toggleLabel("학생") : set_toggleLabel("교직원");
   };
 
   return (
@@ -41,35 +42,30 @@ export const HomeView = ({ weeklyMenu }: HomeViewProps) => {
           </Mobile>
         </>
       ) : (
-        <>
+        <CardView>
           <Default>
-            <CardView>
-              <TitleText>Hansei Weekly Food</TitleText>
-              <Carousel weeklyMenu={weeklyMenu} />
-              <TitleTextRight>
-                매 주 월요일 오전 8:00에 식단표가 업데이트됩니다.
-              </TitleTextRight>
-            </CardView>
+            <TitleText>Hansei Weekly Food</TitleText>
           </Default>
           <Mobile>
-            <CardView>
-              <TitleTextBox>
-                <TitleTextMobile>Hansei</TitleTextMobile>
-                <TitleTextMobile>Weekly Food</TitleTextMobile>
-              </TitleTextBox>
-              <Carousel weeklyMenu={weeklyMenu} />
-              <TitleTextMobileRight>
-                매 주 월요일 오전 8:00에 식단표가 업데이트됩니다.
-              </TitleTextMobileRight>
-            </CardView>
+            <TitleTextBox>
+              <TitleTextMobile>Hansei</TitleTextMobile>
+              <TitleTextMobile>Weekly Food</TitleTextMobile>
+            </TitleTextBox>
           </Mobile>
-          <ToggleLayout>
-            <ToggleView label={toggleLabel}>
-              <Toggle checked={checked} onClick={toggleHandler} />
-            </ToggleView>
-          </ToggleLayout>
-        </>
+          <Carousel weeklyMenu={weeklyMenu} />
+          <Default>
+            <TitleTextRight>매 주 월요일 오전 8:00에 식단표가 업데이트됩니다.</TitleTextRight>
+          </Default>
+          <Mobile>
+            <TitleTextMobileRight>매 주 월요일 오전 8:00에 식단표가 업데이트됩니다.</TitleTextMobileRight>
+          </Mobile>
+        </CardView>
       )}
+      <ToggleLayout>
+        <ToggleView label={toggleLabel}>
+          <Toggle checked={checked} onClick={toggleHandler} />
+        </ToggleView>
+      </ToggleLayout>
     </Background>
   );
 };
