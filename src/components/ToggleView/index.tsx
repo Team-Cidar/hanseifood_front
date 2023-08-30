@@ -1,18 +1,25 @@
 import { ReactNode } from 'react';
-import { StyledLabel, StyledToggleView } from './ToggleView.styled';
+import { StyledDisabledToggleView, StyledLabel, StyledToggleView } from './ToggleView.styled';
 
 interface IToggleView {
-  label: string;
-  children: ReactNode;
+  label?: string;
+  children?: ReactNode;
+  disabled?: boolean;
 }
 
-export const ToggleView = ({ label, children }: IToggleView) => {
+export const ToggleView = ({ label, children, disabled }: IToggleView) => {
   return (
-    <StyledToggleView>
-      <StyledLabel>
-        {label}
-      </StyledLabel>
-      {children}
-    </StyledToggleView>
+    disabled ? (
+      <StyledDisabledToggleView>
+        학생 & 교직원
+      </StyledDisabledToggleView>
+    ) : (
+      <StyledToggleView>
+        <StyledLabel>
+          {label}
+        </StyledLabel>
+        {children}
+      </StyledToggleView>
+    )
   );
 };

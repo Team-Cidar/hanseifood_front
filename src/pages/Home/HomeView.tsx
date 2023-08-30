@@ -10,25 +10,24 @@ import {
 } from "./Home.styled";
 import CardView from "@components/CardView";
 import { Default, Mobile } from "@utils/MediaQuery";
-import { Menu } from "@type/index";
+import { BooleanSetter, Menu, StringSetter } from "@type/index";
 import Skeleton from "@components/Skeleton/SkeletonCardView";
 import { Toggle } from "@components/Toggle";
-import { useState } from "react";
 import { ToggleView } from "@components/ToggleView";
 
 type HomeViewProps = {
   weeklyMenu: Menu[] | [];
+  checked: boolean;
+  toggleLabel: string;
+  toggleHandler: any;
 };
 
-/* 그 외 컴포넌트 사이징 */
-export const HomeView = ({ weeklyMenu }: HomeViewProps) => {
-  const [checked, set_checked] = useState(false);
-  const [toggleLabel, set_toggleLabel] = useState("학생");
-
-  const toggleHandler = () => {
-    set_checked(!checked);
-    checked ? set_toggleLabel("학생") : set_toggleLabel("교직원");
-  };
+export const HomeView = ({
+  weeklyMenu,
+  checked,
+  toggleLabel,
+  toggleHandler,
+}: HomeViewProps) => {
 
   return (
     <Background>
@@ -62,9 +61,14 @@ export const HomeView = ({ weeklyMenu }: HomeViewProps) => {
         </CardView>
       )}
       <ToggleLayout>
-        <ToggleView label={toggleLabel}>
-          <Toggle checked={checked} onClick={toggleHandler} />
-        </ToggleView>
+        {
+          weeklyMenu[0]?.only_employee ?
+            <ToggleView disabled={true} />
+          :
+            <ToggleView label={toggleLabel}>
+              <Toggle checked={checked} onClick={toggleHandler} />
+            </ToggleView>
+        }
       </ToggleLayout>
     </Background>
   );
