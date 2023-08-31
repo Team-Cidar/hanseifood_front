@@ -3,7 +3,6 @@ import { RecoilRoot } from 'recoil';
 import { Home } from "@pages/Home";
 import { GlobalStyle } from "./styles/GlobalStyle";
 
-
 const App = () => {
   return (
     <RecoilRoot>

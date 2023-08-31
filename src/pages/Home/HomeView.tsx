@@ -10,37 +10,27 @@ import {
 } from "./Home.styled";
 import CardView from "@components/CardView";
 import { Default, Mobile } from "@utils/MediaQuery";
-import { BooleanSetter, Menu, StringSetter } from "@type/index";
+import { WeeklyData } from "@type/index";
 import Skeleton from "@components/Skeleton/SkeletonCardView";
 import { Toggle } from "@components/Toggle";
 import { ToggleView } from "@components/ToggleView";
+import { useRecoilValue } from "recoil";
+import { userState } from "@modules/atoms";
 
 type HomeViewProps = {
-  weeklyMenu: Menu[] | [];
-  checked: boolean;
-  toggleLabel: string;
-  toggleHandler: any;
+  weeklyData: WeeklyData;
+  toggleHandler: () => void;
 };
 
 export const HomeView = ({
-  weeklyMenu,
-  checked,
-  toggleLabel,
+  weeklyData,
   toggleHandler,
 }: HomeViewProps) => {
+  const { isEmployee } = useRecoilValue(userState);
 
   return (
     <Background>
-      {weeklyMenu.length === 0 ? (
-        <>
-          <Default>
-            <Skeleton></Skeleton>
-          </Default>
-          <Mobile>
-            <Skeleton></Skeleton>
-          </Mobile>
-        </>
-      ) : (
+      {weeklyData.employee_menu ? (
         <CardView>
           <Default>
             <TitleText>Hansei Weekly Food</TitleText>
@@ -51,7 +41,16 @@ export const HomeView = ({
               <TitleTextMobile>Weekly Food</TitleTextMobile>
             </TitleTextBox>
           </Mobile>
-          <Carousel weeklyMenu={weeklyMenu} />
+          {
+            weeklyData.only_employee ? (
+              <Carousel weeklyMenu={weeklyData.employee_menu} />
+            ) : (
+              isEmployee ?
+              <Carousel weeklyMenu={weeklyData.employee_menu} />
+              :
+              <Carousel weeklyMenu={weeklyData.student_menu} />
+            )
+          }
           <Default>
             <TitleTextRight>매 주 월요일 오전 8:00에 식단표가 업데이트됩니다.</TitleTextRight>
           </Default>
@@ -59,15 +58,24 @@ export const HomeView = ({
             <TitleTextMobileRight>매 주 월요일 오전 8:00에 식단표가 업데이트됩니다.</TitleTextMobileRight>
           </Mobile>
         </CardView>
+      ) : (
+        <>
+          <Default>
+            <Skeleton></Skeleton>
+          </Default>
+          <Mobile>
+            <Skeleton></Skeleton>
+          </Mobile>
+        </>
       )}
       <ToggleLayout>
         {
-          weeklyMenu[0]?.only_employee ?
-            <ToggleView disabled={true} />
+          weeklyData.only_employee ?
+          <ToggleView disabled={true} />
           :
-            <ToggleView label={toggleLabel}>
-              <Toggle checked={checked} onClick={toggleHandler} />
-            </ToggleView>
+          <ToggleView label={isEmployee ? "교직원" : "학생"}>
+            <Toggle checked={isEmployee} onClick={toggleHandler} />
+          </ToggleView>
         }
       </ToggleLayout>
     </Background>

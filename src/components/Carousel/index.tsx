@@ -2,7 +2,6 @@ import React, {
   MouseEventHandler,
   TouchEventHandler,
   useEffect,
-  useMemo,
   useRef,
   useState,
 } from "react";
@@ -25,15 +24,17 @@ import {
 import SvgIcon from "@components/SvgIcon";
 import { Default, Mobile } from "@utils/MediaQuery";
 import { Menu } from "@type/index";
+import { useRecoilValue } from "recoil";
+import { userState } from "@modules/atoms";
 
 interface CarouselProps {
-  weeklyMenu: Menu[];
+  weeklyMenu: Menu;
 }
 
 const Carousel = ({ weeklyMenu }: CarouselProps) => {
+  console.log(Object.entries(weeklyMenu).map((res, key) => console.log(res, key)));
   let touchStartX: number;
   let touchEndX: number;
-
   const [currCarousel, setCurrCarousel] = useState(0);
   const carouselRef = useRef<HTMLUListElement>(null);
 
@@ -72,7 +73,7 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
     }
   };
   const handleSwipe = (move: number) => {
-    const totalMenus = weeklyMenu.length;
+    const totalMenus = Object.values(weeklyMenu).length;
     let nextCarousel = (currCarousel + move) % totalMenus; //nextCarousel의 값이 1~5사이 이도록 totalMenus(5)로 나눈 나머지값을 사용!
     if (nextCarousel < 0) {
       //nextCarousel이 음수 : 0번 슬라이드에서 왼쪽으로 이동 할 때!
@@ -153,12 +154,12 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
             onMouseUp={handleMouseEnd}
           >
             <Carousels ref={carouselRef}>
-              {weeklyMenu.map((menu, idx) => {
+              {Object.entries(weeklyMenu).map((res, key) => {
                 return (
-                  <CarouselItem key={idx}>
-                    <DateText>{menu.date}</DateText>
+                  <CarouselItem key={key}>
+                    <DateText>{res[0]}</DateText>
                     <MenuCard>
-                      {menu.employee_menu.map((daily, idx) => {
+                      {res[1].map((daily, idx) => {
                         return <MenuList key={idx}>{daily}</MenuList>;
                       })}
                     </MenuCard>
@@ -193,12 +194,12 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
             onTouchEnd={handleTouchEnd}
           >
             <Carousels ref={carouselRef}>
-              {weeklyMenu.map((menu, idx) => {
+              {Object.entries(weeklyMenu).map((res, key) => {
                 return (
-                  <CarouselItem key={idx}>
-                    <DateText>{menu.date}</DateText>
+                  <CarouselItem key={key}>
+                    <DateText>{res[0]}</DateText>
                     <MenuCard>
-                      {menu.employee_menu.map((daily, idx) => {
+                      {res[1].map((daily, idx) => {
                         return <MenuList key={idx}>{daily}</MenuList>;
                       })}
                     </MenuCard>
