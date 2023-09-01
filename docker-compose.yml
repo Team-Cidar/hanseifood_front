@@ -1,10 +1,10 @@
 services:
   react-builder:
     container_name: react-builder
-    volumes:
-      - ./:/app
     build:
       dockerfile: dockerfile
+    volumes:
+      - ./:/app
 
   nginx:
     container_name: hanseifood_ws
