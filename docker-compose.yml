@@ -1,0 +1,19 @@
+services:
+  react-builder:
+    container_name: react-builder
+    volumes:
+      - ./:/app
+    build:
+      dockerfile: dockerfile
+
+  nginx:
+    container_name: hanseifood_ws
+    build:
+      dockerfile: dockerfile
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - react-builder
