@@ -40,14 +40,14 @@ export const CarouselWrapper = styled.div`
 `;
 
 export const SwipeLeftBtn = styled.div`
-  width: 24px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   display: flex;
 `;
 
 export const SwipeRightBtn = styled.div`
-  width: 24px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   display: flex;
 `;
 

@@ -54,14 +54,14 @@ export const SkeletonCarouselWrapper = styled.div`
 `;
 
 export const SkeletonSwipeLeftBtn = styled.div`
-  width: 24px;
-  height: 28px;
+  width: 36px;
+  height: 36px;
   display: flex;
 `;
 
 export const SkeletonSwipeRightBtn = styled.div`
-  width: 24px;
-  height: 28px;
+  width: 36px;
+  height: 36px;
   display: flex;
 `;
 
