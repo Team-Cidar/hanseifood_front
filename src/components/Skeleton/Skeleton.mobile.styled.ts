@@ -61,3 +61,11 @@ export const SkeletonTitleTextMobile = styled.div`
   color: ${EColor.GRAY};
   opacity: 0.2;
 `;
+
+export const SkeletonTitleTextMobileRight = styled.div`
+  position: absolute;
+  bottom: 24px;
+  right: 12px;
+  ${body6}
+  color: ${EColor.TEXT_600};
+`;

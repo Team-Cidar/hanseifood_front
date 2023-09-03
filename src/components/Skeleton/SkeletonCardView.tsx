@@ -81,6 +81,9 @@ const Skeleton = () => {
               />
             </SkeletonSwipeRightBtn>
           </SkeletonMobileContainer>
+          <SkeletonTitleTextMobileRight>
+            매 주 월요일 오전 8:00에 식단표가 업데이트됩니다.
+          </SkeletonTitleTextMobileRight>
         </SkeletonStyledMobileView>
       </Mobile>
     </>

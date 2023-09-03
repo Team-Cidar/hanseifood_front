@@ -1,14 +1,6 @@
 import { EColor } from "@styles/color";
 import styled from "styled-components";
-import {
-  Title1,
-  Title2,
-  Title3,
-  Title4,
-  body1,
-  body2,
-  body3,
-} from "@styles/font";
+import { Title1, body6 } from "@styles/font";
 
 export const SkeletonStyleView = styled.div`
   position: relative;
@@ -54,14 +46,14 @@ export const SkeletonCarouselWrapper = styled.div`
 `;
 
 export const SkeletonSwipeLeftBtn = styled.div`
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   display: flex;
 `;
 
 export const SkeletonSwipeRightBtn = styled.div`
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   display: flex;
 `;
 
@@ -73,4 +65,20 @@ export const SkeletonCarousels = styled.ul`
   border-radius: 22px;
   opacity: 0.2;
   box-shadow: 8px 4px 4px ${EColor.GRAY};
+`;
+
+export const SkeletonToggleLayout = styled.div`
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+`;
+
+export const SkeletonStyledToggleView = styled.div`
+  width: 116px;
+  height: 36px;
+  background-color: ${EColor.WHITE};
+  opacity: 0.6;
+  box-shadow: 5px 5px 10px;
+  border-radius: 24px;
+  padding: 12px;
 `;
