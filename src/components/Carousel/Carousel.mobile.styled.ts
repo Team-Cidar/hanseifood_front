@@ -1,5 +1,5 @@
 import { EColor } from "@styles/color";
-import { Title3, body2 } from "@styles/font";
+import { Title3, body2, Title4_2 } from "@styles/font";
 import styled from "styled-components";
 
 export const MobileContainer = styled.div`
@@ -49,7 +49,7 @@ export const MobileCarouselWrapper = styled.div`
 `;
 
 export const MobileDateText = styled.h2`
-  ${Title3}
+  ${Title4_2}
   color: ${EColor.TEXT_800};
   margin-bottom: 14px;
 `;
@@ -61,4 +61,4 @@ export const MobileMenuList = styled.p`
   color: ${EColor.TEXT_800};
   white-space: normal;
   line-height: 28px;
-`
+`;

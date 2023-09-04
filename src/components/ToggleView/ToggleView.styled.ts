@@ -1,5 +1,5 @@
 import { EColor } from "@styles/color";
-import { Title5, Title6 } from "@styles/font";
+import { Title5 } from "@styles/font";
 import styled from "styled-components";
 
 export const StyledToggleView = styled.div`
@@ -12,6 +12,7 @@ export const StyledToggleView = styled.div`
   box-shadow: 5px 5px 10px;
   border-radius: 24px;
   padding: 12px;
+  margin: 12px;
 `
 
 export const StyledLabel = styled.div`
@@ -32,5 +33,22 @@ export const StyledDisabledToggleView = styled.div`
   box-shadow: 5px 5px 10px;
   border-radius: 24px;
   padding: 12px;
+  margin: 12px;
+`
+
+export const StyledDisabledLabel = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 116px
   ${Title5}
+`
+
+export const OnClickLabel = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 116px;
+  ${Title5}
+  color: #3366CC;
 `

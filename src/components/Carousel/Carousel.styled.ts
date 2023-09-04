@@ -7,6 +7,7 @@ import {
   body1,
   body2,
   body3,
+  Title4_2,
 } from "@styles/font";
 import styled from "styled-components";
 

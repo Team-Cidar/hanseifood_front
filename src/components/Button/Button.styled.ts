@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Title5 } from '@styles/font';
 
 interface StyledIconButtonProps {
   width?: number;
@@ -18,6 +19,5 @@ export const StyledIconButton = styled.button<StyledIconButtonProps>`
   border-color: #07a37e;
   width: ${({width}) => width + 'px' || '118px'};
   height: ${({height}) => height + 'px' || '40px'};
-  font-size: 12px;
-  font-weight: 600;
+  ${Title5}
 `;
