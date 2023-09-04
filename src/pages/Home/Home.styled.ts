@@ -2,16 +2,20 @@ import styled from "styled-components";
 import { EColor } from "@styles/color";
 import { Title1, Title2, body3, body6, } from "@styles/font";
 
-const end = EColor.GRAD_END;
-const start = EColor.GRAD_START;
-
 export const Background = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
-  background: linear-gradient(to bottom, ${end}, ${start});
+  background:
+  linear-gradient(
+    to bottom left,
+    ${EColor.GRAD_TR},
+    ${EColor.GRAD_BR},
+    ${EColor.GRAD_TL},
+    ${EColor.GRAD_BL}
+  );
 `;
 
 export const TitleText = styled.div`

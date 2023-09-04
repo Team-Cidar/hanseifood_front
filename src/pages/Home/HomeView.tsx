@@ -20,6 +20,7 @@ import {
   SkeletonStyledToggleView,
   SkeletonToggleLayout,
 } from "@components/Skeleton/Skeleton.styled";
+import FloatingBar from "@components/FloatingBar";
 
 type HomeViewProps = {
   weeklyData: WeeklyData;
@@ -31,6 +32,7 @@ export const HomeView = ({ weeklyData, toggleHandler }: HomeViewProps) => {
 
   return (
     <Background>
+      <FloatingBar></FloatingBar>
       {weeklyData.employee_menu ? (
         <CardView>
           <Default>
