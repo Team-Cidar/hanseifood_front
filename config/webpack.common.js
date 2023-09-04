@@ -2,6 +2,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const webpack = require("webpack");
 const dotenv = require("dotenv");
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+const { GenerateSW } = require('workbox-webpack-plugin');
 
 dotenv.config();
 
@@ -17,6 +19,10 @@ module.exports = {
       {
         test: /\.svg$/,
         use: ['@svgr/webpack', 'file-loader'],
+      },
+      {
+        test: /\.(png|jpg)$/,
+        use: ["file-loader"],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
@@ -36,6 +42,25 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       "process.env": JSON.stringify(process.env),
+    }),
+    new WebpackPwaManifest({
+      name: '한세대학교 주간식단표',
+      short_name: '주간식단표',
+      description: '한세대학교 주간식단표 서비스입니다.',
+      background_color: '#ffffff',
+      crossOrigin: 'use-credentials',
+      theme_color: '#1b4378',
+      icons: [
+        {
+          src: path.resolve('src/assets/images/logo512.png'),
+          sizes: [96, 128, 192, 256, 384, 512]
+        }
+      ],
+      maximumFileSizeToCacheInBytes: 15 * 1024 * 1024,
+    }),
+    new GenerateSW({
+      include: [/\.html$/, /\.js$/],
+      maximumFileSizeToCacheInBytes: 15 * 1024 * 1024,
     }),
   ],
   resolve: {
