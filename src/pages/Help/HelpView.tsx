@@ -1,4 +1,8 @@
 const HelpView = () => {
-  return <div>Hi</div>;
+  return (
+    <div>
+      <img src="src/assets/gifs/ios.gif" />
+    </div>
+  );
 };
 export default HelpView;
