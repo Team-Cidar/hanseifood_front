@@ -30,8 +30,13 @@ const FloatingBar = () => {
       </FloatingBtn>
       <FloatingItemContainer hidden={isVisible}>
         <FloatingItem
-          onClick={() => handleNavigate("question")}
-          svgName={"question"}
+          onClick={() => handleNavigate("")}
+          svgName={"home"}
+          text={"Home"}
+        ></FloatingItem>
+        <FloatingItem
+          onClick={() => handleNavigate("help")}
+          svgName={"help"}
           text={"사용방법"}
         ></FloatingItem>
         <FloatingItem

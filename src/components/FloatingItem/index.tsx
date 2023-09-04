@@ -7,7 +7,7 @@ import {
 } from "./FloatingItem.styled";
 
 interface FloatingItemInfo {
-  svgName: "question" | "about_me";
+  svgName: "help" | "about_me" | "home";
   text: String;
   onClick: () => void;
 }
