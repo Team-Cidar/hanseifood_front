@@ -2,6 +2,7 @@ export type WeeklyData = {
   only_employee: boolean;
   student_menu: Menu;
   employee_menu: Menu;
+  additional_menu: Menu;
 };
 
 export type Menu = {

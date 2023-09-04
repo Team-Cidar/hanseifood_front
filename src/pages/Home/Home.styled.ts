@@ -52,6 +52,6 @@ export const TitleTextMobileRight = styled.div`
 
 export const ToggleLayout = styled.div`
   position: absolute;
-  bottom: 12px;
-  right: 12px;
+  bottom: 0px;
+  right: 0px;
 `
