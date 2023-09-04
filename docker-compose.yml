@@ -28,7 +28,8 @@ services:
     depends_on:
       - nginx
       - react-builder
-    command: certonly --standalone -d hanseiweeklymenu.me --agree-tos -m tmd24710@naver.com
+    command: certonly --webroot -w /var/www/certbot -d hanseiweeklymenu.me --agree-tos -m tmd24710@naver.com
+    # command: certonly --standalone -d hanseiweeklymenu.me --agree-tos -m tmd24710@naver.com
     healthcheck:
       test:
         [
