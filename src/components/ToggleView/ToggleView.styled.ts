@@ -5,6 +5,8 @@ import styled from "styled-components";
 export const StyledToggleView = styled.div`
   display: flex;
   justify-content: space-between;
+  position: relative;
+  z-index: 3;
   align-items: center;
   width: 116px;
   height: 36px;
@@ -26,6 +28,8 @@ export const StyledLabel = styled.div`
 export const StyledDisabledToggleView = styled.div`
   display: flex;
   justify-content: center;
+  position: relative;
+  z-index: 3;
   align-items: center;
   width: 116px;
   height: 36px;
