@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "주간식단표",
+  "name": "한세대학교 주간식단표",
   "icons": [
     {
       "src": "favicon.ico",
