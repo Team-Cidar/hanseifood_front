@@ -5,9 +5,6 @@ services:
       dockerfile: dockerfile
     volumes:
       - ./:/app
-    depends_on:
-      certbot:
-        condition: service_healthy
 
   nginx:
     container_name: hanseifood_ws
@@ -20,6 +17,7 @@ services:
     restart: always
     ports:
       - 443:443
+      - 80:80
 
   certbot:
     container_name: certbot
@@ -29,6 +27,7 @@ services:
       - ./certbot/conf/:/etc/letsencrypt/:rw
     depends_on:
       - nginx
+      - react-builder
     command: certonly --standalone -d hanseiweeklymenu.me --agree-tos -m tmd24710@naver.com
     healthcheck:
       test:
