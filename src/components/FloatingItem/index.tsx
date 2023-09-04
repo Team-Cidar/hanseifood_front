@@ -13,7 +13,6 @@ interface FloatingItemInfo {
 }
 
 const FloatingItem = (props: FloatingItemInfo) => {
-  const handelItemBtnClick = () => {};
   return (
     <FloatingItemWrapper onClick={props.onClick}>
       <FloatingItemBtn>

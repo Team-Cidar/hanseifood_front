@@ -18,7 +18,7 @@ export const FloatingItemBtn = styled.button`
   border-radius: 50%;
   border: none;
   margin-right: 10px;
-  opacity: 0.8;
+  // opacity: 0.8;
   box-shadow: 3px 3px 5px;
 
   background-color: ${EColor.WHITE};

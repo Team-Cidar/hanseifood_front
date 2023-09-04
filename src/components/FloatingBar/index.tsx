@@ -1,7 +1,11 @@
 import FloatingItem from "@components/FloatingItem";
 import SvgIcon from "@components/SvgIcon";
 import React, { useState } from "react";
-import { FloatingBtn, FloatingItemContainer } from "./FloatingBar.styled";
+import {
+  BackgroundBlur,
+  FloatingBtn,
+  FloatingItemContainer,
+} from "./FloatingBar.styled";
 import { useNavigate } from "react-router-dom";
 
 const FloatingBar = () => {
@@ -20,6 +24,7 @@ const FloatingBar = () => {
 
   return (
     <>
+      <BackgroundBlur isVisible={!isVisible} />
       <FloatingBtn onClick={handleBtnClick}>
         <SvgIcon name={"menu"} width={28} height={28} fill={"grey"} />
       </FloatingBtn>
