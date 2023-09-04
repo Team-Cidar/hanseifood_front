@@ -60,7 +60,7 @@ export const CarouselItem = styled.li`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: ${EColor.COLOR_COMPLEMENTARY};
+  background: ${EColor.TEXT_400};
   width: 100%;
   height: 324px;
   padding: 42px 24px 4px 24px;
@@ -76,8 +76,8 @@ export const CarouselItem = styled.li`
 
 export const DateText = styled.h2`
   ${Title3}
-  color: ${EColor.TEXT_200};
-  margin-bottom: 28px;
+  color: ${EColor.TEXT_800};
+  margin-bottom: 18px;
 `;
 
 export const MenuCard = styled.div`
@@ -91,6 +91,7 @@ export const MenuList = styled.p`
   display: flex;
   text-align: center;
   ${body1}
-  color: ${EColor.TEXT_200};
+  color: ${EColor.TEXT_800};
   white-space: normal;
+  line-height: 32px;
 `;

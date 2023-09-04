@@ -18,8 +18,11 @@ import {
   SwipeRightBtn,
 } from "./Carousel.styled";
 import {
+  MobileCarouselItem,
   MobileCarouselWrapper,
   MobileContainer,
+  MobileDateText,
+  MobileMenuList,
 } from "./Carousel.mobile.styled";
 import SvgIcon from "@components/SvgIcon";
 import { Default, Mobile } from "@utils/MediaQuery";
@@ -195,14 +198,14 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
             <Carousels ref={carouselRef}>
               {Object.entries(weeklyMenu).map((res, key) => {
                 return (
-                  <CarouselItem key={key}>
-                    <DateText>{res[0]}</DateText>
+                  <MobileCarouselItem key={key}>
+                    <MobileDateText>{res[0]}</MobileDateText>
                     <MenuCard>
                       {res[1].map((daily, idx) => {
-                        return <MenuList key={idx}>{daily}</MenuList>;
+                        return <MobileMenuList key={idx}>{daily}</MobileMenuList>;
                       })}
                     </MenuCard>
-                  </CarouselItem>
+                  </MobileCarouselItem>
                 );
               })}
             </Carousels>
