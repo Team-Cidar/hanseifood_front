@@ -25,9 +25,10 @@ import FloatingBar from "@components/FloatingBar";
 type HomeViewProps = {
   weeklyData: WeeklyData;
   toggleHandler: () => void;
+  handleModal: () => void;
 };
 
-export const HomeView = ({ weeklyData, toggleHandler }: HomeViewProps) => {
+export const HomeView = ({ weeklyData, toggleHandler, handleModal }: HomeViewProps) => {
   const { isEmployee } = useRecoilValue(userState);
 
   return (
@@ -79,10 +80,11 @@ export const HomeView = ({ weeklyData, toggleHandler }: HomeViewProps) => {
       )}
 
       <ToggleLayout>
+        <ToggleView disabled={true} label="추가 메뉴 보기" onClick={handleModal}/>
         {weeklyData.only_employee ? (
-          <ToggleView disabled={true} />
+          <ToggleView disabled={true} label="학생 & 교직원"/>
         ) : (
-          <ToggleView label={isEmployee ? "교직원" : "학생"}>
+          <ToggleView disabled={false} label={isEmployee ? "교직원" : "학생"}>
             <Toggle checked={isEmployee} onClick={toggleHandler} />
           </ToggleView>
         )}

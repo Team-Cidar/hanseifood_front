@@ -1,17 +1,22 @@
 import { ReactNode } from 'react';
-import { StyledDisabledToggleView, StyledLabel, StyledToggleView } from './ToggleView.styled';
+import { OnClickLabel, StyledDisabledLabel, StyledDisabledToggleView, StyledLabel, StyledToggleView } from './ToggleView.styled';
 
 interface IToggleView {
   label?: string;
   children?: ReactNode;
-  disabled?: boolean;
+  disabled: boolean;
+  onClick?: () => void;
 }
 
-export const ToggleView = ({ label, children, disabled }: IToggleView) => {
+export const ToggleView = ({ label, children, disabled, onClick }: IToggleView) => {
   return (
     disabled ? (
-      <StyledDisabledToggleView>
-        학생 & 교직원
+      <StyledDisabledToggleView onClick={onClick}>
+        {onClick ? (
+          <OnClickLabel>{label}</OnClickLabel>
+        ) : (
+          <StyledDisabledLabel>{label}</StyledDisabledLabel>
+        )}
       </StyledDisabledToggleView>
     ) : (
       <StyledToggleView>

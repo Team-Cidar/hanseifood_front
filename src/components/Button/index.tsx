@@ -17,7 +17,7 @@ export const IconButton = ({
   onClick,
 }: IIconButton) => {
   return (
-    <StyledIconButton width={width} height={height}>
+    <StyledIconButton width={width} height={height} onClick={onClick}>
       {label.toUpperCase()}
     </StyledIconButton>
   );

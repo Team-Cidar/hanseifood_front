@@ -37,7 +37,7 @@ const FloatingBar = () => {
         <FloatingItem
           onClick={() => handleNavigate("help")}
           svgName={"help"}
-          text={"사용방법"}
+          text={"사용 방법"}
         ></FloatingItem>
         <FloatingItem
           onClick={() => handleNavigate("about-me")}
