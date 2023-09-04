@@ -9,7 +9,7 @@ const App = () => {
   return (
     <RecoilRoot>
       <GlobalStyle />
-      <Version>Hansei Weekly Menu 1.0.0</Version>
+      <Version>Hansei Weekly Menu 1.0.1</Version>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />

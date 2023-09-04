@@ -1,5 +1,5 @@
 import { EColor } from "@styles/color";
-import { Title3, body2, Title4_2 } from "@styles/font";
+import { Title3, body2, Title4_2, Title4, Title5 } from "@styles/font";
 import styled from "styled-components";
 
 export const MobileContainer = styled.div`
@@ -17,7 +17,7 @@ export const MobileCarouselItem = styled.li`
   background: ${EColor.TEXT_400};
   width: 100%;
   height: 324px;
-  padding: 42px 24px 4px 24px;
+  padding: 42px 16px 4px 16px;
 
   flex: none;
   object-fit: contain;
