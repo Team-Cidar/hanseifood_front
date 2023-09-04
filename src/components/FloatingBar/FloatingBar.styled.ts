@@ -22,7 +22,7 @@ export const FloatingBtn = styled.button`
   width: 40px;
   height: 40px;
   border-radius: 50px;
-  background-color: ${EColor.WHITE};
+  background-color: ${EColor.TEXT_200};
   border-style: none;
   box-shadow: 5px 5px 10px;
   z-index: 3;
