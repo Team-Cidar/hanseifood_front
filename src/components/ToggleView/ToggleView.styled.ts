@@ -1,5 +1,5 @@
 import { EColor } from "@styles/color";
-import { Title5, Title6 } from "@styles/font";
+import { Title5 } from "@styles/font";
 import styled from "styled-components";
 
 export const StyledToggleView = styled.div`

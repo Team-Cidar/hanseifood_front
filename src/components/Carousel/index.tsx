@@ -202,7 +202,9 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
                     <MobileDateText>{res[0]}</MobileDateText>
                     <MenuCard>
                       {res[1].map((daily, idx) => {
-                        return <MobileMenuList key={idx}>{daily}</MobileMenuList>;
+                        return (
+                          <MobileMenuList key={idx}>{daily}</MobileMenuList>
+                        );
                       })}
                     </MenuCard>
                   </MobileCarouselItem>
