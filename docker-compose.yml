@@ -30,8 +30,6 @@ services:
     depends_on:
       - nginx
     command: certonly --standalone -d hanseiweeklymenu.me --agree-tos -m tmd24710@naver.com
-    ports:
-      - 80:80
     healthcheck:
       test:
         [
