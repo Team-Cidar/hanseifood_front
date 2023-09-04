@@ -11,7 +11,7 @@ export const FloatingItemWrapper = styled.div`
   width: 130px;
   height: 40px;
   z-index: 3;
-  background-color: ${EColor.WHITE};
+  background-color: ${EColor.TEXT_200};
   box-shadow: 5px 5px 10px;
 
   border-radius: 24px;
@@ -25,7 +25,7 @@ export const FloatingItemBtn = styled.button`
   margin-right: 10px;
   // opacity: 0.8;
   z-index: 4;
-  background-color: ${EColor.WHITE};
+  background-color: ${EColor.TEXT_200};
 `;
 
 export const FloatingItemTitle = styled.span`
