@@ -32,7 +32,6 @@ interface CarouselProps {
 }
 
 const Carousel = ({ weeklyMenu }: CarouselProps) => {
-  console.log(Object.entries(weeklyMenu).map((res, key) => console.log(res, key)));
   let touchStartX: number;
   let touchEndX: number;
   const [currCarousel, setCurrCarousel] = useState(0);
