@@ -1,4 +1,4 @@
-import { Title4, Title5 } from "@styles/font";
+import { Title5 } from "@styles/font";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -30,4 +30,19 @@ export const StyledText = styled.div`
   align-items: center;
   width: 100%;
   ${Title5}
+`
+
+export const StyledScroll = styled.div`
+  width: 100%;
+  height: 522px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox에서 스크롤바를 숨기기 위한 속성 */
+  -ms-overflow-style: none; /* Internet Explorer에서 스크롤바를 숨기기 위한 속성 */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `
