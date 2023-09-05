@@ -19,7 +19,6 @@ const FloatingBar = () => {
 
   const handleBtnClick = (e: React.MouseEvent) => {
     setIsVisible(!isVisible);
-    console.log("click", isVisible);
   };
 
   return (

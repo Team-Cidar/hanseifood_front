@@ -14,19 +14,7 @@ export const Developers = styled.div`
   margin-bottom: 50px;
 `;
 
-export const Designers = styled.div`
-  ${Title2}
-  display :flex;
-  flex-direction: column;
-  margin: 24px 0;
-`;
-
 export const Developer = styled.span`
-  ${Title5}
-  margin : 20px 0;
-`;
-
-export const Designer = styled.span`
   ${Title5}
   margin : 20px 0;
 `;
