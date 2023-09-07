@@ -13,7 +13,6 @@ export const FloatingItemWrapper = styled.div`
   z-index: 3;
   background-color: ${EColor.TEXT_200};
   box-shadow: 5px 5px 10px;
-
   border-radius: 24px;
 `;
 

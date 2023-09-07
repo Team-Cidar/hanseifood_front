@@ -9,7 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const FloatingBar = () => {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
 
   const navigate = useNavigate();
 
@@ -23,11 +23,11 @@ const FloatingBar = () => {
 
   return (
     <>
-      <BackgroundBlur isVisible={!isVisible} />
+      <BackgroundBlur isVisible={isVisible} />
       <FloatingBtn onClick={handleBtnClick}>
         <SvgIcon name={"menu"} width={28} height={28} fill={"grey"} />
       </FloatingBtn>
-      <FloatingItemContainer hidden={isVisible}>
+      <FloatingItemContainer isVisible={isVisible}>
         <FloatingItem
           onClick={() => handleNavigate("")}
           svgName={"home"}

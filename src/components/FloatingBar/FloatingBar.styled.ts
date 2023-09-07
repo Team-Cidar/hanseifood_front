@@ -28,10 +28,14 @@ export const FloatingBtn = styled.button`
   z-index: 5;
 `;
 
-export const FloatingItemContainer = styled.div`
+export const FloatingItemContainer = styled.div<{ isVisible: boolean }>`
   position: absolute;
   top: 80px;
   left: 20px;
+  width: 150px;
   z-index: 5;
-  border-radius: 30%;
+
+  overflow: hidden;
+  height: ${(props) => (props.isVisible ? "200px" : "0")};
+  transition: height ease-out 0.5s;
 `;
