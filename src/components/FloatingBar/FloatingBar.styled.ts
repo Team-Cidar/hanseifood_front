@@ -1,7 +1,7 @@
 import { EColor } from "@styles/color";
 import styled from "styled-components";
 
-export const BackgroundBlur = styled.div<{ isVisible: boolean }>`
+export const BackgroundBlur = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -9,7 +9,6 @@ export const BackgroundBlur = styled.div<{ isVisible: boolean }>`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5); /* 투명도 조절 가능 */
   z-index: 4; /* 배경을 모달 아래에 배치합니다. */
-  display: ${(props) => (props.isVisible ? "block" : "none")};
 `;
 
 export const FloatingBtn = styled.button`
@@ -25,17 +24,13 @@ export const FloatingBtn = styled.button`
   background-color: ${EColor.TEXT_200};
   border-style: none;
   box-shadow: 5px 5px 10px;
-  z-index: 5;
+  z-index: 6;
 `;
 
-export const FloatingItemContainer = styled.div<{ isVisible: boolean }>`
+export const FloatingItemContainer = styled.div`
   position: absolute;
-  top: 80px;
+  top: 24px;
   left: 20px;
   width: 150px;
   z-index: 5;
-
-  overflow: hidden;
-  height: ${(props) => (props.isVisible ? "200px" : "0")};
-  transition: height ease-out 0.5s;
 `;
