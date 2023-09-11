@@ -4,6 +4,7 @@ import { Home } from "@pages/Home";
 import { GlobalStyle, Version } from "./styles/GlobalStyle";
 import Help from "@pages/Help";
 import AboutMe from "@pages/AboutMe";
+import Maintenance from "@pages/Maintenance";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/maintenance" element={<Maintenance />} />
           <Route path="/help" element={<Help />} />
           <Route path="/about-me" element={<AboutMe />} />
         </Routes>
