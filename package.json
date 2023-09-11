@@ -1,7 +1,7 @@
 {
   "name": "hanseifood_front",
-  "version": "1.0.1",
-  "description": "1.0.1 버그 수정",
+  "version": "1.0.2",
+  "description": "1.0.2 점검 중 페이지 추가",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config config/webpack.dev.js",
