@@ -11,7 +11,7 @@ import {
 import CardView from "@components/CardView";
 import { Default, Mobile } from "@utils/MediaQuery";
 import { WeeklyData } from "@type/index";
-import Skeleton from "@components/Skeleton/SkeletonCardView";
+import Skeleton from "@components/Skeleton";
 import { Toggle } from "@components/Toggle";
 import { ToggleView } from "@components/ToggleView";
 import { useRecoilValue } from "recoil";
@@ -26,15 +26,16 @@ type HomeViewProps = {
   weeklyData: WeeklyData;
   toggleHandler: () => void;
   handleModal: () => void;
+  loading: boolean;
 };
 
-export const HomeView = ({ weeklyData, toggleHandler, handleModal }: HomeViewProps) => {
+export const HomeView = ({ weeklyData, toggleHandler, handleModal, loading }: HomeViewProps) => {
   const { isEmployee } = useRecoilValue(userState);
 
   return (
     <Background>
       <FloatingBar></FloatingBar>
-      {weeklyData.employee_menu ? (
+      {loading ? (
         <CardView>
           <Default>
             <TitleText>Hansei Weekly Food</TitleText>
