@@ -18,20 +18,25 @@ const FloatingBar = () => {
     navigate(`/${name}`);
   };
 
-  const handleBtnClick = (e: React.MouseEvent) => {
-    if (hidden) {
-      setTimeout(() => {
+  const handleClickEvent =
+    <T extends HTMLElement>() =>
+    (e: React.MouseEvent<T>) => {
+      if (hidden) {
+        setTimeout(() => {
+          setHidden(!hidden);
+        }, 300);
+      } else {
         setHidden(!hidden);
-      }, 300);
-    } else {
-      setHidden(!hidden);
-    }
-    setIsVisible(!isVisible);
-  };
+      }
+      setIsVisible(!isVisible);
+    };
+
+  const handleBtnClick = handleClickEvent();
+  const handleBackgroundClick = handleClickEvent();
 
   return (
     <>
-      <BackgroundBlur hidden={!hidden} />
+      <BackgroundBlur hidden={!hidden} onClick={handleBackgroundClick} />
       <FloatingBtn onClick={handleBtnClick}>
         <SvgIcon name={"menu"} width={28} height={28} fill={"grey"} />
       </FloatingBtn>
