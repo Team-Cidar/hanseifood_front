@@ -19,5 +19,5 @@ export const StyledIconButton = styled.button<StyledIconButtonProps>`
   border-color: COLOR_PRIMARY;
   width: ${({width}) => width + 'px' || '118px'};
   height: ${({height}) => height + 'px' || '40px'};
-  ${Title5}
+  ${Title5} 
 `;
