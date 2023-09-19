@@ -5,8 +5,6 @@ services:
       dockerfile: dockerfile
     volumes:
       - ./:/app
-    environment:
-      - REACT_APP_PRODUCT_URI=${REACT_APP_PRODUCT_URI}
 
   nginx:
     container_name: hanseifood_ws
