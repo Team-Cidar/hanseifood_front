@@ -1,14 +1,16 @@
-import { HomeView } from "./HomeView";
 import { useEffect, useState } from "react";
+import FontFaceObserver from "fontfaceobserver";
+import { HomeView } from "./HomeView";
 import { requestWeekFood } from "@apis/index";
 import { User, WeeklyData } from "@type/index";
 import { useRecoilState } from "recoil";
 import { userState, weeklyDataState } from "@modules/atoms";
 import { Modal } from "@components/Modal";
 import { IconButton } from "@components/Button";
-import { DateText } from "@components/Carousel/Carousel.styled";
 
-export const Home = () => {
+const Home = () => {
+  let font = new FontFaceObserver('NotoSansBlack');
+  const [loading, set_loading] = useState(false);
   const [weeklyData, set_weeklyData] = useRecoilState<WeeklyData>(weeklyDataState);
   const [{ isEmployee }, set_isEmployee] = useRecoilState<User>(userState);
   const [isModalOpen, set_isModalOpen] = useState(false);
@@ -18,6 +20,9 @@ export const Home = () => {
       set_weeklyData(res.data);
     }).catch((err) => {
       console.log(err);
+    });
+    font.load().then(() => {
+      set_loading(true);
     });
   }, []);
 
@@ -58,7 +63,10 @@ export const Home = () => {
         weeklyData={weeklyData}
         toggleHandler={toggleHandler}
         handleModal={handleModal}
+        loading={loading}
       />
     </>
   );
 };
+
+export default Home;

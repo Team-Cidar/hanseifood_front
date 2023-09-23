@@ -1,7 +1,7 @@
 {
   "name": "hanseifood_front",
-  "version": "1.0.2",
-  "description": "1.0.2 점검 중 페이지 추가",
+  "version": "1.0.3",
+  "description": "1.0.3 점검 중 페이지 추가, 폰트 최적화 및 스켈레톤 수정, 플로팅 바 애니메이션 & 클로즈 이벤트 추가, 기타 레이아웃 수정",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config config/webpack.dev.js",
@@ -29,6 +29,7 @@
     "css-minimizer-webpack-plugin": "^5.0.0",
     "dotenv": "^16.3.1",
     "file-loader": "^6.2.0",
+    "fontfaceobserver": "^2.3.0",
     "html-webpack-plugin": "^5.5.1",
     "mini-css-extract-plugin": "^2.7.6",
     "process": "^0.11.10",
@@ -63,6 +64,7 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^8.0.1",
+    "@types/fontfaceobserver": "^2.1.0",
     "@types/styled-components": "^5.1.26",
     "react-error-overlay": "^6.0.9",
     "webpack-pwa-manifest": "^4.3.0",

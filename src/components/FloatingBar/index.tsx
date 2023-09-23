@@ -9,7 +9,8 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const FloatingBar = () => {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+  const [hidden, setHidden] = useState(false); //FloatingItemContainer의 hidden을 관리
 
   const navigate = useNavigate();
 
@@ -17,29 +18,46 @@ const FloatingBar = () => {
     navigate(`/${name}`);
   };
 
-  const handleBtnClick = (e: React.MouseEvent) => {
-    setIsVisible(!isVisible);
-    console.log("click", isVisible);
-  };
+  const handleClickEvent =
+    <T extends HTMLElement>() =>
+    (e: React.MouseEvent<T>) => {
+      if (hidden) {
+        setTimeout(() => {
+          setHidden(!hidden);
+        }, 300);
+      } else {
+        setHidden(!hidden);
+      }
+      setIsVisible(!isVisible);
+    };
+
+  const handleBtnClick = handleClickEvent();
+  const handleBackgroundClick = handleClickEvent();
 
   return (
     <>
-      <BackgroundBlur isVisible={!isVisible} />
+      <BackgroundBlur hidden={!hidden} onClick={handleBackgroundClick} />
       <FloatingBtn onClick={handleBtnClick}>
         <SvgIcon name={"menu"} width={28} height={28} fill={"grey"} />
       </FloatingBtn>
-      <FloatingItemContainer hidden={isVisible}>
+      <FloatingItemContainer hidden={!hidden}>
         <FloatingItem
+          isVisible={isVisible}
+          delay={1}
           onClick={() => handleNavigate("")}
           svgName={"home"}
           text={"Home"}
         ></FloatingItem>
         <FloatingItem
+          isVisible={isVisible}
+          delay={2}
           onClick={() => handleNavigate("help")}
           svgName={"help"}
           text={"사용 방법"}
         ></FloatingItem>
         <FloatingItem
+          isVisible={isVisible}
+          delay={3}
           onClick={() => handleNavigate("about-me")}
           svgName={"about_me"}
           text={"About me"}

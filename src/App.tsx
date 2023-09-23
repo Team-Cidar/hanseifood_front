@@ -1,10 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { RecoilRoot } from "recoil";
-import { Home } from "@pages/Home";
 import { GlobalStyle, Version } from "./styles/GlobalStyle";
+import Home from "@pages/Home";
 import Help from "@pages/Help";
 import AboutMe from "@pages/AboutMe";
 import Maintenance from "@pages/Maintenance";
+import Error404 from "@pages/Error404";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/maintenance" element={<Maintenance />} />
           <Route path="/help" element={<Help />} />
           <Route path="/about-me" element={<AboutMe />} />
+          <Route path="*" element={<Error404 />} />
         </Routes>
       </BrowserRouter>
     </RecoilRoot>

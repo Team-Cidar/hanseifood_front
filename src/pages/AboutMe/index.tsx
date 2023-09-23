@@ -4,8 +4,6 @@ import SvgIcon from "@components/SvgIcon";
 import { Background } from "@pages/Home/Home.styled";
 import { Default, Mobile } from "@utils/MediaQuery";
 import {
-  Designer,
-  Designers,
   Developer,
   Developers,
   EmailInfo,
@@ -27,10 +25,6 @@ const AboutMe = () => {
               <Developer>김호준</Developer>
               <Developer>박승우</Developer>
             </Developers>
-            <Designers>
-              Designer
-              <Designer>김도엽</Designer>
-            </Designers>
           </Participants>
         </Default>
         <Mobile>
@@ -41,10 +35,6 @@ const AboutMe = () => {
               <Developer>김호준</Developer>
               <Developer>박승우</Developer>
             </Developers>
-            <Designers>
-              Designer
-              <Designer>김도엽</Designer>
-            </Designers>
           </MobileParticipants>
         </Mobile>
         <EmailInfo>
