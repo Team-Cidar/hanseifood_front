@@ -15,7 +15,7 @@ services:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - ./certbot/www/:/var/www/certbot
       - ./certbot/conf/:/etc/letsencrypt
-    restart: unless_stopped
+    restart: always
     ports:
       - 443:443
       - 80:80
@@ -24,7 +24,7 @@ services:
   certbot:
     container_name: certbot
     image: certbot/certbot:latest
-    restart: unless_stopped
+    restart: always
     volumes:
       - ./certbot/www/:/var/www/certbot
       - ./certbot/conf/:/etc/letsencrypt
