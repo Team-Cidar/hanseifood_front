@@ -1,7 +1,7 @@
 {
   "name": "hanseifood_front",
-  "version": "1.0.3",
-  "description": "1.0.3 점검 중 페이지 추가, 폰트 최적화 및 스켈레톤 수정, 플로팅 바 애니메이션 & 클로즈 이벤트 추가, 기타 레이아웃 수정",
+  "version": "1.0.4",
+  "description": "SSL 적용 및 deploy 수정",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config config/webpack.dev.js",
