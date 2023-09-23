@@ -38,12 +38,12 @@ export const HomeView = ({ weeklyData, toggleHandler, handleModal, loading }: Ho
       {loading ? (
         <CardView>
           <Default>
-            <TitleText>Hansei Weekly Food</TitleText>
+            <TitleText>Hansei Weekly Menu</TitleText>
           </Default>
           <Mobile>
             <TitleTextBox>
               <TitleTextMobile>Hansei</TitleTextMobile>
-              <TitleTextMobile>Weekly Food</TitleTextMobile>
+              <TitleTextMobile>Weekly Menu</TitleTextMobile>
             </TitleTextBox>
           </Mobile>
           {weeklyData.only_employee ? (
