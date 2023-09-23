@@ -1,10 +1,11 @@
-import { createGlobalStyle } from "styled-components";
-import NotoSansBlack from "@assets/fonts/NotoSansKR-Black.otf";
-import NotoSansBold from "@assets/fonts/NotoSansKR-Bold.otf";
-import NotoSansLight from "@assets/fonts/NotoSansKR-Light.otf";
-import NotoSansMedium from "@assets/fonts/NotoSansKR-Medium.otf";
-import NotoSansRegular from "@assets/fonts/NotoSansKR-Regular.otf";
-import NotoSansThin from "@assets/fonts/NotoSansKR-Thin.otf";
+import { createGlobalStyle, styled } from "styled-components";
+import NotoSansBlack from "@assets/fonts/NotoSans-Black.woff2";
+import NotoSansBold from "@assets/fonts/NotoSans-Bold.woff2";
+import NotoSansLight from "@assets/fonts/NotoSans-Light.woff2";
+import NotoSansMedium from "@assets/fonts/NotoSans-Medium.woff2";
+import NotoSansRegular from "@assets/fonts/NotoSans-Regular.woff2";
+import NotoSansThin from "@assets/fonts/NotoSans-Thin.woff2";
+import { body6 } from "./font";
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -49,3 +50,11 @@ export const GlobalStyle = createGlobalStyle`
     src: url(${NotoSansThin}) format('truetype');
   }
 `;
+
+export const Version = styled.div`
+  position: absolute;
+  z-index: 998;
+  bottom: 0;
+  left: 0;
+  ${body6}
+`

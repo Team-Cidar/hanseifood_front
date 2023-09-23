@@ -11,7 +11,7 @@ import {
 import CardView from "@components/CardView";
 import { Default, Mobile } from "@utils/MediaQuery";
 import { WeeklyData } from "@type/index";
-import Skeleton from "@components/Skeleton/SkeletonCardView";
+import Skeleton from "@components/Skeleton";
 import { Toggle } from "@components/Toggle";
 import { ToggleView } from "@components/ToggleView";
 import { useRecoilValue } from "recoil";
@@ -20,26 +20,30 @@ import {
   SkeletonStyledToggleView,
   SkeletonToggleLayout,
 } from "@components/Skeleton/Skeleton.styled";
+import FloatingBar from "@components/FloatingBar";
 
 type HomeViewProps = {
   weeklyData: WeeklyData;
   toggleHandler: () => void;
+  handleModal: () => void;
+  loading: boolean;
 };
 
-export const HomeView = ({ weeklyData, toggleHandler }: HomeViewProps) => {
+export const HomeView = ({ weeklyData, toggleHandler, handleModal, loading }: HomeViewProps) => {
   const { isEmployee } = useRecoilValue(userState);
 
   return (
     <Background>
-      {weeklyData.employee_menu ? (
+      <FloatingBar></FloatingBar>
+      {loading ? (
         <CardView>
           <Default>
-            <TitleText>Hansei Weekly Food</TitleText>
+            <TitleText>Hansei Weekly Menu</TitleText>
           </Default>
           <Mobile>
             <TitleTextBox>
               <TitleTextMobile>Hansei</TitleTextMobile>
-              <TitleTextMobile>Weekly Food</TitleTextMobile>
+              <TitleTextMobile>Weekly Menu</TitleTextMobile>
             </TitleTextBox>
           </Mobile>
           {weeklyData.only_employee ? (
@@ -77,10 +81,11 @@ export const HomeView = ({ weeklyData, toggleHandler }: HomeViewProps) => {
       )}
 
       <ToggleLayout>
+        <ToggleView disabled={true} label="추가 메뉴 보기" onClick={handleModal}/>
         {weeklyData.only_employee ? (
-          <ToggleView disabled={true} />
+          <ToggleView disabled={true} label="학생 & 교직원"/>
         ) : (
-          <ToggleView label={isEmployee ? "교직원" : "학생"}>
+          <ToggleView disabled={false} label={isEmployee ? "교직원" : "학생"}>
             <Toggle checked={isEmployee} onClick={toggleHandler} />
           </ToggleView>
         )}
