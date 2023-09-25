@@ -20,8 +20,8 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh "docker-compose build"
-                sh "./init-letsencrypt.sh"
+                sh "sudo docker-compose build"
+                sh 'yes "y" | ./init-letsencrypt.sh'
             }
         }
 
