@@ -10,18 +10,19 @@ pipeline {
                 echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
                 git url: "${GIT_URL}", branch: "master", poll: true, changelog: true
                 sh "sudo cp /home/joey/hanseifood_front/.env /var/lib/jenkins/workspace/hanseifood_ws"
+                sh "sudo cp /home/joey/hanseifood_front/certbot /var/lib/jenkins/workspace/hanseifood_ws"
             }
         }
         stage('Wipe') {
             steps {
                 sh "docker-compose stop"
-                sh "docker system prune -f"
+                sh "docker system prune -a -f"
+                sh "docker volume prune -f"
             }
         }
         stage('Build') {
             steps {
                 sh "sudo docker-compose build"
-                sh 'yes "y" | ./init-letsencrypt.sh'
             }
         }
 
