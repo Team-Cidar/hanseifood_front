@@ -1,3 +1,4 @@
+import packageJson from '../package.json';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import { GlobalStyle, Version } from "./styles/GlobalStyle";
@@ -11,7 +12,7 @@ const App = () => {
   return (
     <RecoilRoot>
       <GlobalStyle />
-      <Version>Hansei Weekly Menu 1.0.2</Version>
+      <Version>Hansei Weekly Menu {packageJson.version}</Version>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
