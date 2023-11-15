@@ -1,5 +1,22 @@
+import { EColor } from "@styles/color";
 import { Title2, Title4, Title5 } from "@styles/font";
 import styled from "styled-components";
+
+export const Background = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background:
+  linear-gradient(
+    to bottom left,
+    ${EColor.GRAD_TR},
+    ${EColor.GRAD_BR},
+    ${EColor.GRAD_TL},
+    ${EColor.GRAD_BL}
+  );
+`;
 
 export const Participants = styled.div`
   width: 100%;

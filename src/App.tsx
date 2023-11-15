@@ -8,6 +8,8 @@ import AboutMe from "@pages/AboutMe";
 import Maintenance from "@pages/Maintenance";
 import Error404 from "@pages/Error404";
 import Navbar from '@components/Navbar';
+import TicketPage from '@pages/TicketPage';
+import MyPage from '@pages/MyPage';
 
 const App = () => {
   return (
@@ -17,9 +19,9 @@ const App = () => {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/home" element={<div>home</div>} />
-          <Route path="/ticket" element={<div>ticket</div>} />
-          <Route path="/mypage" element={<div>mypage</div>} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/ticket" element={<TicketPage />} />
+          <Route path="/mypage" element={<MyPage />} />
           <Route path="/maintenance" element={<Maintenance />} />
           <Route path="/help" element={<Help />} />
           <Route path="/about-me" element={<AboutMe />} />
