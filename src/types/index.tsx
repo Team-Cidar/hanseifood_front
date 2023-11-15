@@ -11,6 +11,7 @@ export type Menu = {
 
 export type User = {
   isEmployee: boolean;
+  page: string;
 };
 
 export type StringSetter = (newLabel: string | ((prevLabel: string) => string)) => void;

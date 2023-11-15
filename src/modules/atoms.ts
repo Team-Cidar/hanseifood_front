@@ -14,5 +14,6 @@ export const userState = atom<User>({
   key: 'userState',
   default: {
     isEmployee: false,
+    page: 'home',
   }
 });
