@@ -1,3 +1,4 @@
+import { EColor } from '@styles/color';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -23,6 +24,12 @@ export const NavbarItem = styled.div`
 
 export const TicketBox = styled.div`
 	border: 1px dashed black;
+	border-radius: 128px;
+	padding: 10px;
+`
+
+export const TicketBoxOn = styled.div`
+	border: 1px dashed ${EColor.COLOR_INTERACTION};
 	border-radius: 128px;
 	padding: 10px;
 `
