@@ -8,3 +8,4 @@ export { ReactComponent as about_me } from "./Person.svg";
 export { ReactComponent as menu } from "./Menu.svg";
 export { ReactComponent as home } from "./Home.svg";
 export { ReactComponent as email } from "./Email.svg";
+export { ReactComponent as search } from "./Search.svg";
