@@ -11,6 +11,16 @@ const Login: StringConstant = {
     en: 'Please put your nickname',
     zh: '请输入昵称',
   },
+  'input.placeholder': {
+    ko: '홍길동',
+    en: 'Jane Doe',
+    zh: '某人',
+  },
+  'button.label.kakao': {
+    ko: '카카오톡으로 로그인하기',
+    en: 'Login with KaKao Talk',
+    zh: 'Kakao Talk登录',
+  },
 } as const;
 
 export default Login;
