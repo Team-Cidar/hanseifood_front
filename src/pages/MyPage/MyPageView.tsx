@@ -4,7 +4,7 @@ import {useRecoilValue} from 'recoil';
 
 import {langState} from '@modules/atoms';
 import {IconButton} from '@components/Button';
-import {MyPageString} from '@utils/constants';
+import {MyPageString} from '@utils/constants/strings';
 import {Container, Logo} from './styles';
 
 const MyPageView = () => {

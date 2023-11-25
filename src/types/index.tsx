@@ -36,7 +36,6 @@ export type BooleanSetter = (
 ) => void;
 
 export const LangEnum = {
-  // enum 대신 union type
   KO: {text: '한국어', code: 'ko'},
   EN: {text: 'English', code: 'en'},
   ZH: {text: '中文', code: 'zh'},
