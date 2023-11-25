@@ -6,13 +6,11 @@ import {Lang} from '@type/index';
 import {LoginString} from '@utils/constants';
 
 export const LoginView = () => {
-  const lang = useRecoilValue<Lang>(langState); // get lang state
+  const lang = useRecoilValue<Lang>(langState);
 
   return (
     <Container>
-      <Title>
-        {LoginString({lang: lang, key: 'title.direction.nickname'})}
-      </Title>
+      <Title>{LoginString({lang: lang, key: 'title.direction.kakao'})}</Title>
     </Container>
   );
 };

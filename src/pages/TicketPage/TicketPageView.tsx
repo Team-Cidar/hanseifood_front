@@ -1,14 +1,18 @@
-import React from 'react'
-import { Container, Logo } from './styles';
+import React from 'react';
+import {useRecoilValue} from 'recoil';
+
+import {langState} from '@modules/atoms';
+import {Container, Logo} from './styles';
+import {TicketPageString} from '@utils/constants';
 
 const TicketPageView = () => {
-	return (
-		<Container>
-			<Logo>
-				식권 구매하기
-			</Logo>
-		</Container>
-  )
-}
+  const lang = useRecoilValue(langState);
+
+  return (
+    <Container>
+      <Logo>{TicketPageString({lang: lang, key: 'title'})}</Logo>
+    </Container>
+  );
+};
 
 export default TicketPageView;

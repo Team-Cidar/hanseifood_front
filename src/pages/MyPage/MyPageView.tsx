@@ -1,14 +1,19 @@
 import React from 'react';
-import {Container, Logo} from './styles';
-import {IconButton} from '@components/Button';
 import {Navigate, useNavigate} from 'react-router-dom';
+import {useRecoilValue} from 'recoil';
+
+import {langState} from '@modules/atoms';
+import {IconButton} from '@components/Button';
+import {MyPageString} from '@utils/constants';
+import {Container, Logo} from './styles';
 
 const MyPageView = () => {
+  const lang = useRecoilValue(langState);
   const navigate = useNavigate();
 
   return (
     <Container>
-      <Logo>내 정보</Logo>
+      <Logo>{MyPageString({lang: lang, key: 'title'})}</Logo>
       <IconButton label="Go to login" onClick={() => navigate('/login')} />
       {/* temp button to go to login page */}
     </Container>
