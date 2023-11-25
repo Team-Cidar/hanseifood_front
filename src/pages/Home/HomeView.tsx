@@ -1,9 +1,15 @@
-import { Container, Logo } from "./Home.styled";
+import {useRecoilState, useRecoilValue} from 'recoil';
+import {Container, Logo} from './Home.styled';
+import {langState} from '@modules/atoms';
+import {Lang} from '@type/index';
+import {HomeString} from '@utils/constants';
 
 export const HomeView = () => {
+  const lang = useRecoilValue<Lang>(langState);
+
   return (
     <Container>
-      <Logo>홈</Logo>
+      <Logo>{HomeString({lang: lang, key: 'title'})}</Logo>
     </Container>
   );
 };
