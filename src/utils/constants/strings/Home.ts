@@ -4,7 +4,7 @@ const Home: StringConstant = {
   title: {
     ko: '홈',
     en: 'Home',
-    zh: '',
+    zh: '首页',
   },
   subtitle: {
     ko: '식단표를 미리 확인하고 식권을 편리하게 구매하세요!',
