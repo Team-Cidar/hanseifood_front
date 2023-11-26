@@ -13,13 +13,13 @@ const Login: StringConstant = {
   },
   'input.placeholder': {
     ko: '홍길동',
-    en: 'Jane Doe',
+    en: 'John Doe',
     zh: '某人',
   },
   'button.label.kakao': {
-    ko: '카카오톡으로 로그인하기',
-    en: 'Login with KaKao Talk',
-    zh: 'Kakao Talk登录',
+    ko: '카카오로 시작하기',
+    en: 'Start with Kakao',
+    zh: 'Start with Kakao',
   },
 } as const;
 
