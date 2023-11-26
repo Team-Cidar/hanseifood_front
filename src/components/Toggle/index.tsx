@@ -3,7 +3,7 @@ import { ToggleBox, ToggleIcon } from './Toggle.styled';
 interface ToggleProps {
   checked: boolean;
   onClick: () => void;
-  disabled: boolean;
+  disabled?: boolean;
 }
 
 export const Toggle = ({ checked, onClick, disabled }: ToggleProps) => {

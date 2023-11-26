@@ -11,6 +11,21 @@ const Home: StringConstant = {
     en: 'Check menus in advance and buy meal tickets conveniently!',
     zh: '请提前确认食谱，方便购买餐券！',
   },
+  toggleLabelStudent: {
+    ko: '학생 식당 식단표',
+    en: 'Student Menu',
+    zh: '学生食堂菜单'
+  },
+  toggleLabelEmployee: {
+    ko: '교직원 식당 식단표',
+    en: 'Employee Menu',
+    zh: '学院食堂菜单'
+  },
+  toggleLabelStudentAndEmployee: {
+    ko: '학생 & 교직원 식당 식단표',
+    en: 'Student & Employee Menu',
+    zh: '学生和教师食堂餐桌',
+  },
 } as const;
 
 export default Home;

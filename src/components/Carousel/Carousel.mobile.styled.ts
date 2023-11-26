@@ -1,5 +1,5 @@
 import { EColor } from "@styles/color";
-import { Title3, body2, Title4_2, Title4, Title5, body4 } from "@styles/font";
+import { Title3, body2, Title4_2, Title4, Title5, body4, body3 } from "@styles/font";
 import styled from "styled-components";
 
 export const MobileContainer = styled.div`
@@ -16,7 +16,7 @@ export const MobileCarouselItem = styled.li`
   align-items: center;
   width: 100%;
   height: 212px;
-  padding: 16px 16px 4px 16px;
+  padding: 16px 16px 16px 16px;
   border: 1px dashed black;
   flex: none;
   object-fit: contain;
@@ -48,16 +48,21 @@ export const MobileCarouselWrapper = styled.div`
 `;
 
 export const MobileDateText = styled.h2`
-  ${Title5}
+  ${Title4_2}
   color: ${EColor.TEXT_800};
-  margin-bottom: 14px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+  padding: 4px;
+  border: 1px dashed ${EColor.TEXT_900};
+  border-width: 0px 0px 1px 0px;
 `;
 
 export const MobileMenuList = styled.p`
   display: flex;
   text-align: center;
-  ${body4}
+  ${body3}
   color: ${EColor.TEXT_800};
   white-space: normal;
-  line-height: 28px;
+  line-height: 24px;
 `;

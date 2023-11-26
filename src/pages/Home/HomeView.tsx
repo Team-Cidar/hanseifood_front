@@ -53,16 +53,18 @@ export const HomeView = ({
         )}
         <CarouselViewBottom>
           {weeklyData.only_employee ? (
-            <ToggleLabel>학생 & 교직원 식당 식단표</ToggleLabel>
+            <ToggleLabel>{HomeString({lang: lang, key: 'toggleLabelStudentAndEmployee' })}</ToggleLabel>
           ) : (
-            <ToggleLabel>{isEmployee ? "교직원 식당 식단표" : "학생 식당 식단표"}</ToggleLabel>
+            <ToggleLabel>
+              {isEmployee ?
+                HomeString({lang: lang, key: 'toggleLabelEmployee' }) :
+                HomeString({lang: lang, key: 'toggleLabelStudent' })
+              }</ToggleLabel>
           )}
           {weeklyData.only_employee ? (
             <Toggle checked={isEmployee} onClick={toggleHandler} disabled={true} />
           ) : (
-            <ToggleView disabled={false} label={isEmployee ? "교직원" : "학생"}>
-              <Toggle checked={isEmployee} onClick={toggleHandler} />
-            </ToggleView>
+            <Toggle checked={isEmployee} onClick={toggleHandler} />
           )}
         </CarouselViewBottom>
       </CarouselView>
