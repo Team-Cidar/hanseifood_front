@@ -8,7 +8,7 @@ import {useRef, useState} from 'react';
 const Login = () => {
   const lang = useRecoilValue<Lang>(langState);
   const inputRef = useRef<HTMLInputElement>(null);
-  const [didLoggedin, setDidLoggedin] = useState<boolean>(false);
+  const [didLoggedin, set_didLoggedin] = useState<boolean>(false);
 
   const handleOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     e.target.placeholder = '';
@@ -19,7 +19,7 @@ const Login = () => {
   };
 
   const loginOnClick = () => {
-    setDidLoggedin(true);
+    set_didLoggedin(true);
     setTimeout(() => {
       if (inputRef.current) inputRef.current.focus();
     }, 500);

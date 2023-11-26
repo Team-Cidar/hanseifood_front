@@ -1,8 +1,7 @@
 import React from 'react';
 import {Content, LabelItem, StyledIconButton, SvgItem} from './Button.styled';
-import SvgIcon from '@components/SvgIcon';
 
-interface IIconButton {
+interface IIconButtonComponentProps {
   label: string;
   svg?: React.ReactElement<SVGAElement>;
   width?: string;
@@ -30,7 +29,7 @@ export const IconButton = ({
   padding,
   svg,
   onClick,
-}: IIconButton) => {
+}: IIconButtonComponentProps) => {
   return (
     <StyledIconButton
       width={width}

@@ -8,7 +8,7 @@ import React, {useState} from 'react';
 import {IconButton} from '@components/Button';
 import SvgIcon from '@components/SvgIcon';
 
-interface ILoginView {
+interface ILoginPageProps {
   didLoggedin: boolean;
   inputRef: React.RefObject<HTMLInputElement>;
   loginOnClick: () => void;
@@ -22,7 +22,7 @@ export const LoginView = ({
   loginOnClick,
   handleOnFocus,
   handleOnBlur,
-}: ILoginView) => {
+}: ILoginPageProps) => {
   const lang = useRecoilValue<Lang>(langState);
 
   return (
