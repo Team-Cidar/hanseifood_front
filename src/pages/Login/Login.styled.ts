@@ -21,7 +21,7 @@ export const Content = styled.div<IContentProps>`
   justify-content: space-between;
   align-items: left;
   width: 100%;
-  height: 30%;
+  height: 40%;
   padding: 24px;
   opacity: ${({$display}) => ($display ? 1 : 0)};
   visibility: ${({$display}) => ($display ? 'visible' : 'hidden')};
