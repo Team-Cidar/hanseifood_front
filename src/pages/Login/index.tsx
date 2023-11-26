@@ -3,10 +3,11 @@ import {LoginView} from './LoginView';
 import {Lang} from '@type/index';
 import {langState} from '@modules/atoms';
 import {LoginString} from '@utils/constants/strings';
-import {useState} from 'react';
+import {useRef, useState} from 'react';
 
 const Login = () => {
   const lang = useRecoilValue<Lang>(langState);
+  const inputRef = useRef<HTMLInputElement>(null);
   const [didLoggedin, setDidLoggedin] = useState<boolean>(false);
 
   const handleOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -19,10 +20,14 @@ const Login = () => {
 
   const loginOnClick = () => {
     setDidLoggedin(true);
+    setTimeout(() => {
+      if (inputRef.current) inputRef.current.focus();
+    }, 500);
   };
 
   return (
     <LoginView
+      inputRef={inputRef}
       didLoggedin={didLoggedin}
       loginOnClick={loginOnClick}
       handleOnFocus={handleOnFocus}

@@ -4,12 +4,13 @@ import {Container, Content, InputText, Title} from './Login.styled';
 import {langState} from '@modules/atoms';
 import {Lang} from '@type/index';
 import {LoginString} from '@utils/constants/strings';
-import {useState} from 'react';
+import React, {useState} from 'react';
 import {IconButton} from '@components/Button';
 import SvgIcon from '@components/SvgIcon';
 
 interface ILoginView {
   didLoggedin: boolean;
+  inputRef: React.RefObject<HTMLInputElement>;
   loginOnClick: () => void;
   handleOnFocus: (e: React.FocusEvent<HTMLInputElement>) => void;
   handleOnBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
@@ -17,6 +18,7 @@ interface ILoginView {
 
 export const LoginView = ({
   didLoggedin,
+  inputRef,
   loginOnClick,
   handleOnFocus,
   handleOnBlur,
@@ -44,6 +46,7 @@ export const LoginView = ({
           {LoginString({lang: lang, key: 'title.direction.nickname'})}
         </Title>
         <InputText
+          ref={inputRef}
           placeholder={`${LoginString({
             lang: lang,
             key: 'input.placeholder',
