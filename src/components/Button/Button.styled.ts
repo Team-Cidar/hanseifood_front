@@ -6,9 +6,9 @@ interface StyledIconButtonProps {
   width?: string;
   height?: string;
   color?: string;
-  backgroundcolor?: string;
+  $backgroundcolor?: string;
   tintcolor?: string;
-  borderwidth?: string;
+  $borderwidth?: string;
   borderradius?: string;
   fontsize?: string;
   padding?: string;
@@ -18,11 +18,11 @@ export const StyledIconButton = styled.button<StyledIconButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({backgroundcolor}) => backgroundcolor ?? 'white'};
+  background-color: ${({$backgroundcolor}) => $backgroundcolor ?? 'white'};
   color: ${({color}) => color ?? EColor.COLOR_PRIMARY};
   font-size: ${({fontsize}) => fontsize ?? '30sp'};
   border-radius: ${({borderradius}) => borderradius ?? '12px'};
-  border-width: ${({borderwidth}) => borderwidth ?? '2px'};
+  border-width: ${({$borderwidth}) => $borderwidth ?? '2px'};
   border-style: solid;
   border-color: ${({tintcolor}) => tintcolor ?? EColor.COLOR_PRIMARY};
   padding: ${({padding}) => padding ?? '12px'};
