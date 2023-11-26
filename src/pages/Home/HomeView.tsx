@@ -36,7 +36,7 @@ export const HomeView = ({
     <Container>
       <PageLogo
         title={HomeString({lang: lang, key: 'title'})}
-        subtitle={'식단표를 미리 확인하고 식권을 편리하게 구매하세요!'}
+        subtitle={HomeString({lang: lang, key: 'subtitle'})}
       />
       <CarouselView>
         {weeklyData.only_employee ? (

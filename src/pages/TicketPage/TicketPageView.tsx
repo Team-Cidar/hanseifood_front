@@ -13,7 +13,7 @@ const TicketPageView = () => {
     <Container>
       <PageLogo
         title={TicketPageString({lang: lang, key: 'title'})}
-        subtitle={'한눈에, 간편하게! 식권 구매 서비스'}
+        subtitle={TicketPageString({lang: lang, key: 'subtitle'})}
       />
     </Container>
   );
