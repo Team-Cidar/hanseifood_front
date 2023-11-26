@@ -39,6 +39,7 @@ export const InputText = styled.input`
   padding: 8px 8px 2px 4px;
   width: 50%;
   caret-color: transparent;
+  background-color: transparent;
   color: ${EColor.COLOR_SECONDARY};
   ${Title2};
   transition: 0.3s;
