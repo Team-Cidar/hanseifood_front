@@ -2,38 +2,17 @@ import {useRecoilValue} from 'recoil';
 import {LoginView} from './LoginView';
 import {Lang} from '@type/index';
 import {langState} from '@modules/atoms';
-import {LoginString} from '@utils/constants/strings';
-import {useRef, useState} from 'react';
 
 const Login = () => {
   const lang = useRecoilValue<Lang>(langState);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const [didLoggedin, set_didLoggedin] = useState<boolean>(false);
 
-  const handleOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    e.target.placeholder = '';
+  const onLoginClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const env = process.env;
+    window.location.href = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${env.KAKAO_API_KEY}&redirect_uri=${env.KAKAO_REDIRECT_URL}`;
   };
 
-  const handleOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    e.target.placeholder = LoginString({lang: lang, key: 'input.placeholder'});
-  };
-
-  const loginOnClick = () => {
-    set_didLoggedin(true);
-    setTimeout(() => {
-      if (inputRef.current) inputRef.current.focus();
-    }, 500);
-  };
-
-  return (
-    <LoginView
-      inputRef={inputRef}
-      didLoggedin={didLoggedin}
-      loginOnClick={loginOnClick}
-      handleOnFocus={handleOnFocus}
-      handleOnBlur={handleOnBlur}
-    />
-  );
+  return <LoginView onLoginClick={onLoginClick} />;
 };
 
 export default Login;

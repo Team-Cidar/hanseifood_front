@@ -1,33 +1,22 @@
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 
-import {Container, Content, InputText, Title} from './Login.styled';
+import {Container, Content, Title} from './Login.styled';
 import {langState} from '@modules/atoms';
 import {Lang} from '@type/index';
 import {LoginString} from '@utils/constants/strings';
-import React, {useState} from 'react';
 import {IconButton} from '@components/Button';
 import SvgIcon from '@components/SvgIcon';
 
 interface ILoginPageProps {
-  didLoggedin: boolean;
-  inputRef: React.RefObject<HTMLInputElement>;
-  loginOnClick: () => void;
-  handleOnFocus: (e: React.FocusEvent<HTMLInputElement>) => void;
-  handleOnBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onLoginClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export const LoginView = ({
-  didLoggedin,
-  inputRef,
-  loginOnClick,
-  handleOnFocus,
-  handleOnBlur,
-}: ILoginPageProps) => {
+export const LoginView = ({onLoginClick}: ILoginPageProps) => {
   const lang = useRecoilValue<Lang>(langState);
 
   return (
     <Container>
-      <Content $display={!didLoggedin}>
+      <Content $display={true}>
         <Title>{LoginString({lang: lang, key: 'title.direction.kakao'})}</Title>
         <IconButton
           label={LoginString({lang: lang, key: 'button.label.kakao'})}
@@ -38,21 +27,7 @@ export const LoginView = ({
           svg={
             <SvgIcon name={'kakao'} width={20} height={20} fill={'#000000'} />
           }
-          onClick={loginOnClick}
-        />
-      </Content>
-      <Content $display={didLoggedin}>
-        <Title>
-          {LoginString({lang: lang, key: 'title.direction.nickname'})}
-        </Title>
-        <InputText
-          ref={inputRef}
-          placeholder={`${LoginString({
-            lang: lang,
-            key: 'input.placeholder',
-          })}`}
-          onFocus={handleOnFocus}
-          onBlur={handleOnBlur}
+          onClick={e => onLoginClick(e!)}
         />
       </Content>
     </Container>

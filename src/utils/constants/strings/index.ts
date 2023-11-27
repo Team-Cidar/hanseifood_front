@@ -1,8 +1,9 @@
+import {Lang} from '@type/index';
 import Login from './Login';
 import Home from './Home';
 import MyPage from './MyPage';
 import TicketPage from './TicktPage';
-import {Lang} from '@type/index';
+import LoginConfirm from './LoginConfirm';
 
 interface IStringConst {
   lang: Lang;
@@ -11,6 +12,10 @@ interface IStringConst {
 
 export const LoginString = ({lang, key}: IStringConst) => {
   return Login[key][lang.langType.code];
+};
+
+export const LoginConfirmString = ({lang, key}: IStringConst) => {
+  return LoginConfirm[key][lang.langType.code];
 };
 
 export const HomeString = ({lang, key}: IStringConst) => {

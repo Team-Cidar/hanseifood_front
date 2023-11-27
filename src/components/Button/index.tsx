@@ -13,7 +13,7 @@ interface IIconButtonComponentProps {
   borderWidth?: string;
   borderRadius?: string;
   padding?: string;
-  onClick?: () => void;
+  onClick: (e?: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export const IconButton = ({
@@ -41,7 +41,7 @@ export const IconButton = ({
       $borderwidth={borderWidth}
       borderradius={borderRadius}
       padding={padding}
-      onClick={onClick}>
+      onClick={e => onClick(e)}>
       <Content>
         {svg ? <SvgItem>{svg}</SvgItem> : <></>}
         <LabelItem>{label.toUpperCase()}</LabelItem>

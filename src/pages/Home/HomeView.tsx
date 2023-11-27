@@ -17,8 +17,8 @@ import {langState} from '@modules/atoms';
 import {Lang} from '@type/index';
 import {HomeString} from '@utils/constants/strings';
 import FloatingBar from '@components/FloatingBar';
-import { ToggleView } from '@components/ToggleView';
-import { Toggle } from '@components/Toggle';
+import {ToggleView} from '@components/ToggleView';
+import {Toggle} from '@components/Toggle';
 
 type HomeViewProps = {
   weeklyData: WeeklyData;
@@ -53,16 +53,22 @@ export const HomeView = ({
         )}
         <CarouselViewBottom>
           {weeklyData.only_employee ? (
-            <ToggleLabel>{HomeString({lang: lang, key: 'toggleLabelStudentAndEmployee' })}</ToggleLabel>
+            <ToggleLabel>
+              {HomeString({lang: lang, key: 'toggleLabelStudentAndEmployee'})}
+            </ToggleLabel>
           ) : (
             <ToggleLabel>
-              {isEmployee ?
-                HomeString({lang: lang, key: 'toggleLabelEmployee' }) :
-                HomeString({lang: lang, key: 'toggleLabelStudent' })
-              }</ToggleLabel>
+              {isEmployee
+                ? HomeString({lang: lang, key: 'toggleLabelEmployee'})
+                : HomeString({lang: lang, key: 'toggleLabelStudent'})}
+            </ToggleLabel>
           )}
           {weeklyData.only_employee ? (
-            <Toggle checked={isEmployee} onClick={toggleHandler} disabled={true} />
+            <Toggle
+              checked={isEmployee}
+              onClick={toggleHandler}
+              disabled={true}
+            />
           ) : (
             <Toggle checked={isEmployee} onClick={toggleHandler} />
           )}

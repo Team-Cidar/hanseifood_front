@@ -11,6 +11,7 @@ import Navbar from '@components/Navbar';
 import TicketPage from '@pages/TicketPage';
 import MyPage from '@pages/MyPage';
 import Login from '@pages/Login';
+import LoginConfirm from '@pages/LoginConfirm';
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/help" element={<Help />} />
           <Route path="/about-me" element={<AboutMe />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/login/confirm" element={<LoginConfirm />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
       </BrowserRouter>

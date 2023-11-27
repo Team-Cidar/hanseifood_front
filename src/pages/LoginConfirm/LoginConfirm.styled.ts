@@ -32,3 +32,23 @@ export const Title = styled.div`
   color: ${EColor.COLOR_PRIMARY};
   ${Title1};
 `;
+
+export const InputText = styled.input`
+  border: 0px;
+  border-bottom: 2px solid ${EColor.GRAY};
+  padding: 8px 8px 2px 4px;
+  width: 50%;
+  caret-color: transparent;
+  background-color: transparent;
+  color: ${EColor.COLOR_SECONDARY};
+  ${Title2};
+  transition: 0.3s;
+  &:focus {
+    outline: none;
+    box-shadow: 0px;
+    border-bottom: 2px solid ${EColor.COLOR_INTERACTION};
+    transition: 0.3s;
+    width: 100%;
+    color: ${EColor.TEXT_900};
+  }
+`;
