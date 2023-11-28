@@ -10,6 +10,7 @@ import Error404 from "@pages/Error404";
 import Navbar from '@components/Navbar';
 import TicketPage from '@pages/TicketPage';
 import MyPage from '@pages/MyPage';
+import BackOffice from '@pages/BackOffice';
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/maintenance" element={<Maintenance />} />
           <Route path="/help" element={<Help />} />
           <Route path="/about-me" element={<AboutMe />} />
+          <Route path="/back-office" element={<BackOffice />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
       </BrowserRouter>
