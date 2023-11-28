@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const TextInputContainer = styled.div<{ width?: string }>`
   position: relative;
-  width: ${(props) => props.width || '400px'}; // 기본값 400
+  width: ${(props) => props.width || '400px'}; // 기본값 400으로 지정
 `;
 
 export const TextInputBox = styled.textarea`
@@ -17,11 +17,13 @@ export const TextInputBox = styled.textarea`
   height: 200px;
   resize: none;
   text-align: left;
+  
 
   &:focus { // 눌렀을 때 색 바뀌게
     outline: none;
-    background-color: #A9F5F270;
-    border-color: #00FFFF
+    background-color: #8BF7FB30;
+    border-color: #00FFFF;
+    box-shadow: 5px 5px 10px #F2F2F2;
   }
 `;
 
@@ -52,22 +54,19 @@ export const TInputBox = styled.input<{ error?: boolean }>`
 
   background-color: #F2F2F250;
 
-  border: 2px solid #ccc;
+  border: 2px solid ${(props) => (props.error ? 'red' : '#ccc')};
   border-radius: 10px;
 
   text-align: left;
   
-  ${(props) =>
-    props.error &&
-    `
-      border-color: red;
-      background-color:
-    `}
+
 
   &:focus { // 눌렀을 때 색 바뀌게
     outline: none;
-    background-color: #A9F5F270;
-    border-color: #00FFFF
+    background-color: #8BF7FB30;
+    border-color: #00FFFF;
+    box-shadow: 5px 5px 10px #F2F2F2;
   }
+
 `;
 
