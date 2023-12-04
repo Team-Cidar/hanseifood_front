@@ -1,10 +1,11 @@
-import {useRecoilValue} from 'recoil';
-import {LoginConfirmView} from './LoginConfirmView';
-import {Lang} from '@type/index';
-import {langState} from '@modules/atoms';
-import {LoginConfirmString} from '@utils/constants/strings';
-import {useEffect, useRef, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { LoginConfirmView } from './LoginConfirmView';
+import { Lang } from '@type/index';
+import { langState } from '@modules/atoms';
+import { LoginConfirmString } from '@utils/constants/strings';
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const LoginConfirm = () => {
   const lang = useRecoilValue<Lang>(langState);
@@ -17,7 +18,7 @@ const LoginConfirm = () => {
     const kakaoCode = new URLSearchParams(location.search).get('code');
     if (kakaoCode) set_userCode(() => kakaoCode);
     else {
-      alert(LoginConfirmString({lang: lang, key: 'alert.fail.login'}));
+      alert(LoginConfirmString({ lang: lang, key: 'alert.fail.login' }));
       navigate('/login');
     }
   }, []);
@@ -33,15 +34,25 @@ const LoginConfirm = () => {
     });
   };
 
-  const onSuccessClick = () => {
-    // query에서 code뺀 userCode를 담아서 server한테 api 요청
-    //// 서버에서 이미 있는 유저인지 확인 후
-    //// 있으면 status: true, user정보 등 보내기
-    //// 없으면 status: false 보내기
-    // 여기서 우리 서버 api 호출 후 status가 true면 /home 으로 navigate
-    // status가 false면 showUserNicknameInput() 실행
-    // 서버에서 카카오 서버로 api요청 해서 token 받을 때 body 데이터의 redirectUrl은 인가코드 받을 때 보낸거랑 동일한 주소 사용해야한대요
-    showUserNicknameInput();
+  const onSuccessClick = async () => {
+
+    const kakaoCode = new URLSearchParams(location.search).get('code');
+    console.log(kakaoCode);
+    const response = await axios.post('http://localhost:8000/login', { 'code': kakaoCode });
+    if (response.data.isExists == "true") {
+
+      console.log(response);
+      const token = response.data.access_token;
+      localStorage.setItem('accessToken', token);
+      console.log(token);
+      navigate("/home");
+    }
+
+    else {
+      showUserNicknameInput();
+
+    }
+
   };
 
   const showUserNicknameInput = () => {
