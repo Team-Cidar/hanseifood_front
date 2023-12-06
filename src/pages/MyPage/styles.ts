@@ -5,8 +5,12 @@ import { EColor } from '@styles/color';
 import { Title2 } from '@styles/font';
 
 export const Container = styled.div`
-  padding: 24px;
-`;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	height: 84vh;
+	padding: 24px;
+`
 
 export const Logo = styled.div`
   color: ${EColor.COLOR_PRIMARY};

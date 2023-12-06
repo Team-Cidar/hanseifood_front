@@ -43,13 +43,21 @@ export const CarouselWrapper = styled.div`
 export const SwipeLeftBtn = styled.div`
   width: 32px;
   height: 32px;
+  position: relative;
+  justify-content: center;
+  align-items: center;
   display: flex;
+  z-index: 99;
 `;
 
 export const SwipeRightBtn = styled.div`
   width: 32px;
   height: 32px;
+  position: relative;
+  justify-content: center;
+  align-items: center;
   display: flex;
+  z-index: 99;
 `;
 
 export const Carousels = styled.ul`

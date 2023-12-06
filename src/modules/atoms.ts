@@ -1,13 +1,16 @@
-import { User, WeeklyData } from "@type/index";
-import { atom } from "recoil";
+import {User, WeeklyData, Lang, LangEnum} from '@type/index';
+import {atom} from 'recoil';
+import {recoilPersist} from 'recoil-persist';
+
+const {persistAtom} = recoilPersist();
 
 export const weeklyDataState = atom<WeeklyData>({
   key: 'weeklyDataState',
   default: {
     only_employee: false,
     student_menu: {},
-    employee_menu: {}
-  }
+    employee_menu: {},
+  },
 });
 
 export const userState = atom<User>({
@@ -15,5 +18,13 @@ export const userState = atom<User>({
   default: {
     isEmployee: false,
     page: 'home',
-  }
+  },
+});
+
+export const langState = atom<Lang>({
+  key: 'langState',
+  default: {
+    langType: LangEnum.KO,
+  },
+  effects_UNSTABLE: [persistAtom],
 });

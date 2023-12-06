@@ -13,3 +13,5 @@ export { ReactComponent as ticket_on } from "./Ticket-on.svg";
 export { ReactComponent as mypage } from "./Mypage.svg";
 export { ReactComponent as mypage_on } from "./Mypage-on.svg";
 export { ReactComponent as email } from "./Email.svg";
+export { ReactComponent as search } from "./Search.svg";
+export {ReactComponent as kakao } from './Kakao.svg';

@@ -1,16 +1,18 @@
 import packageJson from '../package.json';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { RecoilRoot } from "recoil";
-import { GlobalStyle, Version } from "./styles/GlobalStyle";
-import Home from "@pages/Home";
-import Help from "@pages/Help";
-import AboutMe from "@pages/AboutMe";
-import Maintenance from "@pages/Maintenance";
-import Error404 from "@pages/Error404";
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {RecoilRoot} from 'recoil';
+import {GlobalStyle, Version} from './styles/GlobalStyle';
+import Home from '@pages/Home';
+import Help from '@pages/Help';
+import AboutMe from '@pages/AboutMe';
+import Maintenance from '@pages/Maintenance';
+import Error404 from '@pages/Error404';
 import Navbar from '@components/Navbar';
 import TicketPage from '@pages/TicketPage';
 import MyPage from '@pages/MyPage';
 import BackOffice from '@pages/BackOffice';
+import Login from '@pages/Login';
+import LoginConfirm from '@pages/LoginConfirm';
 
 const App = () => {
   return (
@@ -27,6 +29,8 @@ const App = () => {
           <Route path="/help" element={<Help />} />
           <Route path="/about-me" element={<AboutMe />} />
           <Route path="/back-office" element={<BackOffice />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/login/confirm" element={<LoginConfirm />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
       </BrowserRouter>
