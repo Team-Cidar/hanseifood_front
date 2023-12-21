@@ -1,8 +1,12 @@
+// MyPageView.tsx
+
+import React from 'react';
+import { Container, Logo, Button } from './styles';
+import { Link } from 'react-router-dom';
 import {useRecoilState, useRecoilValue} from 'recoil';
 
 import {langState, userState} from '@modules/atoms';
 import {MyPageString} from '@utils/constants/strings';
-import {Container, Logo} from './styles';
 import PageLogo from '@components/PageLogo';
 import {Divider} from '@components/Divider';
 import {ListButton} from '@components/ListButton';
@@ -21,6 +25,12 @@ const MyPageView = () => {
 
   return (
     <Container>
+      <Logo>
+        내 정보
+      </Logo>
+      <Button as={Link} to="/back-office">
+        BackOffice로 이동
+      </Button>
       <PageLogo
         title={MyPageString({lang: lang, key: 'title'})}
         subtitle={''}
