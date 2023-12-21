@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {Title2, Title5, Title6, body1} from '@styles/font';
+import {Title2, Title3, Title5, Title6, body1, body2} from '@styles/font';
 import { EColor } from '@styles/color';
 
 interface StyledTicketItemProps {
@@ -8,8 +8,7 @@ interface StyledTicketItemProps {
 }
 
 export const StyledTicketItem = styled.div<StyledTicketItemProps>`
-
-  position: relative;  
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,12 +70,12 @@ export const StyledTicketItem = styled.div<StyledTicketItemProps>`
 
 export const Title = styled.div`
   color: ${EColor.GRAD_BR};
-  ${Title5};
+  ${Title6};
   font-weight: bold;
 `
 export const Body = styled.div`
   color: ${EColor.COLOR_PRIMARY};
-  ${body1};
+  ${body2};
 `
 export const Tail = styled.div`
   color: ${EColor.TEXT_700};
@@ -84,8 +83,8 @@ export const Tail = styled.div`
 `
 export const Price = styled.div`
   color: ${EColor.TEXT_900};
-  ${Title2};
-  margin-bottom: 10px;
+  ${Title3};
+  margin-bottom: 4px;
 `
 
 export const Image = styled.img`

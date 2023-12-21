@@ -35,6 +35,9 @@ export const CarouselView = styled.div`
 `
 export const TicketView = styled.div`
 	display: flex;
+	flex-direction: column;
+	padding: 12px 18px 12px 18px;
+	gap: 8px;
 	width: 100%;
 	justify-content: center;
 	border: 1.5px solid ${EColor.COLOR_PRIMARY};
