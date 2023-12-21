@@ -25,9 +25,6 @@ const MyPageView = () => {
 
   return (
     <Container>
-      <Logo>
-        내 정보
-      </Logo>
       <Button as={Link} to="/back-office">
         BackOffice로 이동
       </Button>
