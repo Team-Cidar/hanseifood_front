@@ -2,7 +2,7 @@ import {Lang} from '@type/index';
 import Login from './Login';
 import Home from './Home';
 import MyPage from './MyPage';
-import TicketPage from './TicktPage';
+import TicketPage from './TicketPage';
 import LoginConfirm from './LoginConfirm';
 
 interface IStringConst {
