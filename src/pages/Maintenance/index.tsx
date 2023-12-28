@@ -1,7 +1,7 @@
 import MaintenanceView from "./MaintenanceView";
 
 const Maintenance = () => {
-  return <MaintenanceView />
-}
+  return <MaintenanceView />;
+};
 
 export default Maintenance;

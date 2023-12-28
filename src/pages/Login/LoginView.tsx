@@ -1,10 +1,10 @@
-import {useRecoilValue, useSetRecoilState} from 'recoil';
+import { useRecoilValue } from 'recoil';
 
-import {Container, Content, Title} from './Login.styled';
-import {langState} from '@modules/atoms';
-import {Lang} from '@type/index';
-import {LoginString} from '@utils/constants/strings';
-import {IconButton} from '@components/Button';
+import { Container, Content, Title } from './Login.styled';
+import { langState } from '@modules/atoms';
+import { Lang } from '@type/index';
+import { LoginString } from '@utils/constants/strings';
+import { IconButton } from '@components/Button';
 import SvgIcon from '@components/SvgIcon';
 
 interface ILoginPageProps {

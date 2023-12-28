@@ -33,7 +33,7 @@ export const LoginConfirmView = ({
 
     setMynickname(e.target.value);
     console.log(Mynickname);
-  }
+  };
 
   const data = { "nickname": Mynickname };
 
@@ -44,11 +44,8 @@ export const LoginConfirmView = ({
       localStorage.setItem('accessToken', token);
       console.log(response);
       navigate("/home");
-    } else {
-
-
-    }
-  }
+    } else { /* empty */ }
+  };
 
   return (
     <Container>

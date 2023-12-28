@@ -1,5 +1,5 @@
 import { EColor } from "@styles/color";
-import { Title3, body2, Title4_2, Title4, Title5, body4, body3 } from "@styles/font";
+import { Title4_2, body3 } from "@styles/font";
 import styled from "styled-components";
 
 export const MobileContainer = styled.div`

@@ -21,19 +21,19 @@ const MyPageView = () => {
   const [Login, setLogin] = useState('False');
 
   useEffect(() => {
-    const data = {"token": localStorage.getItem('accessToken')}
+    const data = {"token": localStorage.getItem('accessToken')};
     // 페이지 최초 렌더링 시에 실행될 코드
     const verifyToken = async () => {
       try {
-        const response = await axios.post('http://localhost:8000/api/token/verify',data)
+        const response = await axios.post('http://localhost:8000/api/token/verify',data);
 
         if (response.status === 200) {
-          setLogin('True')
+          setLogin('True');
         } else {
-          setLogin('False')
+          setLogin('False');
         }
       } catch (error) {
-        setLogin('False')
+        setLogin('False');
       }
     };
 
@@ -44,7 +44,7 @@ const MyPageView = () => {
     set_page({page: name});
     navigate(`/${name}`);
   };
-  
+
   return (
     <Container>
       <Button as={Link} to="/back-office">

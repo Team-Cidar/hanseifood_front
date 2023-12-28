@@ -1,6 +1,6 @@
 import { EColor } from "@styles/color";
 import styled from "styled-components";
-import { Title1, body6 } from "@styles/font";
+import { Title1 } from "@styles/font";
 
 export const SkeletonStyleView = styled.div`
   position: relative;

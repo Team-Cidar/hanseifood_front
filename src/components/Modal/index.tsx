@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import { ModalBody, ModalBottom, ModalContent, ModalHeader, ModalWrapper } from './Modal.styled';
 import { ScrollBar } from '@components/ScrollBar';
 

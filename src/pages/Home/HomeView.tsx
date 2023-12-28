@@ -3,22 +3,17 @@ import {
   CarouselView,
   CarouselViewBottom,
   Container,
-  Logo,
-  LogoView,
-  Subtitle,
   TicketView,
   ToggleLabel,
 } from './Home.styled';
-import {WeeklyData} from '@type/index';
-import {useRecoilState, useRecoilValue} from 'recoil';
-import {userState} from '@modules/atoms';
+import { WeeklyData } from '@type/index';
+import { useRecoilValue } from 'recoil';
+import { userState } from '@modules/atoms';
 import PageLogo from '@components/PageLogo';
-import {langState} from '@modules/atoms';
-import {Lang} from '@type/index';
-import {HomeString} from '@utils/constants/strings';
-import FloatingBar from '@components/FloatingBar';
-import {ToggleView} from '@components/ToggleView';
-import {Toggle} from '@components/Toggle';
+import { langState } from '@modules/atoms';
+import { Lang } from '@type/index';
+import { HomeString } from '@utils/constants/strings';
+import { Toggle } from '@components/Toggle';
 import { TicketItem } from '@components/Ticket';
 
 type HomeViewProps = {

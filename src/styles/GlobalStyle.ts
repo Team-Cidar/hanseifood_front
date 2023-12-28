@@ -57,4 +57,4 @@ export const Version = styled.div`
   bottom: 0;
   left: 0;
   ${body6}
-`
+`;

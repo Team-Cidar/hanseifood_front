@@ -7,4 +7,4 @@ export const Line = styled.div`
 	background-color: ${EColor.TEXT_500};
 	border-radius: 12px;
 	border: none;
-`
+`;

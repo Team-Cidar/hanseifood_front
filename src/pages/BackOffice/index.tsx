@@ -1,7 +1,7 @@
-import BackOfficeView from "./BackOfficeView"
+import BackOfficeView from "./BackOfficeView";
 
 const BackOffice = () => {
-  return <BackOfficeView />
-}
+  return <BackOfficeView />;
+};
 
 export default BackOffice;

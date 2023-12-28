@@ -5,7 +5,7 @@ const request = axios.create({ baseURL: DOMAIN.main, timeout: 1000 });
 
 request.interceptors.response.use(
   (response) => {
-    return response
+    return response;
   },
   async (error) => {
     const errorStatus = [ 500, 501, 502, 503 ];
