@@ -19,6 +19,7 @@ import {HomeString} from '@utils/constants/strings';
 import FloatingBar from '@components/FloatingBar';
 import {ToggleView} from '@components/ToggleView';
 import {Toggle} from '@components/Toggle';
+import { TicketItem } from '@components/Ticket';
 
 type HomeViewProps = {
   weeklyData: WeeklyData;
@@ -74,7 +75,9 @@ export const HomeView = ({
           )}
         </CarouselViewBottom>
       </CarouselView>
-      <TicketView>티켓</TicketView>
+      <TicketView>
+        <TicketItem label={'티켓'} height={120} />
+      </TicketView>
     </Container>
   );
 };

@@ -27,18 +27,19 @@ export const LogoView = styled.div`
 
 export const CarouselView = styled.div`
 	display: flex;
+	justify-content: center;
 	flex-direction: column;
 	width: 100%;
-	justify-content: center;
-	border: 1.5px solid ${EColor.COLOR_PRIMARY};
-	border-radius: 36px;
 `
 export const TicketView = styled.div`
 	display: flex;
+	flex-direction: column;
+	padding: 12px 18px 12px 18px;
+	gap: 8px;
 	width: 100%;
 	justify-content: center;
-	border: 1.5px solid ${EColor.COLOR_PRIMARY};
-	border-radius: 36px;
+	border: 1.5px dashed ${EColor.TEXT_900};
+	border-radius: 18px;
 `
 export const CarouselViewBottom = styled.div`
 	display: flex;
