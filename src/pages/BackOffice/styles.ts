@@ -7,7 +7,7 @@ export const BackOfficeContainer = styled.div`
   position: relative;
   justify-content: flex-end;
   align-items: flex-end;
-  height: 100vh;
+  height: 90vh;
   padding: 16px;
 `;
 
@@ -25,7 +25,7 @@ export const InputContainer = styled.div`
   background-color: white;
   display: flex;
   position: absolute;
-  height: 35%;
+  height: 40%;
   width: calc(100% - 80px);
   margin: 40px, 40px;
   padding: 16px;
@@ -64,9 +64,9 @@ export const InputContainer = styled.div`
 
 export const AdditionalTextareaContainer = styled.div`
   position: absolute;
-  top: calc(100px + 35% + 20px);
+  top: calc(100px + 40% + 20px);
   left: 40px;
-  height: 30%;
+  height: 35%;
   width: 30%;
   padding: 10px;
 
@@ -101,7 +101,7 @@ input[type="date"] {
 
 export const DateInputContainer = styled.div`
   position: absolute;
-  top: 0; /* 수정된 부분: 위치 조정 */
+  top: 0;
   input[type="date"] {
     width: 100%;
   }
@@ -109,6 +109,6 @@ export const DateInputContainer = styled.div`
 
 
 export const IconButtonContainer = styled.div`
-  margin-bottom: 120px;
+  margin-bottom: 40px;
   margin-right: 40px;
 `;
