@@ -19,9 +19,11 @@ export const Background = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	height: 90vh;
+	padding: 24px;
 `;
 
 export const ImageView = styled.div`
@@ -51,8 +53,7 @@ export const StyledText = styled.div`
 
 export const StyledScroll = styled.div`
   width: 100%;
-  height: 522px;
-  padding: 24px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

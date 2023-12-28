@@ -1,33 +1,18 @@
 import ios from "@assets/gifs/ios.gif";
 import android from "@assets/gifs/android.gif";
-import { Container, Gif, ImageView, StyledScroll, StyledText, TextView } from "./styles";
-import { Default, Mobile } from "@utils/MediaQuery";
+import { Container, Gif, StyledScroll, StyledText } from "./styles";
+import PageLogo from "@components/PageLogo";
 
 const HelpView = () => {
   return (
     <Container>
-      <Default>
-        <ImageView>
-          <Gif src={android} />
-          <Gif src={ios} />
-        </ImageView>
-        <TextView>
-          <StyledText>
-            안드로이드
-          </StyledText>
-          <StyledText>
-            iOS
-          </StyledText>
-        </TextView>
-      </Default>
-      <Mobile>
-        <StyledScroll>
-          <Gif src={android} />
-          <StyledText>안드로이드</StyledText>
-          <Gif src={ios} />
-          <StyledText>iOS</StyledText>
-        </StyledScroll>
-      </Mobile>
+      <PageLogo title={"도움말"} subtitle={"앱 사용 간 필요한 도움말 페이지입니다."}/>
+      <StyledScroll>
+        <Gif src={android} />
+        <StyledText>Android</StyledText>
+        <Gif src={ios} />
+        <StyledText>iOS</StyledText>
+      </StyledScroll>
     </Container>
   );
 };
