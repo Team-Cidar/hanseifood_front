@@ -11,6 +11,11 @@ const MyPage: StringConstant = {
     en: 'Login',
     zh: '登陆',
   },
+  'listbutton.label.logout': {
+    ko: '로그아웃',
+    en: 'Logout',
+    zh: '登出',
+  },
   'listbutton.label.tickets': {
     ko: '구매 내역',
     en: 'Purchase History',
