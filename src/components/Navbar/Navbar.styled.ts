@@ -5,7 +5,7 @@ export const Container = styled.div`
   position: absolute;
   width: 100%;
   bottom: 0;
-`;
+`
 
 export const NavbarBox = styled.div`
 	display: flex;

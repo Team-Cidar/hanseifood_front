@@ -52,7 +52,7 @@ const MyPageView = () => {
       </Button>
       <PageLogo
         title={MyPageString({lang: lang, key: 'title'})}
-        subtitle={''}
+        subtitle={``}
       />
       {Login === 'False' ? (
       <ListButton

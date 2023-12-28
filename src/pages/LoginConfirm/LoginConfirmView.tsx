@@ -34,8 +34,11 @@ export const LoginConfirmView = ({
     setMynickname(e.target.value);
     console.log(Mynickname);
   }
-
-  const data = { "nickname": Mynickname };
+  const storedData = localStorage.getItem('userData');
+  const parsedData = JSON.parse(storedData);
+  const data = { "nickname": Mynickname,
+                 "kakaonickname" : parsedData.kakaonickname,
+                 "id" : parsedData.id };
 
   const SetNickName = async () => {
     if (confirm("정말 이 닉네임으로 설정하시겠습니까?") == true) {

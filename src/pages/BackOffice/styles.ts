@@ -7,7 +7,7 @@ export const BackOfficeContainer = styled.div`
   position: relative;
   justify-content: flex-end;
   align-items: flex-end;
-  height: 100vh;
+  height: 90vh;
   padding: 16px;
 `;
 
