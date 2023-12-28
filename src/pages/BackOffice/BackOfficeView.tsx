@@ -1,83 +1,51 @@
-import React, { useState } from 'react';
-import { BackOfficeContainer, IconButtonContainer, AdditionalTextareaContainer, InputContainer, Logo, DateInputContainer } from './styles';
+import { Container, InputBox, InputContainer, InputTitle, InputView } from './styles';
 import { IconButton } from '@components/Button';
+import PageLogo from '@components/PageLogo';
+import { BackOfficeViewProps } from './types';
+import { TextInput } from '@components/TextInput';
 
-const BackOfficeView = () => {
-  const [studentMenu, setStudentMenu] = useState<string>("");
-  const [staffMenu, setStaffMenu] = useState<string>("");
-  const [specialMenu, setSpecialMenu] = useState<string>("");
-  const [breakfastMenu, setBreakfastMenu] = useState<string>("");
-  
-  const [inputDate, setInputDate] = useState<string>("");
-  const [additionalTextareaDate, setAdditionalTextareaDate] = useState<string>("");
-
-  return (
-    <BackOfficeContainer>
-      <Logo>Back-Office</Logo>
-
-
-      <InputContainer>
-      <DateInputContainer>
-        <input
-          type="date"
-          value={inputDate}
-          onChange={(e) => setInputDate(e.target.value)}
-        />
-      </DateInputContainer>
-        <div>
-          <label>학생</label>
-          <textarea
-            value={studentMenu}
-            onChange={(e) => setStudentMenu(e.target.value)}
-          />
-        </div>
-
-        <div>
-          <label>교직원</label>
-          <textarea
-            value={staffMenu}
-            onChange={(e) => setStaffMenu(e.target.value)}
-          />
-        </div>
-
-        <div>
-          <label>일품</label>
-          <textarea
-            value={specialMenu}
-            onChange={(e) => setSpecialMenu(e.target.value)}
-          />
-        </div>
-      </InputContainer>
-
-      <AdditionalTextareaContainer>
-        <div style={{ marginBottom: 8 }}>
-          <input
-            type="date"
-            value={additionalTextareaDate}
-            onChange={(e) => setAdditionalTextareaDate(e.target.value)}
-          />
-        </div>
-
-        <label>천원의 아침밥</label>
-        <textarea
-          value={breakfastMenu}
-          onChange={(e) => setBreakfastMenu(e.target.value)}
-        />
-      </AdditionalTextareaContainer>
-
-      <IconButtonContainer>
-        <IconButton
-          label="식단표 업로드"
-          width={120}
-          height={50}
-          onClick={() => {
-              //
-
-          }}
-        />
-      </IconButtonContainer>
-    </BackOfficeContainer>
-  );
-};
+const BackOfficeView = ({getter, setter}: BackOfficeViewProps) => (
+  <Container>
+    <PageLogo title={'식단표 업로드'} />
+    <InputContainer>
+      <input
+        type="date"
+        value={getter[0]}
+        onChange={(e) => setter[0](e.target.value)} />
+      <InputView>
+        <InputBox>
+          <InputTitle>
+            학생메뉴
+          </InputTitle>
+          <TextInput value={getter[1]} onChange={setter[1]} maxLength={50} />
+        </InputBox>
+        <InputBox>
+          <InputTitle>
+            교직원메뉴
+          </InputTitle>
+          <TextInput value={getter[2]} onChange={setter[2]} maxLength={50} />
+        </InputBox>
+        <InputBox>
+          <InputTitle>
+            일품특선
+          </InputTitle>
+          <TextInput value={getter[3]} onChange={setter[3]} maxLength={50} />
+        </InputBox>
+        <InputBox>
+        </InputBox>
+      </InputView>
+    </InputContainer>
+    <IconButton
+      label="식단표 업로드"
+      width={"132px"}
+      height={"50px"}
+      onClick={() => console.log("asdfas")} />
+    <IconButton
+      label="엑셀파일 추출하기"
+      width={"152px"}
+      height={"50px"}
+      onClick={() => console.log("asdfas")} />
+  </Container>
+);
 
 export default BackOfficeView;

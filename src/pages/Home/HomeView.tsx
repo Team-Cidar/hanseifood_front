@@ -26,8 +26,6 @@ type HomeViewProps = {
 export const HomeView = ({
   weeklyData,
   toggleHandler,
-  handleModal,
-  loading,
 }: HomeViewProps) => {
   const {isEmployee} = useRecoilValue(userState);
 
