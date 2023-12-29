@@ -1,26 +1,25 @@
-import Carousel from "@components/Carousel";
+import Carousel from '@components/Carousel';
 import {
-  Background,
-  TitleText,
-  TitleTextBox,
-  TitleTextMobile,
-  TitleTextMobileRight,
-  TitleTextRight,
-  ToggleLayout,
-} from "./Home.styled";
-import CardView from "@components/CardView";
-import { Default, Mobile } from "@utils/MediaQuery";
-import { WeeklyData } from "@type/index";
-import Skeleton from "@components/Skeleton";
-import { Toggle } from "@components/Toggle";
-import { ToggleView } from "@components/ToggleView";
-import { useRecoilValue } from "recoil";
-import { userState } from "@modules/atoms";
-import {
-  SkeletonStyledToggleView,
-  SkeletonToggleLayout,
-} from "@components/Skeleton/Skeleton.styled";
-import FloatingBar from "@components/FloatingBar";
+  CarouselView,
+  CarouselViewBottom,
+  Container,
+  Logo,
+  LogoView,
+  Subtitle,
+  TicketView,
+  ToggleLabel,
+} from './Home.styled';
+import {WeeklyData} from '@type/index';
+import {useRecoilState, useRecoilValue} from 'recoil';
+import {userState} from '@modules/atoms';
+import PageLogo from '@components/PageLogo';
+import {langState} from '@modules/atoms';
+import {Lang} from '@type/index';
+import {HomeString} from '@utils/constants/strings';
+import FloatingBar from '@components/FloatingBar';
+import {ToggleView} from '@components/ToggleView';
+import {Toggle} from '@components/Toggle';
+import { TicketItem } from '@components/Ticket';
 
 type HomeViewProps = {
   weeklyData: WeeklyData;
@@ -29,67 +28,56 @@ type HomeViewProps = {
   loading: boolean;
 };
 
-export const HomeView = ({ weeklyData, toggleHandler, handleModal, loading }: HomeViewProps) => {
-  const { isEmployee } = useRecoilValue(userState);
+export const HomeView = ({
+  weeklyData,
+  toggleHandler,
+  handleModal,
+  loading,
+}: HomeViewProps) => {
+  const {isEmployee} = useRecoilValue(userState);
+
+  const lang = useRecoilValue<Lang>(langState);
 
   return (
-    <Background>
-      <FloatingBar></FloatingBar>
-      {loading ? (
-        <CardView>
-          <Default>
-            <TitleText>Hansei Weekly Menu</TitleText>
-          </Default>
-          <Mobile>
-            <TitleTextBox>
-              <TitleTextMobile>Hansei</TitleTextMobile>
-              <TitleTextMobile>Weekly Menu</TitleTextMobile>
-            </TitleTextBox>
-          </Mobile>
-          {weeklyData.only_employee ? (
-            <Carousel weeklyMenu={weeklyData.employee_menu} />
-          ) : isEmployee ? (
-            <Carousel weeklyMenu={weeklyData.employee_menu} />
-          ) : (
-            <Carousel weeklyMenu={weeklyData.student_menu} />
-          )}
-          <Default>
-            <TitleTextRight>
-              매 주 월요일 오전 8:00에 식단표가 업데이트됩니다.
-            </TitleTextRight>
-          </Default>
-          <Mobile>
-            <TitleTextMobileRight>
-              매 주 월요일 오전 8:00에 식단표가 업데이트됩니다.
-            </TitleTextMobileRight>
-          </Mobile>
-        </CardView>
-      ) : (
-        <>
-          <Default>
-            <>
-              <Skeleton></Skeleton>
-            </>
-          </Default>
-          <Mobile>
-            <Skeleton></Skeleton>
-          </Mobile>
-          <SkeletonToggleLayout>
-            <SkeletonStyledToggleView></SkeletonStyledToggleView>
-          </SkeletonToggleLayout>
-        </>
-      )}
-
-      <ToggleLayout>
-        <ToggleView disabled={true} label="추가 메뉴 보기" onClick={handleModal}/>
+    <Container>
+      <PageLogo
+        title={HomeString({lang: lang, key: 'title'})}
+        subtitle={HomeString({lang: lang, key: 'subtitle'})}
+      />
+      <CarouselView>
         {weeklyData.only_employee ? (
-          <ToggleView disabled={true} label="학생 & 교직원"/>
+          <Carousel weeklyMenu={weeklyData.employee_menu} />
+        ) : isEmployee ? (
+          <Carousel weeklyMenu={weeklyData.employee_menu} />
         ) : (
-          <ToggleView disabled={false} label={isEmployee ? "교직원" : "학생"}>
-            <Toggle checked={isEmployee} onClick={toggleHandler} />
-          </ToggleView>
+          <Carousel weeklyMenu={weeklyData.student_menu} />
         )}
-      </ToggleLayout>
-    </Background>
+        <CarouselViewBottom>
+          {weeklyData.only_employee ? (
+            <ToggleLabel>
+              {HomeString({lang: lang, key: 'toggleLabelStudentAndEmployee'})}
+            </ToggleLabel>
+          ) : (
+            <ToggleLabel>
+              {isEmployee
+                ? HomeString({lang: lang, key: 'toggleLabelEmployee'})
+                : HomeString({lang: lang, key: 'toggleLabelStudent'})}
+            </ToggleLabel>
+          )}
+          {weeklyData.only_employee ? (
+            <Toggle
+              checked={isEmployee}
+              onClick={toggleHandler}
+              disabled={true}
+            />
+          ) : (
+            <Toggle checked={isEmployee} onClick={toggleHandler} />
+          )}
+        </CarouselViewBottom>
+      </CarouselView>
+      <TicketView>
+        <TicketItem label={'티켓'} height={120} />
+      </TicketView>
+    </Container>
   );
 };

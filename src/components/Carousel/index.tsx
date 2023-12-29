@@ -140,88 +140,46 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
 
   return (
     <>
-      <Default>
-        <Container>
-          <SwipeLeftBtn onClick={() => handleSwipe(-1)}>
+      <MobileContainer>
+        <MobileCarouselWrapper
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          {/* <SwipeLeftBtn onClick={() => handleSwipe(-1)}>
             <SvgIcon
               name={"chevron_left"}
-              width={36}
-              height={36}
+              width={12}
+              height={12}
               fill={"black"}
             />
-          </SwipeLeftBtn>
-          <CarouselWrapper
-            onMouseDown={handleMouseStart}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseEnd}
-          >
-            <Carousels ref={carouselRef}>
-              {Object.entries(weeklyMenu).map((res, key) => {
-                return (
-                  <CarouselItem key={key}>
-                    <DateText>{res[0]}</DateText>
-                    <MenuCard>
-                      {res[1].map((daily, idx) => {
-                        return <MenuList key={idx}>{daily}</MenuList>;
-                      })}
-                    </MenuCard>
-                  </CarouselItem>
-                );
-              })}
-            </Carousels>
-          </CarouselWrapper>
-          <SwipeRightBtn onClick={() => handleSwipe(1)}>
+          </SwipeLeftBtn> */}
+          <Carousels ref={carouselRef}>
+            {Object.entries(weeklyMenu).map((res, key) => {
+              return (
+                <MobileCarouselItem key={key}>
+                  <MobileDateText>{res[0]}</MobileDateText>
+                  <MenuCard>
+                    {res[1].map((daily, idx) => {
+                      return (
+                        <MobileMenuList key={idx}>{daily}</MobileMenuList>
+                      );
+                    })}
+                  </MenuCard>
+                </MobileCarouselItem>
+              );
+            })}
+          </Carousels>
+          {/* <SwipeRightBtn onClick={() => handleSwipe(1)}>
             <SvgIcon
               name={"chevron_right"}
-              width={36}
-              height={36}
+              width={12}
+              height={12}
               fill={"black"}
             />
-          </SwipeRightBtn>
-        </Container>
-      </Default>
-      <Mobile>
-        <MobileContainer>
-          <SwipeLeftBtn onClick={() => handleSwipe(-1)}>
-            <SvgIcon
-              name={"chevron_left"}
-              width={36}
-              height={36}
-              fill={"black"}
-            />
-          </SwipeLeftBtn>
-          <MobileCarouselWrapper
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-          >
-            <Carousels ref={carouselRef}>
-              {Object.entries(weeklyMenu).map((res, key) => {
-                return (
-                  <MobileCarouselItem key={key}>
-                    <MobileDateText>{res[0]}</MobileDateText>
-                    <MenuCard>
-                      {res[1].map((daily, idx) => {
-                        return (
-                          <MobileMenuList key={idx}>{daily}</MobileMenuList>
-                        );
-                      })}
-                    </MenuCard>
-                  </MobileCarouselItem>
-                );
-              })}
-            </Carousels>
-          </MobileCarouselWrapper>
-          <SwipeRightBtn onClick={() => handleSwipe(1)}>
-            <SvgIcon
-              name={"chevron_right"}
-              width={36}
-              height={36}
-              fill={"black"}
-            />
-          </SwipeRightBtn>
-        </MobileContainer>
-      </Mobile>
+          </SwipeRightBtn> */}
+        </MobileCarouselWrapper>
+      </MobileContainer>
     </>
   );
 };

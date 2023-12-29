@@ -1,16 +1,16 @@
 import CardView from "@components/CardView";
 import FloatingBar from "@components/FloatingBar";
 import SvgIcon from "@components/SvgIcon";
-import { Background } from "@pages/Home/Home.styled";
 import { Default, Mobile } from "@utils/MediaQuery";
 import {
+  Background,
   Developer,
   Developers,
   EmailInfo,
   EmailText,
   MobileParticipants,
   Participants,
-} from "./Participant";
+} from "./styles";
 
 const AboutMe = () => {
   return (
