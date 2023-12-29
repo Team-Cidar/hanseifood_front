@@ -35,7 +35,7 @@ const LoginConfirm = () => {
   };
 
   const onSuccessClick = async () => {
-
+    console.log("hi")
     const kakaoCode = new URLSearchParams(location.search).get('code');
     console.log(kakaoCode);
     const response = await axios.post('http://localhost:8000/login', { 'code': kakaoCode });
