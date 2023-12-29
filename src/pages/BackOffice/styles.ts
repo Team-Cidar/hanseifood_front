@@ -1,5 +1,5 @@
 import { EColor } from '@styles/color';
-import { Title4_2 } from '@styles/font';
+import { Title4_2, body3 } from '@styles/font';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -7,7 +7,7 @@ export const Container = styled.div`
   flex-direction: column;
   height: 90vh;
   padding: 24px;
-  gap: 12;
+  gap: 12px;
 `;
 
 export const InputView = styled.div`
@@ -31,6 +31,7 @@ export const InputContainer = styled.div`
   border: 2px dashed ${EColor.TEXT_900};
   border-radius: 8px;
   padding: 16px;
+  gap: 4px;
 `;
 
 export const DateInputContainer = styled.div`
@@ -39,8 +40,14 @@ export const DateInputContainer = styled.div`
   }
 `;
 
+export const ButtonView = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+`;
 
-export const IconButtonContainer = styled.div`
-  margin-bottom: 40px;
-  margin-right: 40px;
+export const SubText = styled.div`
+	color: ${EColor.TEXT_600};
+	${body3};
 `;

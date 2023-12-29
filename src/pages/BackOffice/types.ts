@@ -3,4 +3,5 @@ export type StateSetter = [React.Dispatch<React.SetStateAction<string>>, React.D
 export type BackOfficeViewProps = {
     getter: StateGetter;
     setter: StateSetter;
+    handleUploadMenu: () => void;
   };

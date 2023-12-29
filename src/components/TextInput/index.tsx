@@ -5,9 +5,10 @@ interface TextInputProps {
   value: string;
   onChange: (value: string) => void;
   maxLength: number;
+  placeholder: string;
 }
 
-export const TextInput: React.FC<TextInputProps> = ({ value, onChange, maxLength }: TextInputProps) => {
+export const TextInput: React.FC<TextInputProps> = ({ value, onChange, maxLength, placeholder }: TextInputProps) => {
   const handleChagne = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     if (maxLength === undefined || e.target.value.length <= maxLength) {
       onChange(e.target.value);
@@ -18,7 +19,7 @@ export const TextInput: React.FC<TextInputProps> = ({ value, onChange, maxLength
       <TextInputBox
         value={value}
         onChange={handleChagne}
-        placeholder="입력하세뇨\'v'/"
+        placeholder={placeholder}
         maxLength={maxLength}
       />
       <CharacterCount>

@@ -14,7 +14,7 @@ export const TextInputBox = styled.textarea`
   border: 2px solid #ccc;
   border-radius: 10px;
   width: 100%;
-  height: 200px;
+  height: 212px;
   resize: none;
   text-align: left;
 
