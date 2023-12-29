@@ -40,17 +40,30 @@ const LoginConfirm = () => {
     console.log(kakaoCode);
     const response = await axios.post('http://localhost:8000/login', { 'code': kakaoCode });
     if (response.data.isExists == "true") {
-
       console.log(response);
       const token = response.data.access_token;
+      const kakaonickname = response.data.kakaonickname;
+      const id = response.data.id;
+      const userData = {
+        kakaonickname: kakaonickname,
+        id: id,
+      };
       localStorage.setItem('accessToken', token);
-      console.log(token);
+      localStorage.setItem('userData', JSON.stringify(userData));
       navigate("/home");
     }
 
     else {
+      const token = response.data.access_token;
+      const kakaonickname = response.data.kakaonickname;
+      const id = response.data.id;
+      const userData = {
+        kakaonickname: kakaonickname,
+        id: id,
+      };
+      localStorage.setItem('accessToken', token);
+      localStorage.setItem('userData', JSON.stringify(userData));
       showUserNicknameInput();
-
     }
 
   };
