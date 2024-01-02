@@ -15,6 +15,7 @@ interface ILoginPageProps {
   onSuccessClick: () => void;
   handleOnFocus: (e: React.FocusEvent<HTMLInputElement>) => void;
   handleOnBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onSubmit: (nickname: string) => void;
 }
 
 export const LoginConfirmView = ({
@@ -23,31 +24,15 @@ export const LoginConfirmView = ({
   onSuccessClick,
   handleOnFocus,
   handleOnBlur,
+  onSubmit,
 }: ILoginPageProps) => {
 
-  const [Mynickname, setMynickname] = useState<string>('');
+  const [nickname, set_nickname] = useState<string>('');
   const navigate = useNavigate();
   const lang = useRecoilValue<Lang>(langState);
 
   const onEnterPressed = (e: React.KeyboardEvent<HTMLInputElement>) => {
-
-    setMynickname(e.target.value);
-    console.log(Mynickname);
-  };
-  const storedData = localStorage.getItem('userData');
-  const parsedData = JSON.parse(storedData);
-  const data = { "nickname": Mynickname,
-                 "kakaonickname" : parsedData.kakaonickname,
-                 "id" : parsedData.id };
-
-  const SetNickName = async () => {
-    if (confirm("정말 이 닉네임으로 설정하시겠습니까?") == true) {
-      const response = await axios.post("http://localhost:8000/nickname", data);
-      const token = response.data.access_token;
-      localStorage.setItem('accessToken', token);
-      console.log(response);
-      navigate("/home");
-    } else { /* empty */ }
+    set_nickname(e.target.value);
   };
 
   return (
@@ -82,7 +67,7 @@ export const LoginConfirmView = ({
           onBlur={handleOnBlur}
           onKeyUp={onEnterPressed}
         />
-        <IconButton label="확인" onClick={SetNickName} />
+        <IconButton label="확인" onClick={() => onSubmit(nickname)} />
       </Content>
     </Container>
   );

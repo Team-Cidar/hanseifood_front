@@ -1,7 +1,7 @@
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { LoginConfirmView } from './LoginConfirmView';
-import { Lang } from '@type/index';
-import { langState } from '@modules/atoms';
+import { Lang, UserInfo, UserKakaoinfo } from '@type/index';
+import { langState, userInfoState } from '@modules/atoms';
 import { LoginConfirmString } from '@utils/constants/strings';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -9,9 +9,12 @@ import axios from 'axios';
 
 const LoginConfirm = () => {
   const lang = useRecoilValue<Lang>(langState);
+  const set_userInfo = useSetRecoilState(userInfoState);
+  const userInfo = useRecoilValue<UserInfo>(userInfoState);
   const inputRef = useRef<HTMLInputElement>(null);
   const [isNewUser, set_isNewUser] = useState(false);
   const [userCode, set_userCode] = useState('');
+  const [kakaoInfo, set_kakaoInfo] = useState<UserKaKaoInfo>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,37 +38,22 @@ const LoginConfirm = () => {
   };
 
   const onSuccessClick = async () => {
-
     const kakaoCode = new URLSearchParams(location.search).get('code');
-    console.log(kakaoCode);
+
     const response = await axios.post('http://localhost:8000/login', { 'code': kakaoCode });
-    if (response.data.isExists == "true") {
-      console.log(response);
-      const token = response.data.access_token;
-      const kakaonickname = response.data.kakaonickname;
-      const id = response.data.id;
-      const userData = {
-        kakaonickname: kakaonickname,
-        id: id,
-      };
-      localStorage.setItem('accessToken', token);
-      localStorage.setItem('userData', JSON.stringify(userData));
-      navigate("/home");
+    
+    if (response.data.status) {
+      saveUserInfoGoHome(response.data);
+      return
     }
-
-    else {
-      const token = response.data.access_token;
-      const kakaonickname = response.data.kakaonickname;
-      const id = response.data.id;
-      const userData = {
-        kakaonickname: kakaonickname,
-        id: id,
-      };
-      localStorage.setItem('accessToken', token);
-      localStorage.setItem('userData', JSON.stringify(userData));
-      showUserNicknameInput();
-    }
-
+    // save user to state
+    const userData = response.data.user;
+    set_kakaoInfo({
+      "kakao_id": userData.kakao_id,
+      "kakao_name": userData.kakao_name,
+      "email": userData.email,
+    });
+    showUserNicknameInput();
   };
 
   const showUserNicknameInput = () => {
@@ -75,6 +63,33 @@ const LoginConfirm = () => {
     }, 500);
   };
 
+  const createUser = async (nickname: string) => {
+    if (!confirm("정말 이 닉네임으로 설정하시겠습니까?")) {
+      inputRef.current.value = '';
+      return
+    }
+    const data = {
+      ...kakaoInfo,
+      'nickname': nickname,
+    }
+    
+    const response = await axios.post("http://localhost:8000/nickname", data);
+    // if success?
+    saveUserInfoGoHome(response.data);
+  };
+
+  const saveUserInfoGoHome = (data) => {
+    const refresh_token = data.refresh_token;
+    const access_token = data.access_token;
+    const userData = data.user;
+    set_userInfo({
+      ...userData,
+      refresh_token,
+      access_token
+    });
+    navigate('/home')
+  }
+
   return (
     <LoginConfirmView
       inputRef={inputRef}
@@ -82,6 +97,7 @@ const LoginConfirm = () => {
       onSuccessClick={onSuccessClick}
       handleOnFocus={handleOnFocus}
       handleOnBlur={handleOnBlur}
+      onSubmit={createUser}
     />
   );
 };
