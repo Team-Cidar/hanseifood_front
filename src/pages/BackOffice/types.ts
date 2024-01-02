@@ -4,4 +4,5 @@ export type BackOfficeViewProps = {
     getter: StateGetter;
     setter: StateSetter;
     handleUploadMenu: () => void;
+    handleExcelWeekMenu: () => void;
   };

@@ -1,31 +1,32 @@
 import { useEffect, useState } from "react";
 import BackOfficeView from "./BackOfficeView";
 import { StateGetter, StateSetter } from "./types";
-import { requestDayTargetFood, requestUploadMenu } from "@apis/index";
+import { requestDayTargetFood, requestExcelWeekFood, requestUploadMenu } from "@apis/index";
 import { getFormattedDate } from "@utils/GetFormattedDate";
+import { WeekMenuStringFormator } from "@utils/WeekMenuStringFormator";
 
 const BackOffice = () => {
-  const [menuDateInput, set_menuDateInput] = useState<string>(getFormattedDate());
-  const [onlyEmployee, set_onlyEmployee] = useState<boolean>(false);
-  const [hasAdditional, set_hasAdditional] = useState<boolean>(false);
-  const [studentMenuInput, set_studentMenuInput] = useState<string>("");
-  const [employeeMenuInput, set_employeeMenuInput] = useState<string>("");
-  const [additionalMenuInput, set_additionalMenuInput] = useState<string>("");
+  const [date, set_date] = useState<string>(getFormattedDate());
+  const [student, set_student] = useState<string>("");
+  const [employee, set_employee] = useState<string>("");
+  const [additional, set_additional] = useState<string>("");
 
-  const Getter: StateGetter = [menuDateInput, studentMenuInput, employeeMenuInput, additionalMenuInput];
-  const Setter: StateSetter = [set_menuDateInput, set_studentMenuInput, set_employeeMenuInput, set_additionalMenuInput];
+  const Getter: StateGetter = [date, student, employee, additional];
+  const Setter: StateSetter = [set_date, set_student, set_employee, set_additional];
 
   useEffect(() => {
-    requestDayTargetFood(menuDateInput)
+    requestDayTargetFood(date)
     .then(res => {
-      console.log(res);
+      set_student(WeekMenuStringFormator(res.data.student_menu));
+      set_employee(WeekMenuStringFormator(res.data.employee_menu));
+      set_additional(WeekMenuStringFormator(res.data.additional_menu));
     }).catch(err => {
       console.log(err);
     });
-  }, [menuDateInput]);
+  }, [date]);
 
   const handleUploadMenu = () => {
-    requestUploadMenu(menuDateInput, onlyEmployee, hasAdditional, studentMenuInput, employeeMenuInput, additionalMenuInput)
+    requestUploadMenu(date, student, employee, additional)
     .then(res => {
       console.log(res);
     }).catch(err => {
@@ -33,7 +34,16 @@ const BackOffice = () => {
     });
   };
 
-  return <BackOfficeView getter={Getter} setter={Setter} handleUploadMenu={handleUploadMenu}/>;
+  const handleExcelWeekMenu = () => {
+    requestExcelWeekFood(date)
+    .then(res => {
+      console.log(res);
+    }).catch(err => {
+      console.log(err);
+    });
+  };
+
+  return <BackOfficeView getter={Getter} setter={Setter} handleUploadMenu={handleUploadMenu} handleExcelWeekMenu={handleExcelWeekMenu}/>;
 };
 
 export default BackOffice;

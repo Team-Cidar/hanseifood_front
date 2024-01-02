@@ -4,7 +4,7 @@ import PageLogo from '@components/PageLogo';
 import { BackOfficeViewProps } from './types';
 import { TextInput } from '@components/TextInput';
 
-const BackOfficeView = ({getter, setter, handleUploadMenu}: BackOfficeViewProps) => (
+const BackOfficeView = ({getter, setter, handleUploadMenu, handleExcelWeekMenu}: BackOfficeViewProps) => (
   <Container>
     <PageLogo title={'식단표 업로드'} />
     <InputContainer>
@@ -17,22 +17,22 @@ const BackOfficeView = ({getter, setter, handleUploadMenu}: BackOfficeViewProps)
           <InputTitle>
             학생메뉴
           </InputTitle>
-          <TextInput value={getter[1]} onChange={setter[1]} maxLength={50} placeholder="',' 로 입력할 식단표를 나눠서 입력해주세요" />
+          <TextInput value={getter[1]} onChange={setter[1]} maxLength={50} placeholder="ex) 돼지고기김치찌개, 시금치무침, 연두부, 밥, 된장국" />
         </InputBox>
         <InputBox>
           <InputTitle>
             교직원메뉴
           </InputTitle>
-          <TextInput value={getter[2]} onChange={setter[2]} maxLength={50} placeholder="',' 로 입력할 식단표를 나눠서 입력해주세요" />
+          <TextInput value={getter[2]} onChange={setter[2]} maxLength={50} placeholder="ex) 돼지고기김치찌개, 시금치무침, 연두부, 밥, 된장국" />
         </InputBox>
         <InputBox>
           <InputTitle>
             일품특선
           </InputTitle>
-          <TextInput value={getter[3]} onChange={setter[3]} maxLength={50} placeholder="',' 로 입력할 식단표를 나눠서 입력해주세요" />
+          <TextInput value={getter[3]} onChange={setter[3]} maxLength={50} placeholder="ex) 돼지고기김치찌개, 시금치무침, 연두부, 밥, 된장국" />
         </InputBox>
       </InputView>
-      <SubText>ex) 돼지고기김치찌개, 시금치무침, 연두부, 밥, 된장국</SubText>
+      <SubText>',' 로 입력할 식단표를 나눠서 입력해주세요</SubText>
     </InputContainer>
     <ButtonView>
       <IconButton
@@ -44,7 +44,7 @@ const BackOfficeView = ({getter, setter, handleUploadMenu}: BackOfficeViewProps)
         label="엑셀파일 추출하기"
         width={"152px"}
         height={"50px"}
-        onClick={() => console.log("asdfas")} />
+        onClick={handleExcelWeekMenu} />
     </ButtonView>
   </Container>
 );
