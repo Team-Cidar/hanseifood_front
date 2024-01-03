@@ -1,3 +1,4 @@
+import { UserKakaoInfo } from '@type/index';
 import request from './request';
 
 export const requestDayFood = () => {
@@ -20,5 +21,18 @@ export const requestUploadMenu = (datetime, only_employee, has_additional, stude
     student,
     employee,
     additional,
+  });
+};
+
+export const requestConfirmLogin = (kakaoCode: string | null) => {
+  return request.post('/login', {
+    'code': kakaoCode
+  });
+};
+
+export const requestRegisterUser = (kakaoInfo: UserKakaoInfo | null, nickname: string) => {
+  return request.post('/nickname', {
+    ...kakaoInfo,
+    nickname
   });
 };

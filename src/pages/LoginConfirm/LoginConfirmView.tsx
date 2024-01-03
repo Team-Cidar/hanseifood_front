@@ -1,40 +1,32 @@
-import { useRecoilValue } from 'recoil';
-import React, { useState } from 'react';
-
+import React from 'react';
 import { Container, Content, InputText, Title } from './LoginConfirm.styled';
-import { langState } from '@modules/atoms';
 import { Lang } from '@type/index';
 import { LoginConfirmString } from '@utils/constants/strings';
 import { IconButton } from '@components/Button';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
-interface ILoginPageProps {
+type LoginPageProps = {
+  lang: Lang;
   inputRef: React.RefObject<HTMLInputElement>;
   isNewUser: boolean;
+  nickname: string;
   onSuccessClick: () => void;
   handleOnFocus: (e: React.FocusEvent<HTMLInputElement>) => void;
   handleOnBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-  onSubmit: (nickname: string) => void;
+  handleSubmit: (nickname: string) => void;
+  handleEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 export const LoginConfirmView = ({
+  lang,
   inputRef,
   isNewUser,
+  nickname,
   onSuccessClick,
   handleOnFocus,
   handleOnBlur,
-  onSubmit,
-}: ILoginPageProps) => {
-
-  const [nickname, set_nickname] = useState<string>('');
-  const navigate = useNavigate();
-  const lang = useRecoilValue<Lang>(langState);
-
-  const onEnterPressed = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    set_nickname(e.target.value);
-  };
-
+  handleSubmit,
+  handleEnter
+}: LoginPageProps) => {
   return (
     <Container>
       <Content $display={!isNewUser}>
@@ -65,9 +57,9 @@ export const LoginConfirmView = ({
           })}`}
           onFocus={handleOnFocus}
           onBlur={handleOnBlur}
-          onKeyUp={onEnterPressed}
+          onKeyUp={handleEnter}
         />
-        <IconButton label="확인" onClick={() => onSubmit(nickname)} />
+        <IconButton label="확인" onClick={() => handleSubmit(nickname)} />
       </Content>
     </Container>
   );

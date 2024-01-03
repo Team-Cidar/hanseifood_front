@@ -4,9 +4,9 @@ import { LoginString } from '@utils/constants/strings';
 import { IconButton } from '@components/Button';
 import SvgIcon from '@components/SvgIcon';
 
-interface LoginPageProps {
-  handleLogin: (e: React.MouseEvent<HTMLButtonElement>) => void;
+type LoginPageProps = {
   lang: Lang;
+  handleLogin: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export const LoginView = ({handleLogin, lang}: LoginPageProps) => {
