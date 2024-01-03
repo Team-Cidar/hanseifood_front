@@ -31,7 +31,7 @@ export const requestConfirmLogin = (kakaoCode: string | null) => {
 };
 
 export const requestRegisterUser = (kakaoInfo: UserKakaoInfo | null, nickname: string) => {
-  return request.post('/nickname', {
+  return request.post('/signup', {
     ...kakaoInfo,
     nickname
   });

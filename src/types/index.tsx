@@ -54,6 +54,7 @@ export type UserInfo = {
   kakao_name: string,
   is_admin: boolean,
   nickname: string,
+  role: string,
   access_token: string,
   refresh_token: string
 }

@@ -46,13 +46,13 @@ const LoginConfirm = () => {
     .then(res => {
       if (res.data.status) {
         saveUserInfoGoHome(res.data.user, res.data.access_token, res.data.refresh_token);
-        set_kakaoInfo({
-          "kakao_id": res.data.user.kakao_id,
-          "kakao_name": res.data.user.kakao_name,
-          "email": res.data.user.email,
-        });
         return;
       }
+      set_kakaoInfo({
+        "kakao_id": res.data.user.kakao_id,
+        "kakao_name": res.data.user.kakao_name,
+        "email": res.data.user.email,
+      });
     }).catch(err => {
       console.log(err);
     });
@@ -60,7 +60,7 @@ const LoginConfirm = () => {
   };
 
   const handleSubmit = async (nickname: string) => {
-    if (!confirm("정말 이 닉네임으로 설정하시겠습니까?")) {
+    if (!confirm(LoginConfirmString({ lang: lang, key: 'alert.check.nickname' }))) {
       inputRef.current!.value = '';
       return;
     }
