@@ -14,7 +14,7 @@ export const requestDayTargetFood = (dateTime: string) => {
 };
 
 export const requestUploadMenu = (dateTime: string, student: string, employee: string, additional: string) => {
-  return request.post('/back/menu', {
+  return request.post('/back/menus', {
     dateTime,
     student,
     employee,
