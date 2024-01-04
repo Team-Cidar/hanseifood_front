@@ -32,20 +32,20 @@ const LoginConfirm = () => {
     }, 500);
   };
 
-  const saveUserInfoGoHome = (user: UserInfo, access_token: string, refresh_token: string) => {
+  const saveUserInfoGoHome = (user: UserInfo) => {
     set_userInfo({
       ...user,
-      refresh_token,
-      access_token
     });
     navigate('/home');
   };
 
   const onSuccessClick = async () => {
     requestConfirmLogin(kakaoCode)
-    .then(res => {
+    .then(async res => {
       if (res.data.status) {
-        saveUserInfoGoHome(res.data.user, res.data.access_token, res.data.refresh_token);
+        await localStorage.setItem('access_token', res.data.access_token);
+        await localStorage.setItem('refresh_token', res.data.refresh_token);
+        saveUserInfoGoHome(res.data.user);
         return;
       }
       set_kakaoInfo({
@@ -66,7 +66,7 @@ const LoginConfirm = () => {
     }
     requestRegisterUser(kakaoInfo, nickname)
     .then(res => {
-      saveUserInfoGoHome(res.data.user, res.data.access_token, res.data.refresh_token);
+      saveUserInfoGoHome(res.data.user);
       console.log(res);
     }).catch(err => {
       console.log(err);

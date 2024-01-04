@@ -38,3 +38,9 @@ export const requestRegisterUser = (kakaoInfo: UserKakaoInfo | null, nickname: s
     nickname
   });
 };
+
+export const requestTokenVerify = (accessToken: string) => {
+  return request.post('/token/verify', {
+    'token': accessToken,
+  });
+};
