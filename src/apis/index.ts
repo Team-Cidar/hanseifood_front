@@ -13,14 +13,18 @@ export const requestDayTargetFood = (dateTime: string) => {
   return request.get(`/menus/target?date=${dateTime.replace(/-/g, '')}`);
 };
 
-export const requestUploadMenu = (datetime, only_employee, has_additional, student, employee, additional) => {
-  return request.post('/back/menu', {
+export const requestUploadMenu = (datetime: string, student: string, employee: string, additional: string) => {
+  return request.post('/back/menus', {
     datetime,
-    only_employee,
-    has_additional,
     student,
     employee,
     additional,
+  });
+};
+
+export const requestExcelWeekFood = (dateTime: string) => {
+  return request.get(`/back/menus/excel?date=${dateTime.replace(/-/g, '')}`, {
+    responseType: 'blob',
   });
 };
 
