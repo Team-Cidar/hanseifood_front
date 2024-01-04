@@ -7,7 +7,6 @@ interface IIconButtonComponentProps {
   width?: string;
   height?: string;
   color?: string;
-  fontSize?: string;
   backgroundColor?: string;
   tintColor?: string;
   borderWidth?: string;
@@ -25,7 +24,6 @@ export const IconButton = ({
   tintColor,
   borderWidth,
   borderRadius,
-  fontSize,
   padding,
   svg,
   onClick,
@@ -35,10 +33,9 @@ export const IconButton = ({
       width={width}
       height={height}
       color={color}
-      fontsize={fontSize}
       $backgroundcolor={backgroundColor}
       tintcolor={tintColor}
-      $borderwidth={borderWidth}
+      borderwidth={borderWidth}
       borderradius={borderRadius}
       padding={padding}
       onClick={e => onClick(e)}>

@@ -45,10 +45,34 @@ export const CarouselViewBottom = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0px 30px 8px 30px;
+	padding: 0px 12px 0px 12px;
+`;
+
+export const ToggleView = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
 `;
 
 export const ToggleLabel = styled.div`
 	color: ${EColor.COLOR_INTERACTION};
 	${body4};
+`;
+
+export const AdditionalButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: ${EColor.TEXT_700};
+  border-radius: 12px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: ${EColor.TEXT_900};
+  padding: 12px;
+  width: 96px;
+  height: 8px;
+  ${body4}
 `;

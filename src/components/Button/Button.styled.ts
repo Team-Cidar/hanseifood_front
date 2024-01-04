@@ -20,7 +20,6 @@ export const StyledIconButton = styled.button<StyledIconButtonProps>`
   align-items: center;
   background-color: ${({$backgroundcolor}) => $backgroundcolor ?? 'white'};
   color: ${({color}) => color ?? EColor.COLOR_PRIMARY};
-  font-size: ${({fontsize}) => fontsize ?? '30sp'};
   border-radius: ${({borderradius}) => borderradius ?? '12px'};
   border-width: ${({$borderwidth}) => $borderwidth ?? '2px'};
   border-style: solid;

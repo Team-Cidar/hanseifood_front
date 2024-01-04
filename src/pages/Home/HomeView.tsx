@@ -1,10 +1,12 @@
 import Carousel from '@components/Carousel';
 import {
+  AdditionalButton,
   CarouselView,
   CarouselViewBottom,
   Container,
   TicketView,
   ToggleLabel,
+  ToggleView,
 } from './Home.styled';
 import { WeeklyData } from '@type/index';
 import { useRecoilValue } from 'recoil';
@@ -26,6 +28,7 @@ type HomeViewProps = {
 export const HomeView = ({
   weeklyData,
   toggleHandler,
+  handleModal
 }: HomeViewProps) => {
   const {isEmployee} = useRecoilValue(userState);
 
@@ -46,26 +49,29 @@ export const HomeView = ({
           <Carousel weeklyMenu={weeklyData.student_menu} />
         )}
         <CarouselViewBottom>
-          {weeklyData.only_employee ? (
-            <ToggleLabel>
-              {HomeString({lang: lang, key: 'toggleLabelStudentAndEmployee'})}
-            </ToggleLabel>
-          ) : (
-            <ToggleLabel>
-              {isEmployee
-                ? HomeString({lang: lang, key: 'toggleLabelEmployee'})
-                : HomeString({lang: lang, key: 'toggleLabelStudent'})}
-            </ToggleLabel>
-          )}
-          {weeklyData.only_employee ? (
-            <Toggle
-              checked={isEmployee}
-              onClick={toggleHandler}
-              disabled={true}
-            />
-          ) : (
-            <Toggle checked={isEmployee} onClick={toggleHandler} />
-          )}
+          <AdditionalButton onClick={handleModal}>일품특선메뉴</AdditionalButton>
+          <ToggleView>
+            {weeklyData.only_employee ? (
+              <ToggleLabel>
+                {HomeString({lang: lang, key: 'toggleLabelStudentAndEmployee'})}
+              </ToggleLabel>
+            ) : (
+              <ToggleLabel>
+                {isEmployee
+                  ? HomeString({lang: lang, key: 'toggleLabelEmployee'})
+                  : HomeString({lang: lang, key: 'toggleLabelStudent'})}
+              </ToggleLabel>
+            )}
+            {weeklyData.only_employee ? (
+              <Toggle
+                checked={isEmployee}
+                onClick={toggleHandler}
+                disabled={true}
+              />
+            ) : (
+              <Toggle checked={isEmployee} onClick={toggleHandler} />
+            )}
+          </ToggleView>
         </CarouselViewBottom>
       </CarouselView>
       <TicketView>

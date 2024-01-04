@@ -1,7 +1,7 @@
 {
   "name": "hanseifood_front",
-  "version": "1.0.4",
-  "description": "SSL 적용 및 deploy 수정",
+  "version": "1.1.0",
+  "description": "전체 리뉴얼, 백오피스 페이지 추가, 카카오 로그인 구현, 디자인 수정",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config config/webpack.dev.js",
