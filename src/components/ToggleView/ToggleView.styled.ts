@@ -15,7 +15,7 @@ export const StyledToggleView = styled.div`
   border-radius: 24px;
   padding: 12px;
   margin: 12px;
-`
+`;
 
 export const StyledLabel = styled.div`
   display: flex;
@@ -23,7 +23,7 @@ export const StyledLabel = styled.div`
   align-items: center;
   width: 44px;
   ${Title5}
-`
+`;
 
 export const StyledDisabledToggleView = styled.div`
   display: flex;
@@ -38,7 +38,7 @@ export const StyledDisabledToggleView = styled.div`
   border-radius: 24px;
   padding: 12px;
   margin: 12px;
-`
+`;
 
 export const StyledDisabledLabel = styled.div`
   display: flex;
@@ -46,7 +46,7 @@ export const StyledDisabledLabel = styled.div`
   align-items: center;
   width: 116px
   ${Title5}
-`
+`;
 
 export const OnClickLabel = styled.div`
   display: flex;
@@ -55,4 +55,4 @@ export const OnClickLabel = styled.div`
   width: 116px;
   ${Title5}
   color: #3366CC;
-`
+`;

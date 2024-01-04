@@ -5,14 +5,15 @@ import {langState} from '@modules/atoms';
 
 const Login = () => {
   const lang = useRecoilValue<Lang>(langState);
+  const kakaoApiKey = process.env.KAKAO_API_KEY;
+  const kakaoRedirectUrl = process.env.KAKAO_REDIRECT_URL;
 
-  const onLoginClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const env = process.env;
-    window.location.href = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${env.KAKAO_API_KEY}&redirect_uri=${env.KAKAO_REDIRECT_URL}`;
+    window.location.href = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${kakaoApiKey}&redirect_uri=${kakaoRedirectUrl}`;
   };
 
-  return <LoginView onLoginClick={onLoginClick} />;
+  return <LoginView lang={lang} handleLogin={handleLogin} />;
 };
 
 export default Login;

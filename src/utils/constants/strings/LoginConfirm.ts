@@ -26,6 +26,11 @@ const LoginConfirm: StringConstant = {
     en: 'Login failed!\nPlease try again.',
     zh: '登录失败！ 请再试一次。',
   },
+  'alert.check.nickname': {
+    ko: '정말 이 닉네임으로 설정하시겠습니까?',
+    en: 'Are you sure to set this nickname?',
+    zh: '您确定要设置此昵称吗？'
+  }
 } as const;
 
 export default LoginConfirm;

@@ -41,3 +41,18 @@ export const LangEnum = {
   ZH: {text: '中文', code: 'zh'},
 } as const;
 type LangEnum = (typeof LangEnum)[keyof typeof LangEnum];
+
+export type UserKakaoInfo = {
+  kakao_id: string,
+  email: string,
+  kakao_name: string,
+}
+
+export type UserInfo = {
+  kakao_id: string,
+  email: string,
+  kakao_name: string,
+  is_admin: boolean,
+  nickname: string,
+  role: string,
+}

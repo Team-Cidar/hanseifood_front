@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import {EColor} from '@styles/color';
-import {Title1, Title2, Title3, body3, body6} from '@styles/font';
+import { EColor } from '@styles/color';
+import { Title1, Title2 } from '@styles/font';
 
 interface IContentProps {
   $display: boolean;

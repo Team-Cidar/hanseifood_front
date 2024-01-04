@@ -13,7 +13,7 @@ export const Toggle = ({ checked, onClick, disabled }: ToggleProps) => {
       <ToggleBox>
         <ToggleIcon />
       </ToggleBox>
-    )
+    );
   }
   return (
     <ToggleBox checked={checked} onClick={onClick}>

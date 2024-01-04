@@ -2,7 +2,7 @@ import React from 'react';
 import {useRecoilValue} from 'recoil';
 
 import {langState} from '@modules/atoms';
-import {Container, Logo} from './styles';
+import {Container} from './styles';
 import {TicketPageString} from '@utils/constants/strings';
 import PageLogo from '@components/PageLogo';
 

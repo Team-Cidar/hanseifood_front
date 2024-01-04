@@ -14,13 +14,13 @@ const FloatingBar = () => {
 
   const navigate = useNavigate();
 
-  const handleNavigate = (name: String) => {
+  const handleNavigate = (name: string) => {
     navigate(`/${name}`);
   };
 
   const handleClickEvent =
     <T extends HTMLElement>() =>
-    (e: React.MouseEvent<T>) => {
+    () => {
       if (hidden) {
         setTimeout(() => {
           setHidden(!hidden);

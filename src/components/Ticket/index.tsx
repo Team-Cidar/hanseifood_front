@@ -1,5 +1,5 @@
 import React from 'react';
-import { Body, StyledTicketItem, Title, Tail, Price, Image } from './Ticket.styled';
+import { Body, StyledTicketItem, Title, Tail, Price } from './Ticket.styled';
 import SvgIcon from '@components/SvgIcon';
 
 interface ITicketItem {
@@ -11,10 +11,8 @@ interface ITicketItem {
 }
 
 export const TicketItem = ({
-  label,
   width,
   height,
-  svg,
   onClick,
 }: ITicketItem) => {
   return (

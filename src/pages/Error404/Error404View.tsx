@@ -16,6 +16,6 @@ const Error404View = () => {
       </Body>
     </Container>
   );
-}
+};
 
 export default Error404View;

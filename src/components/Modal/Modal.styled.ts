@@ -33,17 +33,17 @@ export const ModalHeader = styled.div`
   display: flex;
   width: 100%;
   ${Title3};
-`
+`;
 
 export const ModalBody = styled.div`
   display: flex;
   width: 100%;
   height: 282px;
   ${body3};
-`
+`;
 
 export const ModalBottom = styled.div`
   display: flex;
   flex-direction: row-reverse;
   width: 100%;
-`
+`;

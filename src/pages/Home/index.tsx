@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import {HomeView} from './HomeView';
 import {useRecoilState, useSetRecoilState} from 'recoil';
 import {langState} from '@modules/atoms';
-import {Lang, LangEnum} from '@type/index';
+import {Lang} from '@type/index';
 import {getSystemLang} from '@utils/languages';
 import FontFaceObserver from 'fontfaceobserver';
 import {User, WeeklyData} from '@type/index';
@@ -10,7 +10,7 @@ import {userState, weeklyDataState} from '@modules/atoms';
 import {requestWeekFood} from '@apis/index';
 
 const Home = () => {
-  let font = new FontFaceObserver('NotoSansBlack');
+  const font = new FontFaceObserver('NotoSansBlack');
   const [weeklyData, set_weeklyData] =
     useRecoilState<WeeklyData>(weeklyDataState);
   const [loading, set_loading] = useState(false);

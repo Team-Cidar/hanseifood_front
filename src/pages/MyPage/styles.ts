@@ -10,7 +10,7 @@ export const Container = styled.div`
 	gap: 12px;
 	height: 84vh;
 	padding: 24px;
-`
+`;
 
 export const Logo = styled.div`
   color: ${EColor.COLOR_PRIMARY};

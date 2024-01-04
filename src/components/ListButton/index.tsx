@@ -1,5 +1,4 @@
-import React from 'react'
-import { Container, Label } from './ListButton.styled'
+import { Container, Label } from './ListButton.styled';
 
 interface ListButtonComponentProps {
   label: string
@@ -14,4 +13,4 @@ export const ListButton = ({ label, onClick }: ListButtonComponentProps) => {
         </Label>
     </Container>
   );
-}
+};

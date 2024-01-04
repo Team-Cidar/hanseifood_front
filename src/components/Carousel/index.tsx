@@ -1,22 +1,11 @@
 import React, {
-  MouseEventHandler,
   TouchEventHandler,
   useEffect,
   useRef,
   useState,
 } from "react";
 
-import {
-  CarouselItem,
-  Carousels,
-  CarouselWrapper,
-  Container,
-  DateText,
-  MenuCard,
-  MenuList,
-  SwipeLeftBtn,
-  SwipeRightBtn,
-} from "./Carousel.styled";
+import * as CarouselStyled from "./Carousel.styled";
 import {
   MobileCarouselItem,
   MobileCarouselWrapper,
@@ -24,11 +13,7 @@ import {
   MobileDateText,
   MobileMenuList,
 } from "./Carousel.mobile.styled";
-import SvgIcon from "@components/SvgIcon";
-import { Default, Mobile } from "@utils/MediaQuery";
 import { Menu } from "@type/index";
-import { useRecoilValue } from "recoil";
-import { userState } from "@modules/atoms";
 
 interface CarouselProps {
   weeklyMenu: Menu;
@@ -88,25 +73,25 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
 
   // 터치 이벤트
 
-  const handleMouseStart: MouseEventHandler<HTMLDivElement> = (e) => {
-    touchStartX = e.nativeEvent.clientX;
-  };
-  const handleMouseMove: MouseEventHandler<HTMLDivElement> = (e) => {
-    applyCarouselStyles(
-      `translateX(-${currCarousel}00%)`,
-      "all 0.3s ease-in-out"
-    );
-  };
+  // const handleMouseStart: MouseEventHandler<HTMLDivElement> = (e) => {
+  //   touchStartX = e.nativeEvent.clientX;
+  // };
+  // const handleMouseMove: MouseEventHandler<HTMLDivElement> = (e) => {
+  //   applyCarouselStyles(
+  //     `translateX(-${currCarousel}00%)`,
+  //     "all 0.3s ease-in-out"
+  //   );
+  // };
 
-  const handleMouseEnd: MouseEventHandler<HTMLDivElement> = (e) => {
-    touchEndX = e.nativeEvent.clientX;
+  // const handleMouseEnd: MouseEventHandler<HTMLDivElement> = (e) => {
+  //   touchEndX = e.nativeEvent.clientX;
 
-    if (touchStartX > touchEndX) {
-      handleSwipe(1); // 오른쪽페이지로 이동
-    } else if (touchStartX < touchEndX) {
-      handleSwipe(-1); // 왼쪽페이지로 이동
-    }
-  };
+  //   if (touchStartX > touchEndX) {
+  //     handleSwipe(1); // 오른쪽페이지로 이동
+  //   } else if (touchStartX < touchEndX) {
+  //     handleSwipe(-1); // 왼쪽페이지로 이동
+  //   }
+  // };
 
   // 모바일용 터치 이벤트
   const handleTouchStart: TouchEventHandler<HTMLDivElement> = (e) => {
@@ -154,22 +139,22 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
               fill={"black"}
             />
           </SwipeLeftBtn> */}
-          <Carousels ref={carouselRef}>
+          <CarouselStyled.Carousels ref={carouselRef}>
             {Object.entries(weeklyMenu).map((res, key) => {
               return (
                 <MobileCarouselItem key={key}>
                   <MobileDateText>{res[0]}</MobileDateText>
-                  <MenuCard>
+                  <CarouselStyled.MenuCard>
                     {res[1].map((daily, idx) => {
                       return (
                         <MobileMenuList key={idx}>{daily}</MobileMenuList>
                       );
                     })}
-                  </MenuCard>
+                  </CarouselStyled.MenuCard>
                 </MobileCarouselItem>
               );
             })}
-          </Carousels>
+          </CarouselStyled.Carousels>
           {/* <SwipeRightBtn onClick={() => handleSwipe(1)}>
             <SvgIcon
               name={"chevron_right"}

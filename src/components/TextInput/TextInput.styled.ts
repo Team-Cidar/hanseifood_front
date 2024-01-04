@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const TextInputContainer = styled.div<{ width?: string }>`
   position: relative;
-  width: ${(props) => props.width || '400px'}; // 기본값 400으로 지정
+  width: ${(props) => props.width || '100px'}; // 기본값 400으로 지정
 `;
 
 export const TextInputBox = styled.textarea`
@@ -14,10 +14,9 @@ export const TextInputBox = styled.textarea`
   border: 2px solid #ccc;
   border-radius: 10px;
   width: 100%;
-  height: 200px;
+  height: 212px;
   resize: none;
   text-align: left;
-  
 
   &:focus { // 눌렀을 때 색 바뀌게
     outline: none;

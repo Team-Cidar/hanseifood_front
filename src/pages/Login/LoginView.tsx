@@ -1,19 +1,15 @@
-import {useRecoilValue, useSetRecoilState} from 'recoil';
-
-import {Container, Content, Title} from './Login.styled';
-import {langState} from '@modules/atoms';
-import {Lang} from '@type/index';
-import {LoginString} from '@utils/constants/strings';
-import {IconButton} from '@components/Button';
+import { Container, Content, Title } from './Login.styled';
+import { Lang } from '@type/index';
+import { LoginString } from '@utils/constants/strings';
+import { IconButton } from '@components/Button';
 import SvgIcon from '@components/SvgIcon';
 
-interface ILoginPageProps {
-  onLoginClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+type LoginPageProps = {
+  lang: Lang;
+  handleLogin: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export const LoginView = ({onLoginClick}: ILoginPageProps) => {
-  const lang = useRecoilValue<Lang>(langState);
-
+export const LoginView = ({handleLogin, lang}: LoginPageProps) => {
   return (
     <Container>
       <Content $display={true}>
@@ -27,7 +23,7 @@ export const LoginView = ({onLoginClick}: ILoginPageProps) => {
           svg={
             <SvgIcon name={'kakao'} width={20} height={20} fill={'#000000'} />
           }
-          onClick={e => onLoginClick(e!)}
+          onClick={e => handleLogin(e!)}
         />
       </Content>
     </Container>

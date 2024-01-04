@@ -1,4 +1,3 @@
-import React, { ReactNode } from 'react'
 import { Logo, LogoView, Subtitle } from './PageLogo.styled';
 
 interface PageLogoComponentProps {
@@ -13,6 +12,6 @@ const PageLogo = ({ title, subtitle }: PageLogoComponentProps) => {
         <Subtitle>{subtitle}</Subtitle>
     </LogoView>
   );
-}
+};
 
-export default PageLogo
+export default PageLogo;

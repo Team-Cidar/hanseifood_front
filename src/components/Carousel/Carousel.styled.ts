@@ -1,13 +1,7 @@
 import { EColor } from "@styles/color";
 import {
-  Title1,
-  Title2,
   Title3,
-  Title4,
   body1,
-  body2,
-  body3,
-  Title4_2,
 } from "@styles/font";
 import styled from "styled-components";
 

@@ -4,22 +4,22 @@ import { TextInputBox, CharacterCount, TextInputContainer, TInputContainer, TInp
 interface TextInputProps {
   value: string;
   onChange: (value: string) => void;
-  maxLength?: number;
+  maxLength: number;
+  placeholder: string;
 }
 
-const TextInput: React.FC<TextInputProps> = ({ value, onChange, maxLength }) => {
-  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    if (maxLength === undefined || event.target.value.length <= maxLength) {
-      onChange(event.target.value);
+export const TextInput: React.FC<TextInputProps> = ({ value, onChange, maxLength, placeholder }: TextInputProps) => {
+  const handleChagne = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    if (maxLength === undefined || e.target.value.length <= maxLength) {
+      onChange(e.target.value);
     }
   };
-
   return (
     <TextInputContainer>
       <TextInputBox
         value={value}
-        onChange={handleChange}
-        placeholder="입력하세뇨\'v'/"
+        onChange={handleChagne}
+        placeholder={placeholder}
         maxLength={maxLength}
       />
       <CharacterCount>
@@ -30,23 +30,9 @@ const TextInput: React.FC<TextInputProps> = ({ value, onChange, maxLength }) => 
   );
 };
 
-export const TI: React.FC = () => {
-  const [inputValue, setInputValue] = useState('');
-
-  const handleInputChange = (value: string) => {
-    setInputValue(value);
-  };
-
-  return (
-    <div>
-      <TextInput value={inputValue} onChange={handleInputChange} maxLength={50}/>
-    </div>
-  );
-};
-
 
 /////////////////// 닉네임 입력 ////////////////////
-const NickInput: React.FC<TextInputProps> = ({ value, onChange, maxLength }) => {
+export const NickInput: React.FC<TextInputProps> = ({ value, onChange, maxLength }) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
@@ -64,23 +50,8 @@ const NickInput: React.FC<TextInputProps> = ({ value, onChange, maxLength }) => 
   );
 };
 
-export const Nick: React.FC = () => { // 일단 10자까지로 제한해놨으니까 나중에 바꾸고 싶으면 말씀해주십숑
-  const [inputValue, setInputValue] = useState('');
-
-  const handleInputChange = (value: string) => {
-    setInputValue(value);
-  };
-
-  return (
-    <div>
-      <NickInput value={inputValue} onChange={handleInputChange} maxLength={10}/>
-    </div>
-  );
-};
-
-
 /////////////////// 패스워드 입력 ////////////////////
-const PassInput: React.FC<TextInputProps> = ({ value, onChange }) => {
+export const PassInput: React.FC<TextInputProps> = ({ value, onChange }) => {
   const [error, setError] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -105,18 +76,3 @@ const PassInput: React.FC<TextInputProps> = ({ value, onChange }) => {
     </TInputContainer>
   );
 };
-
-export const Pass: React.FC = () => {
-  const [inputValue, setInputValue] = useState('');
-
-  const handleInputChange = (value: string) => {
-    setInputValue(value);
-  };
-
-  return (
-    <div>
-      <PassInput value={inputValue} onChange={handleInputChange} />
-    </div>
-  );
-};
-

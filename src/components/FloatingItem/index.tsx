@@ -1,5 +1,4 @@
 import SvgIcon from "@components/SvgIcon";
-import { useEffect, useState } from "react";
 
 import {
   FloatingItemBtn,
@@ -9,7 +8,7 @@ import {
 
 interface FloatingItemInfo {
   svgName: "help" | "about_me" | "home";
-  text: String;
+  text: string;
   isVisible: boolean;
   delay: number;
   onClick: () => void;

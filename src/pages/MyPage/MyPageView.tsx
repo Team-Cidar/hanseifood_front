@@ -20,31 +20,11 @@ const MyPageView = () => {
   const [{page}, set_page] = useRecoilState<User>(userState);
   const [Login, setLogin] = useState('False');
 
-  useEffect(() => {
-    const data = {"token": localStorage.getItem('accessToken')}
-    // 페이지 최초 렌더링 시에 실행될 코드
-    const verifyToken = async () => {
-      try {
-        const response = await axios.post('http://localhost:8000/api/token/verify',data)
-
-        if (response.status === 200) {
-          setLogin('True')
-        } else {
-          setLogin('False')
-        }
-      } catch (error) {
-        setLogin('False')
-      }
-    };
-
-    verifyToken();
-  }, []);
-
   const handleNavigate = (name: string) => {
     set_page({page: name});
     navigate(`/${name}`);
   };
-  
+
   return (
     <Container>
       <Button as={Link} to="/back-office">
