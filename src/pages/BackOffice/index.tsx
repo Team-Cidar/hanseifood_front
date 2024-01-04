@@ -29,17 +29,33 @@ const BackOffice = () => {
     requestUploadMenu(date, student, employee, additional)
     .then(() => {
       alert("식단표 업로드를 성공하였습니다.");
-    }).catch(() => {
+    }).catch((err) => {
       alert("식단표 업로드를 실패하였습니다.");
+      console.error("handleUploadMenu" + err);
     });
   };
 
   const handleExcelWeekMenu = () => {
     requestExcelWeekFood(date)
     .then(res => {
-      console.log(res);
+      const contentDisposition = res.headers['content-disposition'];
+
+      const filenameRegex = /filename=([^;]*)/;
+      const matches = filenameRegex.exec(contentDisposition);
+      const fileName = matches != null && matches[1] ? matches[1] : 'default_filename.xlsx';
+
+      const url = window.URL.createObjectURL(new Blob([res.data]));
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
     }).catch(err => {
-      console.log(err);
+      alert("파일 다운로드에 실패하였습니다.");
+      console.error("handleExcelWeekMenu error" + err);
     });
   };
 
