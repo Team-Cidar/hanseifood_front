@@ -13,9 +13,9 @@ export const requestDayTargetFood = (dateTime: string) => {
   return request.get(`/menus/target?date=${dateTime.replace(/-/g, '')}`);
 };
 
-export const requestUploadMenu = (dateTime: string, student: string, employee: string, additional: string) => {
+export const requestUploadMenu = (datetime: string, student: string, employee: string, additional: string) => {
   return request.post('/back/menus', {
-    dateTime,
+    datetime,
     student,
     employee,
     additional,
@@ -23,7 +23,9 @@ export const requestUploadMenu = (dateTime: string, student: string, employee: s
 };
 
 export const requestExcelWeekFood = (dateTime: string) => {
-  return request.get(`/back/excel?date=${dateTime.replace(/-/g, '')}`);
+  return request.get(`/back/menus/excel?date=${dateTime.replace(/-/g, '')}`, {
+    responseType: 'blob',
+  });
 };
 
 export const requestConfirmLogin = (kakaoCode: string | null) => {

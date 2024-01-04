@@ -27,10 +27,10 @@ const BackOffice = () => {
 
   const handleUploadMenu = () => {
     requestUploadMenu(date, student, employee, additional)
-    .then(res => {
-      console.log(res);
-    }).catch(err => {
-      console.log(err);
+    .then(() => {
+      alert("식단표 업로드를 성공하였습니다.");
+    }).catch(() => {
+      alert("식단표 업로드를 실패하였습니다.");
     });
   };
 
