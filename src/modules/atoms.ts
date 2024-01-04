@@ -1,4 +1,4 @@
-import {User, WeeklyData, Lang, LangEnum} from '@type/index';
+import {User, WeeklyData, Lang, LangEnum, UserInfo} from '@type/index';
 import {atom} from 'recoil';
 import {recoilPersist} from 'recoil-persist';
 
@@ -28,3 +28,17 @@ export const langState = atom<Lang>({
   },
   effects_UNSTABLE: [persistAtom],
 });
+
+export const userInfoState = atom<UserInfo>({
+  key: 'userInfoState',
+  default: {
+    kakao_id: '',
+    email: '',
+    kakao_name: '',
+    is_admin: false,
+    nickname: '',
+    access_token: '',
+    refresh_token: ''
+  },
+  effects_UNSTABLE: [persistAtom]
+})
