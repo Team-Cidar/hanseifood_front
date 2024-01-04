@@ -1,3 +1,4 @@
+import { UserKakaoInfo } from '@type/index';
 import request from './request';
 
 export const requestDayFood = () => {
@@ -23,4 +24,17 @@ export const requestUploadMenu = (dateTime: string, student: string, employee: s
 
 export const requestExcelWeekFood = (dateTime: string) => {
   return request.get(`/back/excel?date=${dateTime.replace(/-/g, '')}`);
+};
+
+export const requestConfirmLogin = (kakaoCode: string | null) => {
+  return request.post('/login', {
+    'code': kakaoCode
+  });
+};
+
+export const requestRegisterUser = (kakaoInfo: UserKakaoInfo | null, nickname: string) => {
+  return request.post('/signup', {
+    ...kakaoInfo,
+    nickname
+  });
 };
