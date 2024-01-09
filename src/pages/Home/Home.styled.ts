@@ -41,6 +41,10 @@ export const TicketView = styled.div`
 	border: 1.5px dashed ${EColor.TEXT_900};
 	border-radius: 18px;
 `;
+export const CarouselViewTop = styled.div`
+	display: flex;
+	align-items: center;
+`;
 export const CarouselViewBottom = styled.div`
 	display: flex;
 	align-items: center;
@@ -66,13 +70,13 @@ export const AdditionalButton = styled.button`
   justify-content: center;
   align-items: center;
   background-color: white;
-  color: ${EColor.TEXT_700};
-  border-radius: 12px;
-  border-width: 2px;
+  color: ${EColor.TEXT_800};
+  border-radius: 8px;
+  border-width: 1.5px;
   border-style: solid;
-  border-color: ${EColor.TEXT_900};
-  padding: 12px;
-  width: 96px;
+  border-color: ${EColor.TEXT_800};
+  padding: 10px;
+  width: 90px;
   height: 8px;
   ${body4}
 `;

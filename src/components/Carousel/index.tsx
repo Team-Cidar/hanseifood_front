@@ -13,7 +13,11 @@ import {
   MobileDateText,
   MobileMenuList,
 } from "./Carousel.mobile.styled";
-import { Menu } from "@type/index";
+import { Menu, User } from "@type/index";
+import SvgIcon from "@components/SvgIcon";
+import { EColor } from "@styles/color";
+import { userState } from "@modules/atoms";
+import { useRecoilState } from "recoil";
 
 interface CarouselProps {
   weeklyMenu: Menu;
@@ -23,6 +27,7 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
   let touchStartX: number;
   let touchEndX: number;
   const [currCarousel, setCurrCarousel] = useState(0);
+  const [{ isFeedbackModal }, set_isFeedbackModal] = useRecoilState<User>(userState);
   const carouselRef = useRef<HTMLUListElement>(null);
 
   // 요일에 따른 초기 화면 렌더링
@@ -107,8 +112,6 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
   };
 
   const handleTouchEnd: TouchEventHandler<HTMLDivElement> = (e) => {
-    e.preventDefault();
-
     touchEndX = e.changedTouches[0].clientX;
 
     if (touchStartX - touchEndX > 50) {
@@ -121,6 +124,10 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
         "all 0.3s ease-in-out"
       );
     }
+  };
+
+  const handleCommentClick = () => {
+    set_isFeedbackModal({ isFeedbackModal: !isFeedbackModal });
   };
 
   return (
@@ -151,6 +158,30 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
                       );
                     })}
                   </CarouselStyled.MenuCard>
+                  <CarouselStyled.FeedbackBottom onClick={handleCommentClick}>
+                    <CarouselStyled.SvgView>
+                      <SvgIcon
+                        name={"comment"}
+                        width={14}
+                        height={14}
+                        fill={EColor.TEXT_500}
+                      />
+                      <CarouselStyled.SvgText>
+                        15
+                      </CarouselStyled.SvgText>
+                    </CarouselStyled.SvgView>
+                    <CarouselStyled.SvgView>
+                      <SvgIcon
+                        name={"like"}
+                        width={14}
+                        height={14}
+                        fill={EColor.TEXT_500}
+                      />
+                      <CarouselStyled.SvgText>
+                        3
+                      </CarouselStyled.SvgText>
+                    </CarouselStyled.SvgView>
+                  </CarouselStyled.FeedbackBottom>
                 </MobileCarouselItem>
               );
             })}
