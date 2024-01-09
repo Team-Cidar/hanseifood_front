@@ -1,6 +1,7 @@
 import { EColor } from "@styles/color";
 import {
   Title3,
+  Title6,
   body1,
 } from "@styles/font";
 import styled from "styled-components";
@@ -86,7 +87,7 @@ export const DateText = styled.h2`
 export const MenuCard = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  height: 100%;
   flex-direction: column;
 `;
 
@@ -97,4 +98,23 @@ export const MenuList = styled.p`
   color: ${EColor.TEXT_800};
   white-space: normal;
   line-height: 32px;
+`;
+
+export const FeedbackBottom = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 6px;
+`;
+
+export const SvgView = styled.div`
+  display: flex;
+  flex-direction: row;
+  line-height: 13px;
+`;
+export const SvgText = styled.div`
+  ${Title6}
+  color: ${EColor.TEXT_500};
+  -webkit-text-stroke: 0.6px ${EColor.TEXT_900};
 `;

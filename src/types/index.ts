@@ -32,6 +32,7 @@ type MenuEnum = (typeof MenuEnum)[keyof typeof MenuEnum];
 
 export type User = {
   isEmployee: boolean;
+  isFeedbackModal: boolean;
   page: string;
 };
 

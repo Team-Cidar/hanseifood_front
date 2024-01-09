@@ -14,9 +14,10 @@ export const MobileCarouselItem = styled.li`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   height: 212px;
-  padding: 16px 16px 16px 16px;
+  padding: 16px 16px 8px 16px;
   border: 1px dashed black;
   flex: none;
   object-fit: contain;
