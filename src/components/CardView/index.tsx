@@ -16,9 +16,10 @@ const CardView = ({ children }: CardViewComponentProps) => {
         </StyledView>
       </Default>
       <Mobile>
-        <StyledMobileView>
+        <div>
           {children}
-        </StyledMobileView>
+        </div>
+        
       </Mobile>
     </>
   )

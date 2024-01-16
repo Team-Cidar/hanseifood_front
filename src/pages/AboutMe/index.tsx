@@ -15,15 +15,18 @@ import {
 const AboutMe = () => {
   return (
     <Background>
-      <FloatingBar></FloatingBar>
       <CardView>
         <Default>
           <Participants>
             <Developers>
               Developer
               <Developer>강혜미</Developer>
+              <Developer>김강현</Developer>
               <Developer>김호준</Developer>
               <Developer>박승우</Developer>
+              <Developer>이승현</Developer>
+              <Developer>조은진</Developer>
+              <Developer>최원경</Developer>
             </Developers>
           </Participants>
         </Default>
@@ -32,8 +35,12 @@ const AboutMe = () => {
             <Developers>
               Developer
               <Developer>강혜미</Developer>
+              <Developer>김강현</Developer>
               <Developer>김호준</Developer>
               <Developer>박승우</Developer>
+              <Developer>이승현</Developer>
+              <Developer>조은진</Developer>
+              <Developer>최원경</Developer>
             </Developers>
           </MobileParticipants>
         </Mobile>

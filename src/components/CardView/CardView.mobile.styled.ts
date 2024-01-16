@@ -8,4 +8,5 @@ export const StyledMobileView = styled.div`
   background: ${EColor.TEXT_200};
   border-radius: 50px;
   box-shadow: 5px 5px 20px;
+  padding: 15px;
 `;

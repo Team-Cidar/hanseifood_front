@@ -10,8 +10,8 @@ export const Toggle = ({ checked, onClick, disabled }: ToggleProps) => {
   if (disabled) {
     return (
       /* 토글 비활성화 디자인 필요 */
-      <ToggleBox>
-        <ToggleIcon />
+      <ToggleBox disabled={disabled}>
+        <ToggleIcon disabled={disabled} />
       </ToggleBox>
     )
   }
