@@ -15,9 +15,7 @@ const BackOffice = () => {
   const [additional, set_additional] = useState<string>("");
   const [{ page }, set_page] = useRecoilState<User>(userState);
   const [placeholder, set_placeholder] = useState<string[]>([]);
-  const [placeholder, set_placeholder] = useState<string[]>([]);
 
-  const Getter: StateGetter = [date, student, employee, additional, placeholder];
   const Getter: StateGetter = [date, student, employee, additional, placeholder];
   const Setter: StateSetter = [set_date, set_student, set_employee, set_additional];
 
