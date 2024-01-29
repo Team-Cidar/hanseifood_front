@@ -7,10 +7,19 @@ const {persistAtom} = recoilPersist();
 export const weeklyDataState = atom<WeeklyData>({
   key: 'weeklyDataState',
   default: {
-    only_employee: false,
-    student_menu: {},
-    employee_menu: {},
-    additional_menu: {},
+    keys: [],
+    studentMenu: {
+      exists: false,
+      menus: {}
+    },
+    employeeMenu: {
+      exists: false,
+      menus: {}
+    },
+    additionalMenu: {
+      exists: false,
+      menus: {}
+    },
   },
 });
 

@@ -26,6 +26,11 @@ const Home: StringConstant = {
     en: 'Student & Employee Menu',
     zh: '学生和教师食堂餐桌',
   },
+  'menu.empty': {
+    ko: '메뉴가 존재하지 않습니다.',
+    en: 'Menu not exists',
+    zh: '没有彩蛋'
+  }
 } as const;
 
 export default Home;

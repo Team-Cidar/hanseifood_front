@@ -13,10 +13,15 @@ import {
   MobileDateText,
   MobileMenuList,
 } from "./Carousel.mobile.styled";
-import { Menu } from "@type/index";
+import { Menus, Lang } from "@type/index";
+import { HomeString } from '@utils/constants/strings';
+import { useRecoilValue } from "recoil";
+import { langState } from "@modules/atoms";
+
+
 
 interface CarouselProps {
-  weeklyMenu: Menu;
+  weeklyMenu: Menus;
 }
 
 const Carousel = ({ weeklyMenu }: CarouselProps) => {
@@ -24,6 +29,7 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
   let touchEndX: number;
   const [currCarousel, setCurrCarousel] = useState(0);
   const carouselRef = useRef<HTMLUListElement>(null);
+  const lang = useRecoilValue<Lang>(langState);
 
   // 요일에 따른 초기 화면 렌더링
   useEffect(() => {
@@ -145,11 +151,17 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
                 <MobileCarouselItem key={key}>
                   <MobileDateText>{res[0]}</MobileDateText>
                   <CarouselStyled.MenuCard>
-                    {res[1].map((daily, idx) => {
-                      return (
-                        <MobileMenuList key={idx}>{daily}</MobileMenuList>
-                      );
-                    })}
+                    {
+                      res[1].menuType == 'N' ? 
+                        <MobileMenuList>{HomeString({lang: lang, key: 'menu.empty'})}</MobileMenuList> :
+                        res[1].menu.map((daily, idx) => {
+                          return (
+                            <MobileMenuList key={idx}>{
+                              daily
+                              }</MobileMenuList>
+                          );
+                        })
+                    }
                   </CarouselStyled.MenuCard>
                 </MobileCarouselItem>
               );

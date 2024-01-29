@@ -41,17 +41,17 @@ export const HomeView = ({
         subtitle={HomeString({lang: lang, key: 'subtitle'})}
       />
       <CarouselView>
-        {weeklyData.only_employee ? (
-          <Carousel weeklyMenu={weeklyData.employee_menu} />
+        {weeklyData.employeeMenu.exists && !weeklyData.studentMenu.exists ? (
+          <Carousel weeklyMenu={weeklyData.employeeMenu.menus} />
         ) : isEmployee ? (
-          <Carousel weeklyMenu={weeklyData.employee_menu} />
+          <Carousel weeklyMenu={weeklyData.employeeMenu.menus} />
         ) : (
-          <Carousel weeklyMenu={weeklyData.student_menu} />
+          <Carousel weeklyMenu={weeklyData.studentMenu.menus} />
         )}
         <CarouselViewBottom>
           <AdditionalButton onClick={handleModal}>일품특선메뉴</AdditionalButton>
           <ToggleView>
-            {weeklyData.only_employee ? (
+            {weeklyData.employeeMenu.exists && !weeklyData.studentMenu.exists ? (
               <ToggleLabel>
                 {HomeString({lang: lang, key: 'toggleLabelStudentAndEmployee'})}
               </ToggleLabel>
@@ -62,7 +62,7 @@ export const HomeView = ({
                   : HomeString({lang: lang, key: 'toggleLabelStudent'})}
               </ToggleLabel>
             )}
-            {weeklyData.only_employee ? (
+            {weeklyData.employeeMenu.exists && !weeklyData.studentMenu.exists ? (
               <Toggle
                 checked={isEmployee}
                 onClick={toggleHandler}

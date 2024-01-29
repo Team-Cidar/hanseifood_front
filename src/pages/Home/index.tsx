@@ -47,22 +47,22 @@ const Home = () => {
         <Modal
           header={"학생식당 임시 일품한정 메뉴 안내"}
           body={
-            Object.entries(weeklyData.additional_menu).map((res, key) => {
+            Object.entries(weeklyData.additionalMenu.menus).map((res, key) => {
               return (
-                <>
+                <div key={key}>
                   <div>{res[0]}</div>
                   <div>
-                    {res[1].map((daily, idx) => {
-                      return daily + " ";
+                    {res[1].menu.map((daily, idx) => {
+                      return <p key={idx}>{daily + " "}</p>
                     })}
                   </div>
                   <br></br>
-                </>
+                </div>
               );
             })
           }
           bottom={
-            <IconButton width={84} height={32} onClick={handleModal} label={"닫기"} />
+            <IconButton width={'84'} height={'32'} onClick={handleModal} label={"닫기"} />
           }
         />
       }
