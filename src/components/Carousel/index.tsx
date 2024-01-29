@@ -13,16 +13,25 @@ import {
   MobileDateText,
   MobileMenuList,
 } from "./Carousel.mobile.styled";
+<<<<<<< HEAD
 import { Menus, Lang, User } from "@type/index";
 import { HomeString } from '@utils/constants/strings';
 import { useRecoilValue } from "recoil";
 import { langState } from "@modules/atoms";
 
 
+=======
+import { Menu, Users, Lang } from "@type/index";
+>>>>>>> e5acef2 (fix: apply modified menu response in home view)
 import SvgIcon from "@components/SvgIcon";
 import { EColor } from "@styles/color";
 import { userState } from "@modules/atoms";
 import { useRecoilState } from "recoil";
+import { HomeString } from '@utils/constants/strings';
+import { useRecoilValue } from "recoil";
+import { langState } from "@modules/atoms";
+
+
 
 interface CarouselProps {
   weeklyMenu: Menus;
