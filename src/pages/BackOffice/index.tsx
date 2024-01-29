@@ -10,16 +10,19 @@ const BackOffice = () => {
   const [student, set_student] = useState<string>("");
   const [employee, set_employee] = useState<string>("");
   const [additional, set_additional] = useState<string>("");
+  const [placeholder, set_placeholder] = useState<string[]>([]);
 
-  const Getter: StateGetter = [date, student, employee, additional];
+  const Getter: StateGetter = [date, student, employee, additional, placeholder];
   const Setter: StateSetter = [set_date, set_student, set_employee, set_additional];
 
   useEffect(() => {
     requestDayTargetFood(date)
     .then(res => {
-      set_student(WeekMenuStringFormator(res.data.student_menu));
-      set_employee(WeekMenuStringFormator(res.data.employee_menu));
-      set_additional(WeekMenuStringFormator(res.data.additional_menu));
+      set_placeholder([
+          WeekMenuStringFormator(res.data.studentMenu.menus),
+          WeekMenuStringFormator(res.data.employeeMenu.menus),
+          WeekMenuStringFormator(res.data.additionalMenu.menus)
+        ]);
     }).catch(err => {
       console.log(err);
     });

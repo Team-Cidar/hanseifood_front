@@ -35,7 +35,10 @@ const Home = () => {
   }, []);
 
   const toggleHandler = () => {
-    set_isEmployee({isEmployee: !isEmployee});
+    set_isEmployee(data => ({
+      ...data,
+      isEmployee: !isEmployee
+    }));
   };
 
   const handleModal = () => {
