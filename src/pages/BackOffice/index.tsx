@@ -18,10 +18,14 @@ const BackOffice = () => {
   useEffect(() => {
     requestDayTargetFood(date)
     .then(res => {
+      let sMenu = WeekMenuStringFormator(res.data.studentMenu.menus);
+      let eMenu = WeekMenuStringFormator(res.data.employeeMenu.menus);
+      let aMenu = WeekMenuStringFormator(res.data.additionalMenu.menus);
+      const exPlaceholder = "ex) 백미밥, 된장찌개, 숙주나물, 비엔나소시지조림, 깍두기"
       set_placeholder([
-          WeekMenuStringFormator(res.data.studentMenu.menus),
-          WeekMenuStringFormator(res.data.employeeMenu.menus),
-          WeekMenuStringFormator(res.data.additionalMenu.menus)
+          sMenu.length ? sMenu : exPlaceholder,
+          eMenu.length ? eMenu : exPlaceholder,
+          aMenu.length ? aMenu : exPlaceholder,
         ]);
     }).catch(err => {
       console.log(err);
@@ -32,7 +36,8 @@ const BackOffice = () => {
     requestUploadMenu(date, student, employee, additional)
     .then(() => {
       alert("식단표 업로드를 성공하였습니다.");
-    }).catch(() => {
+    }).catch((e) => {
+      console.log(e)
       alert("식단표 업로드를 실패하였습니다.");
     });
   };

@@ -43,8 +43,8 @@ const LoginConfirm = () => {
     requestConfirmLogin(kakaoCode)
     .then(async res => {
       if (res.data.status) {
-        await localStorage.setItem('access_token', res.data.access_token);
-        await localStorage.setItem('refresh_token', res.data.refresh_token);
+        await localStorage.setItem('access_token', res.data.accessToken);
+        await localStorage.setItem('refresh_token', res.data.refreshToken);
         saveUserInfoGoHome(res.data.user);
         return;
       }
