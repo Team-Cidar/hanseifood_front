@@ -17,7 +17,7 @@ const MyLikeView = ({datas, refs, callbacks}: MyLikeViewProps) => {
       />
       <Body ref={refs.scrollRef} onScroll={callbacks.onScroll}>
         {datas.menus.map((data) => 
-          <MenuSpecificItem key={data.menuId} menu={data} onClick={callbacks.onCancelLike}/>
+          <MenuSpecificItem key={data.menuId} liked menu={data} onInteraction={callbacks.onCancelLike}/>
         )}
       </Body>
     </Container>

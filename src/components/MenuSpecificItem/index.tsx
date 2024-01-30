@@ -1,16 +1,12 @@
-import { MenuSpecific } from '@type/index';
-import { Container, DateText, FeedbackBottom, MenuCard, MenuList, SvgText, SvgView } from './MenuSpecificitem.styled';
 import SvgIcon from '@components/SvgIcon';
 import { EColor } from '@styles/color';
+import { Container, DateText, FeedbackBottom, MenuCard, MenuList, SvgText, SvgView } from './MenuSpecificitem.styled';
+import { MenuSpecificItemProps } from './types';
 
-interface MenuSpecificItemProps {
-  menu: MenuSpecific,
-  onClick: (menuId: string) => void
-}
 
-const MenuSpecificItem = ({menu, onClick}: MenuSpecificItemProps) => {
+const MenuSpecificItem = ({menu, liked, onInteraction}: MenuSpecificItemProps) => {
   return (
-    <Container onClick={() => onClick(menu.menuId)}>
+    <Container onClick={() => onInteraction(menu.menuId)}>
         {menu.deleted ?
             <DateText $deleted>{menu.date}</DateText> :
             <DateText>{menu.date}</DateText>
@@ -37,7 +33,7 @@ const MenuSpecificItem = ({menu, onClick}: MenuSpecificItemProps) => {
                     name={"like"}
                     width={14}
                     height={14}
-                    fill={EColor.RED}
+                    fill={liked ? EColor.RED : EColor.TEXT_500}
                 />
                 <SvgText>
                     {menu.likeCount}
