@@ -3,7 +3,7 @@ import { MenuSpecific } from "@type/index"
 export interface MenuSpecificItemProps {
   menu: MenuSpecific,
   liked?: boolean,
-  onClick: (menuId: string) => void
+  onInteraction: (menuId: string) => void
 }
 
 export interface IDateText {
