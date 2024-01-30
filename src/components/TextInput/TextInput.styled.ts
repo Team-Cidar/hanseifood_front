@@ -6,7 +6,7 @@ export const TextInputContainer = styled.div<{ width?: string }>`
 `;
 
 export const TextInputBox = styled.textarea`
-  margin: 8px;
+  /* margin: 8px; */
   padding: 10px;
   font-size: 15px;
   font-family: Arial, sans-serif;
@@ -29,7 +29,7 @@ export const TextInputBox = styled.textarea`
 export const CharacterCount = styled.div`
     position: absolute;
     bottom: 20px;
-    right: 0px;
+    right: 8px;
     font-size: 12px;
     color: #555;
     display: flex;

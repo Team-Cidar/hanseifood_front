@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import BackOfficeView from "./BackOfficeView";
-import { StateGetter, StateSetter } from "./types";
-import { requestDayTargetFood, requestExcelWeekFood, requestUploadMenu } from "@apis/index";
+import { MenuHistory, StateGetter, StateSetter } from "./types";
+import { requestDayTargetFood, requestExcelWeekFood, requestMenuHistory, requestUploadMenu } from "@apis/index";
 import { getFormattedDate } from "@utils/GetFormattedDate";
 import { WeekMenuStringFormator } from "@utils/WeekMenuStringFormator";
 import { userState } from "@modules/atoms";
 import { User } from "@type/index";
 import { useRecoilState } from "recoil";
+import { Modal } from "@components/Modal";
+import { DefaultMenuHistory } from "./types.default";
+import MenuSpecificItem from "@components/MenuSpecificItem";
+import { IconButton } from "@components/Button";
 
 const BackOffice = () => {
   const [date, set_date] = useState<string>(getFormattedDate());
@@ -15,13 +19,14 @@ const BackOffice = () => {
   const [additional, set_additional] = useState<string>("");
   const [{ page }, set_page] = useRecoilState<User>(userState);
   const [placeholder, set_placeholder] = useState<string[]>([]);
+  const [showHistory, set_showHistory] = useState<boolean>(false);
+  const [historyTarget, set_historyTarget] = useState<MenuHistory>(DefaultMenuHistory);
 
   const Getter: StateGetter = [date, student, employee, additional, placeholder];
   const Setter: StateSetter = [set_date, set_student, set_employee, set_additional];
 
-  console.log("핳허" + page);
   useEffect(() => {
-    set_page({ page: "backoffice" });
+    set_page(data => ({ ...data, page: "backoffice" }));
     requestDayTargetFood(date)
     .then(res => {
       let sMenu = WeekMenuStringFormator(res.data.studentMenu.menus);
@@ -57,7 +62,43 @@ const BackOffice = () => {
     });
   };
 
-  return <BackOfficeView getter={Getter} setter={Setter} handleUploadMenu={handleUploadMenu} handleExcelWeekMenu={handleExcelWeekMenu}/>;
+  const handleModal = (menuType: string) => {
+    requestMenuHistory(date, menuType)
+    .then(res => {
+      set_historyTarget({
+        date: date,
+        menuType: menuType,
+        history: res.data
+      })
+    }).catch(err => {
+      console.log(err)
+    }).finally(() => {
+      set_showHistory(true);
+    })
+  }
+
+  return (
+    <>
+      {
+        showHistory &&
+        (<Modal 
+          header={`${historyTarget.date} (${historyTarget.menuType}) History`}
+          body={
+            <div style={{overflow: 'scroll'}}>
+              {historyTarget.history.map((value) => {
+                return (
+                  <MenuSpecificItem key={value.menuId} menu={value} onInteraction={() => {}}/>
+                )
+              })}
+            </div>
+          }
+          bottom={
+            <IconButton width={'84'} height={'32'} onClick={() => set_showHistory(false)} label={"닫기"} />
+          }
+        />)
+      }
+      <BackOfficeView getter={Getter} setter={Setter} handleUploadMenu={handleUploadMenu} handleExcelWeekMenu={handleExcelWeekMenu} handleModal={handleModal} />
+    </>);
 };
 
 export default BackOffice;

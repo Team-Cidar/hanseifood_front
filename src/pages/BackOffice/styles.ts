@@ -14,11 +14,13 @@ export const InputView = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
+  row-gap: 8px;
 `;
 
 export const InputBox = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 export const InputTitle = styled.div`

@@ -4,7 +4,7 @@ import PageLogo from '@components/PageLogo';
 import { BackOfficeViewProps } from './types';
 import { TextInput } from '@components/TextInput';
 
-const BackOfficeView = ({getter, setter, handleUploadMenu, handleExcelWeekMenu}: BackOfficeViewProps) => (
+const BackOfficeView = ({getter, setter, handleUploadMenu, handleExcelWeekMenu, handleModal}: BackOfficeViewProps) => (
   <Container>
     <PageLogo title={'식단표 업로드'} />
     <InputContainer>
@@ -14,20 +14,20 @@ const BackOfficeView = ({getter, setter, handleUploadMenu, handleExcelWeekMenu}:
         onChange={(e) => setter[0](e.target.value)} />
       <InputView>
         <InputBox>
-          <InputTitle>
-            학생메뉴
+          <InputTitle onClick={() => handleModal('S')} >
+            학생메뉴 ⓘ
           </InputTitle>
           <TextInput value={getter[1]} onChange={setter[1]} maxLength={60} placeholder={getter[4][0]} />
         </InputBox>
         <InputBox>
-          <InputTitle>
-            교직원메뉴
+          <InputTitle onClick={() => handleModal('E')} >
+            교직원메뉴 ⓘ
           </InputTitle>
           <TextInput value={getter[2]} onChange={setter[2]} maxLength={60} placeholder={getter[4][1]} />
         </InputBox>
         <InputBox>
-          <InputTitle>
-            일품특선
+          <InputTitle onClick={() => handleModal('A')} >
+            일품특선 ⓘ
           </InputTitle>
           <TextInput value={getter[3]} onChange={setter[3]} maxLength={60} placeholder={getter[4][2]} />
         </InputBox>
