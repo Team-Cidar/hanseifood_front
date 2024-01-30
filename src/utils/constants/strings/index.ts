@@ -4,6 +4,7 @@ import Home from './Home';
 import MyPage from './MyPage';
 import TicketPage from './TicketPage';
 import LoginConfirm from './LoginConfirm';
+import MyLike from './MyLike';
 
 interface IStringConst {
   lang: Lang;
@@ -29,3 +30,7 @@ export const MyPageString = ({lang, key}: IStringConst) => {
 export const TicketPageString = ({lang, key}: IStringConst) => {
   return TicketPage[key][lang.langType.code];
 };
+
+export const MyLikeString = ({lang, key}: IStringConst) => {
+  return MyLike[key][lang.langType.code];
+}

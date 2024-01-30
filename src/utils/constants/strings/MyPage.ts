@@ -31,6 +31,16 @@ const MyPage: StringConstant = {
     en: 'About me',
     zh: '开发人员',
   },
+  'label.comment': {
+    ko: '댓글 목록',
+    en: 'Comments History',
+    zh: '回帖列表'
+  },
+  'label.like': {
+    ko: '좋아요 목록',
+    en: 'Like History',
+    zh: '点赞列表'
+  }
 } as const;
 
 export default MyPage;

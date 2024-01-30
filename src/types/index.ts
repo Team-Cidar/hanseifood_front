@@ -22,6 +22,16 @@ export type Menu = {
   commentCount: number;
 }
 
+export type MenuSpecific = {
+  date: string,
+  menus: string[];
+  menuId: string;
+  menuType: string;
+  likeCount: number;
+  commentCount: number;
+  deleted: boolean;
+}
+
 export const MenuEnum = {
   A: {text: 'additionalMenu'},
   S: {text: 'studentMenu'},
@@ -77,4 +87,10 @@ export type UserInfo = {
   is_admin: boolean,
   nickname: string,
   role: string,
+}
+
+export type Paging = {
+  currentPage: number,
+  pageSize: number,
+  hasNext: boolean,
 }

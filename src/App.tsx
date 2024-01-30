@@ -13,6 +13,7 @@ import BackOffice from '@pages/BackOffice';
 import Login from '@pages/Login';
 import LoginConfirm from '@pages/LoginConfirm';
 import { CommentPage } from '@pages/Comment';
+import MyLike from '@pages/MyLike';
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/home/comment" element={<CommentPage />} />
           <Route path="/ticket" element={<TicketPage />} />
           <Route path="/mypage" element={<MyPage />} />
+          <Route path="/mypage/like" element={<MyLike />} />
           <Route path="/maintenance" element={<Maintenance />} />
           <Route path="/help" element={<Help />} />
           <Route path="/about-me" element={<AboutMe />} />

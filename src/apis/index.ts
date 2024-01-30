@@ -46,3 +46,13 @@ export const requestTokenVerify = (accessToken: string) => {
     'token': accessToken,
   });
 };
+
+export const requestMenusByLike = (pageNo: number = 1, pageSize: number = 10) => {
+  return request.get(`/likes/menus/users?pageNo=${pageNo}&pageSize=${pageSize}`);
+}
+
+export const requestToggleLike = (menuId: string) => {
+  return request.post('/likes/menus', {
+    menuId: menuId
+  })
+}

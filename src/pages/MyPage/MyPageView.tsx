@@ -21,7 +21,7 @@ const MyPageView = () => {
   const [Login, setLogin] = useState('False');
 
   const handleNavigate = (name: string) => {
-    set_page({page: name});
+    set_page(data => ({...data, page: name}));
     navigate(`/${name}`);
   };
 
@@ -49,6 +49,16 @@ const MyPageView = () => {
       />
       )
       }
+      <Divider />
+      <div>
+        <ListButton
+          label={MyPageString({lang: lang, key: 'label.comment'})}
+        />
+        <ListButton
+          label={MyPageString({lang: lang, key: 'label.like'})}
+          onClick={() => handleNavigate('mypage/like')}
+        />
+      </div>
       <Divider />
       <div>
         <ListButton
