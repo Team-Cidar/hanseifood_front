@@ -20,6 +20,7 @@ export const userState = atom<User>({
     isEmployee: false,
     isFeedbackModal: false,
     page: 'home',
+    prevPage: '',
   },
 });
 

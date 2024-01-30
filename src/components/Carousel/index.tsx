@@ -18,16 +18,18 @@ import SvgIcon from "@components/SvgIcon";
 import { EColor } from "@styles/color";
 import { userState } from "@modules/atoms";
 import { useRecoilState } from "recoil";
+import { useNavigate } from "react-router-dom";
 
 interface CarouselProps {
   weeklyMenu: Menu;
 }
 
 const Carousel = ({ weeklyMenu }: CarouselProps) => {
+  const navigate = useNavigate();
   let touchStartX: number;
   let touchEndX: number;
   const [currCarousel, setCurrCarousel] = useState(0);
-  const [{ isFeedbackModal }, set_isFeedbackModal] = useRecoilState<User>(userState);
+  const [{page}, set_page] = useRecoilState<User>(userState);
   const carouselRef = useRef<HTMLUListElement>(null);
 
   // 요일에 따른 초기 화면 렌더링
@@ -126,8 +128,9 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
     }
   };
 
-  const handleCommentClick = () => {
-    set_isFeedbackModal({ isFeedbackModal: !isFeedbackModal });
+  const handleNavigate = (name: string) => {
+    set_page({page: name});
+    navigate(`/${name}`);
   };
 
   return (
@@ -158,7 +161,7 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
                       );
                     })}
                   </CarouselStyled.MenuCard>
-                  <CarouselStyled.FeedbackBottom onClick={handleCommentClick}>
+                  <CarouselStyled.FeedbackBottom onClick={() => handleNavigate('home/comment')}>
                     <CarouselStyled.SvgView>
                       <SvgIcon
                         name={"comment"}

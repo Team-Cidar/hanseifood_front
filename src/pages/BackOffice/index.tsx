@@ -18,7 +18,6 @@ const BackOffice = () => {
   const Getter: StateGetter = [date, student, employee, additional];
   const Setter: StateSetter = [set_date, set_student, set_employee, set_additional];
 
-  console.log("핳허" + page);
   useEffect(() => {
     set_page({ page: "backoffice" });
     requestDayTargetFood(date)
