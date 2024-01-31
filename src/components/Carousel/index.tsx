@@ -178,7 +178,7 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
                         fill={EColor.TEXT_500}
                       />
                       <CarouselStyled.SvgText>
-                        15
+                        {res[1].commentCount}
                       </CarouselStyled.SvgText>
                     </CarouselStyled.SvgView>
                     <CarouselStyled.SvgView>
@@ -189,7 +189,7 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
                         fill={EColor.TEXT_500}
                       />
                       <CarouselStyled.SvgText>
-                        3
+                        {res[1].likeCount}
                       </CarouselStyled.SvgText>
                     </CarouselStyled.SvgView>
                   </CarouselStyled.FeedbackBottom>
