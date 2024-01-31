@@ -23,8 +23,24 @@ export const InputBox = styled.div`
   align-items: center;
 `;
 
+export const InputTitleWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  line-height: 150%;
+`;
+
 export const InputTitle = styled.div`
   ${Title4_2}
+`;
+
+export const SvgButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
 `;
 
 export const InputContainer = styled.div`

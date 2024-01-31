@@ -60,3 +60,7 @@ export const requestToggleLike = (menuId: string) => {
 export const requestMenuHistory = (dateTime: string, menuType: string) => {
   return request.get(`/back/menus/history?date=${dateTime}&menuType=${menuType}`)
 }
+
+export const requestDeleteMenu = (menuId: string) => {
+  return request.delete(`/back/menus?menuId=${menuId}`)
+}

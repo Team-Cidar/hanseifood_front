@@ -8,6 +8,7 @@ export type BackOfficeViewProps = {
     handleUploadMenu: () => void;
     handleExcelWeekMenu: () => void;
     handleModal: (menuType: string) => void;
+    handleDeleteMenu: (menuType: string) => void;
   };
 export type MenuHistory = {
   date: string;

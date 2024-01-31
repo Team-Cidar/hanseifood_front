@@ -18,3 +18,5 @@ export { ReactComponent as kakao } from './Kakao.svg';
 export { ReactComponent as like } from './Like.svg';
 export { ReactComponent as comment } from './Comment.svg';
 export { ReactComponent as back } from './Back.svg';
+export { ReactComponent as delete } from './Delete.svg';
+export { ReactComponent as history } from './History.svg';

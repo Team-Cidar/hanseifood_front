@@ -1,10 +1,12 @@
-import { ButtonView, Container, InputBox, InputContainer, InputTitle, InputView, SubText } from './styles';
+import { ButtonView, Container, InputBox, InputContainer, InputTitle, InputTitleWrapper, InputView, SubText, SvgButton } from './styles';
 import { IconButton } from '@components/Button';
 import PageLogo from '@components/PageLogo';
 import { BackOfficeViewProps } from './types';
 import { TextInput } from '@components/TextInput';
+import { EColor } from '@styles/color';
+import SvgIcon from '@components/SvgIcon';
 
-const BackOfficeView = ({getter, setter, handleUploadMenu, handleExcelWeekMenu, handleModal}: BackOfficeViewProps) => (
+const BackOfficeView = ({getter, setter, handleUploadMenu, handleExcelWeekMenu, handleModal, handleDeleteMenu}: BackOfficeViewProps) => (
   <Container>
     <PageLogo title={'식단표 업로드'} />
     <InputContainer>
@@ -14,21 +16,75 @@ const BackOfficeView = ({getter, setter, handleUploadMenu, handleExcelWeekMenu, 
         onChange={(e) => setter[0](e.target.value)} />
       <InputView>
         <InputBox>
-          <InputTitle onClick={() => handleModal('S')} >
-            학생메뉴 ⓘ
-          </InputTitle>
+          <InputTitleWrapper>
+            <SvgButton onClick={() => handleModal('S')}>
+              <SvgIcon
+                name="history"
+                width={20}
+                height={20}
+                fill={EColor.TEXT_500}
+              />
+            </SvgButton>
+            <InputTitle>
+              학생
+            </InputTitle>
+            <SvgButton onClick={() => handleDeleteMenu('S')}>
+              <SvgIcon
+                name='delete'
+                width={20}
+                height={20}
+                fill={EColor.TEXT_500}
+              />
+            </SvgButton>
+          </InputTitleWrapper>
           <TextInput value={getter[1]} onChange={setter[1]} maxLength={60} placeholder={getter[4][0]} />
         </InputBox>
         <InputBox>
-          <InputTitle onClick={() => handleModal('E')} >
-            교직원메뉴 ⓘ
-          </InputTitle>
+          <InputTitleWrapper>
+            <SvgButton onClick={() => handleModal('E')}>
+              <SvgIcon
+                name="history"
+                width={20}
+                height={20}
+                fill={EColor.TEXT_500}
+              />
+            </SvgButton>
+            <InputTitle>
+              교직원
+            </InputTitle>
+            <SvgButton onClick={() => handleDeleteMenu('E')}>
+              <SvgIcon
+                name='delete'
+                width={20}
+                height={20}
+                fill={EColor.TEXT_500}
+              />
+            </SvgButton>
+          </InputTitleWrapper>
           <TextInput value={getter[2]} onChange={setter[2]} maxLength={60} placeholder={getter[4][1]} />
         </InputBox>
         <InputBox>
-          <InputTitle onClick={() => handleModal('A')} >
-            일품특선 ⓘ
-          </InputTitle>
+          <InputTitleWrapper>
+            <SvgButton onClick={() => handleModal('A')}>
+              <SvgIcon
+                name="history"
+                width={20}
+                height={20}
+                fill={EColor.TEXT_500}
+              />
+            </SvgButton>
+            <InputTitle>
+              일품
+            </InputTitle>
+            <SvgButton onClick={() => handleDeleteMenu('A')}>
+              <SvgIcon
+                name='delete'
+                width={20}
+                height={20}
+                fill={EColor.TEXT_500}
+              />
+            </SvgButton>
+          </InputTitleWrapper>
           <TextInput value={getter[3]} onChange={setter[3]} maxLength={60} placeholder={getter[4][2]} />
         </InputBox>
       </InputView>
