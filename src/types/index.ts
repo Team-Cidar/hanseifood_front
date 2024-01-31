@@ -73,16 +73,16 @@ export const LangEnum = {
 type LangEnum = (typeof LangEnum)[keyof typeof LangEnum];
 
 export type UserKakaoInfo = {
-  kakao_id: string;
+  kakaoId: string;
   email: string;
-  kakao_name: string;
+  kakaoName: string;
 };
 
 export type UserInfo = {
-  kakao_id: string;
+  kakaoId: string;
   email: string;
-  kakao_name: string;
-  is_admin: boolean;
+  kakaoName: string;
+  isAdmin: boolean;
   nickname: string;
   role: string;
 };

@@ -41,21 +41,22 @@ const LoginConfirm = () => {
 
   const onSuccessClick = async () => {
     requestConfirmLogin(kakaoCode)
-    .then(async res => {
-      if (res.data.status) {
-        await localStorage.setItem('access_token', res.data.accessToken);
-        await localStorage.setItem('refresh_token', res.data.refreshToken);
-        saveUserInfoGoHome(res.data.user);
-        return;
-      }
-      set_kakaoInfo({
-        "kakao_id": res.data.user.kakao_id,
-        "kakao_name": res.data.user.kakao_name,
-        "email": res.data.user.email,
+      .then(async (res) => {
+        if (res.data.status) {
+          localStorage.setItem('access_token', res.data.accessToken);
+          localStorage.setItem('refresh_token', res.data.refreshToken);
+          saveUserInfoGoHome(res.data.user);
+          return;
+        }
+        set_kakaoInfo({
+          kakaoId: res.data.user.kakaoId,
+          kakaoName: res.data.user.kakaoName,
+          email: res.data.user.email,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    }).catch(err => {
-      console.log(err);
-    });
     showUserNicknameInput();
   };
 
@@ -65,12 +66,13 @@ const LoginConfirm = () => {
       return;
     }
     requestRegisterUser(kakaoInfo, nickname)
-    .then(res => {
-      saveUserInfoGoHome(res.data.user);
-      console.log(res);
-    }).catch(err => {
-      console.log(err);
-    });
+      .then((res) => {
+        saveUserInfoGoHome(res.data.user);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -84,8 +86,8 @@ const LoginConfirm = () => {
     });
   };
 
-  const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    set_nickname(e.target.value);
+  const handleEnter = () => {
+    set_nickname(inputRef.current!.value);
   };
 
   return (

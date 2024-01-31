@@ -2,7 +2,7 @@ import { User, WeeklyData, Lang, LangEnum, UserInfo } from '@type/index';
 import { atom } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
 
-const {persistAtom} = recoilPersist();
+const { persistAtom } = recoilPersist();
 
 export const weeklyDataState = atom<WeeklyData>({
   key: 'weeklyDataState',
@@ -10,15 +10,15 @@ export const weeklyDataState = atom<WeeklyData>({
     keys: [],
     studentMenu: {
       exists: false,
-      menus: {}
+      menus: {},
     },
     employeeMenu: {
       exists: false,
-      menus: {}
+      menus: {},
     },
     additionalMenu: {
       exists: false,
-      menus: {}
+      menus: {},
     },
   },
 });
@@ -44,12 +44,12 @@ export const langState = atom<Lang>({
 export const userInfoState = atom<UserInfo>({
   key: 'userInfoState',
   default: {
-    kakao_id: '',
+    kakaoId: '',
     email: '',
-    kakao_name: '',
-    is_admin: false,
+    kakaoName: '',
+    isAdmin: false,
     nickname: '',
     role: '',
   },
-  effects_UNSTABLE: [persistAtom]
+  effects_UNSTABLE: [persistAtom],
 });

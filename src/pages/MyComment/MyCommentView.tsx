@@ -13,7 +13,7 @@ const MyCommentView = ({ datas, refs, callbacks }: MyCommentViewProps) => {
       <Body ref={refs.scrollRef} onScroll={callbacks.onScroll}>
         {datas.comments.map((data) => (
           <CommentWrapper key={data.commentId}>
-            <Comment comment={data} onClickDelete={callbacks.onDelete} />
+            <Comment comment={data} user={datas.user} onClickDelete={callbacks.onDelete} />
             <SvgButton onClick={() => callbacks.onClickMenu(data.menu)}>
               <SvgIcon name="cloche" width={32} height={32} fill={EColor.COLOR_PRIMARY} />
             </SvgButton>
