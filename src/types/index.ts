@@ -45,6 +45,7 @@ export type User = {
   isEmployee: boolean;
   isFeedbackModal: boolean;
   page: string;
+  prevPage: string;
 };
 
 export type Lang = {

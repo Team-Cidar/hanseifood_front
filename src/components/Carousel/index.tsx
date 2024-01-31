@@ -19,8 +19,8 @@ import SvgIcon from "@components/SvgIcon";
 import { EColor } from "@styles/color";
 import { userState } from "@modules/atoms";
 import { useRecoilState, useRecoilValue } from "recoil";
+import { useNavigate } from "react-router-dom";
 import { langState } from "@modules/atoms";
-
 
 
 interface CarouselProps {
@@ -28,10 +28,11 @@ interface CarouselProps {
 }
 
 const Carousel = ({ weeklyMenu }: CarouselProps) => {
+  const navigate = useNavigate();
   let touchStartX: number;
   let touchEndX: number;
   const [currCarousel, setCurrCarousel] = useState(0);
-  const [{ isFeedbackModal }, set_isFeedbackModal] = useRecoilState<User>(userState);
+  const [{page}, set_page] = useRecoilState<User>(userState);
   const carouselRef = useRef<HTMLUListElement>(null);
   const lang = useRecoilValue<Lang>(langState);
 
@@ -131,8 +132,9 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
     }
   };
 
-  const handleCommentClick = () => {
-    set_isFeedbackModal(data => ({ ...data, isFeedbackModal: !isFeedbackModal }));
+  const handleNavigate = (name: string) => {
+    set_page(data => ({...data, page: name}));
+    navigate(`/${name}`);
   };
 
   return (
@@ -169,7 +171,7 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
                         })
                     }
                   </CarouselStyled.MenuCard>
-                  <CarouselStyled.FeedbackBottom onClick={handleCommentClick}>
+                  <CarouselStyled.FeedbackBottom onClick={() => handleNavigate('home/comment')}>
                     <CarouselStyled.SvgView>
                       <SvgIcon
                         name={"comment"}
