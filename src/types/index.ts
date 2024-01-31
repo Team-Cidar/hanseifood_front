@@ -12,7 +12,7 @@ export type MenuSet = {
 
 export type Menus = {
   [key: string]: Menu;
-}
+};
 
 export type Menu = {
   menu: string[];
@@ -20,10 +20,10 @@ export type Menu = {
   menuType: string;
   likeCount: number;
   commentCount: number;
-}
+};
 
 export type MenuSpecific = {
-  date: string,
+  date: string;
   menus: string[];
   menuId: string;
   menuType: string;
@@ -31,13 +31,13 @@ export type MenuSpecific = {
   commentCount: number;
   deleted: boolean;
   deletedAt: string | null;
-}
+};
 
 export const MenuEnum = {
-  A: {text: 'additionalMenu'},
-  S: {text: 'studentMenu'},
-  E: {text: 'additionalMenu'},
-  N: {text: 'none'}
+  A: { text: 'additionalMenu' },
+  S: { text: 'studentMenu' },
+  E: { text: 'additionalMenu' },
+  N: { text: 'none' },
 } as const;
 type MenuEnum = (typeof MenuEnum)[keyof typeof MenuEnum];
 
@@ -62,52 +62,48 @@ export type ConstText = {
   zh: string;
 };
 
-export type StringSetter = (
-  newLabel: string | ((prevLabel: string) => string),
-) => void;
-export type BooleanSetter = (
-  newValue: boolean | ((prevValue: boolean) => boolean),
-) => void;
+export type StringSetter = (newLabel: string | ((prevLabel: string) => string)) => void;
+export type BooleanSetter = (newValue: boolean | ((prevValue: boolean) => boolean)) => void;
 
 export const LangEnum = {
-  KO: {text: '한국어', code: 'ko'},
-  EN: {text: 'English', code: 'en'},
-  ZH: {text: '中文', code: 'zh'},
+  KO: { text: '한국어', code: 'ko' },
+  EN: { text: 'English', code: 'en' },
+  ZH: { text: '中文', code: 'zh' },
 } as const;
 type LangEnum = (typeof LangEnum)[keyof typeof LangEnum];
 
 export type UserKakaoInfo = {
-  kakao_id: string,
-  email: string,
-  kakao_name: string,
-}
+  kakao_id: string;
+  email: string;
+  kakao_name: string;
+};
 
 export type UserInfo = {
-  kakao_id: string,
-  email: string,
-  kakao_name: string,
-  is_admin: boolean,
-  nickname: string,
-  role: string,
-}
+  kakao_id: string;
+  email: string;
+  kakao_name: string;
+  is_admin: boolean;
+  nickname: string;
+  role: string;
+};
 
 export type Paging = {
-  currentPage: number,
-  pageSize: number,
-  hasNext: boolean,
-}
+  currentPage: number;
+  pageSize: number;
+  hasNext: boolean;
+};
 
 export type Commenter = {
-  kakaoId: string,
-  nickname: string
-}
+  kakaoId: string;
+  nickname: string;
+};
 
 export type Comment = {
-  commentId: string,
-  menu: MenuSpecific,
-  commenter: Commenter,
-  comment: string,
-  commentedAt: string,
-  deleted: boolean,
-  deletedAt: string | null
-}
+  commentId: string;
+  menu: MenuSpecific;
+  commenter: Commenter;
+  comment: string;
+  commentedAt: string;
+  deleted: boolean;
+  deletedAt: string | null;
+};

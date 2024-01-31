@@ -53,7 +53,7 @@ export const InputContainer = styled.div`
 `;
 
 export const DateInputContainer = styled.div`
-  input[type="date"] {
+  input[type='date'] {
     width: 100%;
   }
 `;
@@ -66,6 +66,6 @@ export const ButtonView = styled.div`
 `;
 
 export const SubText = styled.div`
-	color: ${EColor.TEXT_600};
-	${body3};
+  color: ${EColor.TEXT_600};
+  ${body3};
 `;

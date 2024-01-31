@@ -1,6 +1,6 @@
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import {RecoilRoot} from 'recoil';
-import {GlobalStyle} from './styles/GlobalStyle';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
+import { GlobalStyle } from './styles/GlobalStyle';
 import Home from '@pages/Home';
 import Help from '@pages/Help';
 import AboutMe from '@pages/AboutMe';
@@ -24,7 +24,7 @@ const App = () => {
       <BrowserRouter>
         <Navbar />
         <Routes>
-        <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/home/comment" element={<CommentPage />} />
           <Route path="/ticket" element={<TicketPage />} />

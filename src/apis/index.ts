@@ -30,45 +30,45 @@ export const requestExcelWeekFood = (dateTime: string) => {
 
 export const requestConfirmLogin = (kakaoCode: string | null) => {
   return request.post('/login', {
-    'code': kakaoCode
+    code: kakaoCode,
   });
 };
 
 export const requestRegisterUser = (kakaoInfo: UserKakaoInfo | null, nickname: string) => {
   return request.post('/signup', {
     ...kakaoInfo,
-    nickname
+    nickname,
   });
 };
 
 export const requestTokenVerify = (accessToken: string) => {
   return request.post('/token/verify', {
-    'token': accessToken,
+    token: accessToken,
   });
 };
 
 export const requestMenusByLike = (pageNo: number, pageSize: number) => {
   return request.get(`/likes/menus/users?pageNo=${pageNo}&pageSize=${pageSize}`);
-}
+};
 
 export const requestToggleLike = (menuId: string) => {
   return request.post('/likes/menus', {
-    menuId: menuId
-  })
-}
+    menuId: menuId,
+  });
+};
 
 export const requestMenuHistory = (dateTime: string, menuType: string) => {
-  return request.get(`/back/menus/history?date=${dateTime}&menuType=${menuType}`)
-}
+  return request.get(`/back/menus/history?date=${dateTime}&menuType=${menuType}`);
+};
 
 export const requestDeleteMenu = (menuId: string) => {
-  return request.delete(`/back/menus?menuId=${menuId}`)
-}
+  return request.delete(`/back/menus?menuId=${menuId}`);
+};
 
 export const requestCommentByUser = (pageNo: number, pageSize: number) => {
   return request.get(`/comments/menus/users?pageNo=${pageNo}&pageSize=${pageSize}`);
-}
+};
 
 export const requestDeleteComment = (commentId: string) => {
   return request.delete(`/comments/menus?commentId=${commentId}`);
-}
+};

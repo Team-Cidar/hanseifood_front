@@ -4,10 +4,10 @@ import { DefaultComment } from '@type/defaults';
 
 export const CommentPage = () => {
   const onDelete = (commentId: string) => {
-    console.log(commentId)
-  }
+    console.log(commentId);
+  };
   return (
-    <div style={{padding: '18px'}}>
+    <div style={{ padding: '18px' }}>
       <Comment comment={DefaultComment} onClickDelete={onDelete} />
       <Divider />
       <Comment comment={DefaultComment} onClickDelete={onDelete} />

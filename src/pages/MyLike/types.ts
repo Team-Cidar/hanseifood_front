@@ -1,22 +1,22 @@
-import { Lang, MenuSpecific } from "@type/index";
-import { Ref, RefObject } from "react";
+import { Lang, MenuSpecific } from '@type/index';
+import { RefObject } from 'react';
 
 export type MyLikeViewProps = {
-    datas: Datas,
-    refs: Refs,
-    callbacks: Callbacks
+  datas: Datas;
+  refs: Refs;
+  callbacks: Callbacks;
 };
 
 export type Datas = {
-    lang: Lang,
-    menus: MenuSpecific[]
-}
+  lang: Lang;
+  menus: MenuSpecific[];
+};
 
 export type Refs = {
-    scrollRef: RefObject<HTMLDivElement>
-}
+  scrollRef: RefObject<HTMLDivElement>;
+};
 
 export type Callbacks = {
-    onCancelLike: (menuId: string) => void,
-    onScroll: () => void,
-}
+  onCancelLike: (menuId: string) => void;
+  onScroll: () => void;
+};

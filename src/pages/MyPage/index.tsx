@@ -1,9 +1,7 @@
 import MyPageView from './MyPageView';
 
 const MyPage = () => {
-  return (
-    <MyPageView />
-  );
+  return <MyPageView />;
 };
 
 export default MyPage;

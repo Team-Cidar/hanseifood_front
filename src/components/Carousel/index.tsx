@@ -1,27 +1,21 @@
-import React, {
-  TouchEventHandler,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { TouchEventHandler, useEffect, useRef, useState } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { useNavigate } from 'react-router-dom';
 
-import * as CarouselStyled from "./Carousel.styled";
+import * as CarouselStyled from './Carousel.styled';
 import {
   MobileCarouselItem,
   MobileCarouselWrapper,
   MobileContainer,
   MobileDateText,
   MobileMenuList,
-} from "./Carousel.mobile.styled";
-import { Menus, Lang, User } from "@type/index";
+} from './Carousel.mobile.styled';
+import { Menus, Lang, User } from '@type/index';
 import { HomeString } from '@utils/constants/strings';
-import SvgIcon from "@components/SvgIcon";
-import { EColor } from "@styles/color";
-import { userState } from "@modules/atoms";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { useNavigate } from "react-router-dom";
-import { langState } from "@modules/atoms";
-
+import SvgIcon from '@components/SvgIcon';
+import { EColor } from '@styles/color';
+import { userState } from '@modules/atoms';
+import { langState } from '@modules/atoms';
 
 interface CarouselProps {
   weeklyMenu: Menus;
@@ -32,7 +26,7 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
   let touchStartX: number;
   let touchEndX: number;
   const [currCarousel, setCurrCarousel] = useState(0);
-  const [{page}, set_page] = useRecoilState<User>(userState);
+  const [{ page }, set_page] = useRecoilState<User>(userState);
   const carouselRef = useRef<HTMLUListElement>(null);
   const lang = useRecoilValue<Lang>(langState);
 
@@ -52,19 +46,13 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
     if (carouselRef.current != null) {
-      applyCarouselStyles(
-        `translateX(-${currCarousel}00%)`,
-        "all 0.5s ease-in-out"
-      );
+      applyCarouselStyles(`translateX(-${currCarousel}00%)`, 'all 0.5s ease-in-out');
     }
   }, [currCarousel]);
 
-  const applyCarouselStyles = (
-    transform: string = "",
-    transition: string = ""
-  ) => {
+  const applyCarouselStyles = (transform: string = '', transition: string = '') => {
     if (carouselRef.current != null) {
       carouselRef.current.style.transform = transform;
       carouselRef.current.style.transition = transition;
@@ -79,7 +67,7 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
     }
     setCurrCarousel(nextCarousel);
 
-    applyCarouselStyles("", "all 0.5s ease-in-out");
+    applyCarouselStyles('', 'all 0.5s ease-in-out');
   };
 
   // 터치 이벤트
@@ -114,7 +102,7 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
     const deltaX = currTouchX - touchStartX;
     const newX = currCarousel * 100 - deltaX;
 
-    applyCarouselStyles(`translateX(-${newX}%)`, "all ease-in-out");
+    applyCarouselStyles(`translateX(-${newX}%)`, 'all ease-in-out');
   };
 
   const handleTouchEnd: TouchEventHandler<HTMLDivElement> = (e) => {
@@ -125,15 +113,12 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
     } else if (touchEndX - touchStartX > 50) {
       handleSwipe(-1);
     } else {
-      applyCarouselStyles(
-        `translateX(-${currCarousel}00%)`,
-        "all 0.3s ease-in-out"
-      );
+      applyCarouselStyles(`translateX(-${currCarousel}00%)`, 'all 0.3s ease-in-out');
     }
   };
 
   const handleNavigate = (name: string) => {
-    set_page(data => ({...data, page: name}));
+    set_page((data) => ({ ...data, page: name }));
     navigate(`/${name}`);
   };
 
@@ -159,40 +144,22 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
                 <MobileCarouselItem key={key}>
                   <MobileDateText>{res[0]}</MobileDateText>
                   <CarouselStyled.MenuCard>
-                    {
-                      res[1].menuType == 'N' ? 
-                        <MobileMenuList>{HomeString({lang: lang, key: 'menu.empty'})}</MobileMenuList> :
-                        res[1].menu.map((daily, idx) => {
-                          return (
-                            <MobileMenuList key={idx}>{
-                              daily
-                              }</MobileMenuList>
-                          );
-                        })
-                    }
+                    {res[1].menuType == 'N' ? (
+                      <MobileMenuList>{HomeString({ lang: lang, key: 'menu.empty' })}</MobileMenuList>
+                    ) : (
+                      res[1].menu.map((daily, idx) => {
+                        return <MobileMenuList key={idx}>{daily}</MobileMenuList>;
+                      })
+                    )}
                   </CarouselStyled.MenuCard>
                   <CarouselStyled.FeedbackBottom onClick={() => handleNavigate('home/comment')}>
                     <CarouselStyled.SvgView>
-                      <SvgIcon
-                        name={"comment"}
-                        width={14}
-                        height={14}
-                        fill={EColor.TEXT_500}
-                      />
-                      <CarouselStyled.SvgText>
-                        {res[1].commentCount}
-                      </CarouselStyled.SvgText>
+                      <SvgIcon name={'comment'} width={14} height={14} fill={EColor.TEXT_500} />
+                      <CarouselStyled.SvgText>{res[1].commentCount}</CarouselStyled.SvgText>
                     </CarouselStyled.SvgView>
                     <CarouselStyled.SvgView>
-                      <SvgIcon
-                        name={"like"}
-                        width={14}
-                        height={14}
-                        fill={EColor.TEXT_500}
-                      />
-                      <CarouselStyled.SvgText>
-                        {res[1].likeCount}
-                      </CarouselStyled.SvgText>
+                      <SvgIcon name={'like'} width={14} height={14} fill={EColor.TEXT_500} />
+                      <CarouselStyled.SvgText>{res[1].likeCount}</CarouselStyled.SvgText>
                     </CarouselStyled.SvgView>
                   </CarouselStyled.FeedbackBottom>
                 </MobileCarouselItem>

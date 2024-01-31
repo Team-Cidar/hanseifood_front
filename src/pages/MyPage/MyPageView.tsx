@@ -1,27 +1,24 @@
-// MyPageView.tsx
-
-import React, { useEffect, useState } from 'react';
-import { Container, Logo, Button } from './styles';
+import { useState } from 'react';
+import { Container, Button } from './styles';
 import { Link } from 'react-router-dom';
-import {useRecoilState, useRecoilValue} from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
-import {langState, userState} from '@modules/atoms';
-import {MyPageString} from '@utils/constants/strings';
+import { langState, userState } from '@modules/atoms';
+import { MyPageString } from '@utils/constants/strings';
 import PageLogo from '@components/PageLogo';
-import {Divider} from '@components/Divider';
-import {ListButton} from '@components/ListButton';
-import {User} from '@type/index';
-import {useNavigate} from 'react-router-dom';
-import axios from 'axios';
+import { Divider } from '@components/Divider';
+import { ListButton } from '@components/ListButton';
+import { User } from '@type/index';
+import { useNavigate } from 'react-router-dom';
 
 const MyPageView = () => {
   const navigate = useNavigate();
   const lang = useRecoilValue(langState);
-  const [{page}, set_page] = useRecoilState<User>(userState);
+  const [{ page }, set_page] = useRecoilState<User>(userState);
   const [Login, setLogin] = useState('False');
 
   const handleNavigate = (name: string) => {
-    set_page(data => ({...data, page: name}));
+    set_page((data) => ({ ...data, page: name }));
     navigate(`/${name}`);
   };
 
@@ -30,50 +27,47 @@ const MyPageView = () => {
       <Button as={Link} to="/back-office">
         BackOffice로 이동
       </Button>
-      <PageLogo
-        title={MyPageString({lang: lang, key: 'title'})}
-        subtitle={``}
-      />
+      <PageLogo title={MyPageString({ lang: lang, key: 'title' })} subtitle={``} />
       {Login === 'False' ? (
-      <ListButton
-        label={MyPageString({lang: lang, key: 'listbutton.label.login'})}
-        onClick={() => handleNavigate('login')}
-      />
+        <ListButton
+          label={MyPageString({ lang: lang, key: 'listbutton.label.login' })}
+          onClick={() => handleNavigate('login')}
+        />
       ) : (
         <ListButton
-        label={MyPageString({lang: lang, key: 'listbutton.label.logout'})}
-        onClick={() => {if (confirm("정말 로그아웃 하시겠습니까?") == true){
-          localStorage.clear();
-          window.location.href = "https://kauth.kakao.com/oauth/logout?client_id=c8300aee5549fc7db67a25a714144789&logout_redirect_uri=http://localhost:8080";
-        }}}
-      />
-      )
-      }
+          label={MyPageString({ lang: lang, key: 'listbutton.label.logout' })}
+          onClick={() => {
+            if (confirm('정말 로그아웃 하시겠습니까?') == true) {
+              localStorage.clear();
+              window.location.href =
+                'https://kauth.kakao.com/oauth/logout?client_id=c8300aee5549fc7db67a25a714144789&logout_redirect_uri=http://localhost:8080';
+            }
+          }}
+        />
+      )}
       <Divider />
       <div>
         <ListButton
-          label={MyPageString({lang: lang, key: 'label.comment'})}
+          label={MyPageString({ lang: lang, key: 'label.comment' })}
           onClick={() => handleNavigate('mypage/comment')}
         />
         <ListButton
-          label={MyPageString({lang: lang, key: 'label.like'})}
+          label={MyPageString({ lang: lang, key: 'label.like' })}
           onClick={() => handleNavigate('mypage/like')}
         />
       </div>
       <Divider />
       <div>
-        <ListButton
-          label={MyPageString({lang: lang, key: 'listbutton.label.tickets'})}
-        />
+        <ListButton label={MyPageString({ lang: lang, key: 'listbutton.label.tickets' })} />
       </div>
       <Divider />
       <div>
         <ListButton
-          label={MyPageString({lang: lang, key: 'listbutton.label.help'})}
+          label={MyPageString({ lang: lang, key: 'listbutton.label.help' })}
           onClick={() => handleNavigate('help')}
         />
         <ListButton
-          label={MyPageString({lang: lang, key: 'listbutton.label.aboutme'})}
+          label={MyPageString({ lang: lang, key: 'listbutton.label.aboutme' })}
           onClick={() => handleNavigate('about-me')}
         />
       </div>

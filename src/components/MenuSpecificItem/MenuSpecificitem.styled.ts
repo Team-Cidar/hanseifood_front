@@ -3,21 +3,20 @@ import { Title4_2, Title6, body3 } from '@styles/font';
 import styled from 'styled-components';
 import { IDateText } from './types';
 
-
 export const Container = styled.div`
-	display: flex;
-    flex: none;
-	flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    border: 1px dashed black;
-    border-radius: 22px;
-    object-fit: contain;
-    width: 100%;
-    height: 212px;
-    padding: 16px 16px 8px 16px;
-    margin-bottom: 12px;
-    box-shadow: 0 3px 3px ${EColor.TEXT_400};
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px dashed black;
+  border-radius: 22px;
+  object-fit: contain;
+  width: 100%;
+  height: 212px;
+  padding: 16px 16px 8px 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 3px 3px ${EColor.TEXT_400};
 `;
 
 export const DateText = styled.h2<IDateText>`
@@ -29,7 +28,7 @@ export const DateText = styled.h2<IDateText>`
   padding: 4px;
   border: 1px dashed ${EColor.TEXT_900};
   border-width: 0px 0px 1px 0px;
-  text-decoration: ${({$deleted}) => $deleted ? 'line-through' : 'none'};
+  text-decoration: ${({ $deleted }) => ($deleted ? 'line-through' : 'none')};
 `;
 
 export const MenuCard = styled.div`
@@ -66,4 +65,3 @@ export const SvgText = styled.div`
   color: ${EColor.TEXT_500};
   -webkit-text-stroke: 0.6px ${EColor.TEXT_900};
 `;
-

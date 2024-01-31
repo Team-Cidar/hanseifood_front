@@ -16,74 +16,70 @@ const MyLike = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    loadLikedMenu()
-    .then(res => set_menus(res));
-  }, [])
+    loadLikedMenu().then((res) => set_menus(res));
+  }, []);
 
   const loadLikedMenu = async (): Promise<MenuSpecific[]> => {
-    if (paging.hasNext){
+    if (paging.hasNext) {
       return requestMenusByLike(paging.currentPage + 1, paging.pageSize)
-        .then(res => {
-          set_paging(data => ({
+        .then((res) => {
+          set_paging((data) => ({
             ...data,
             currentPage: res.data.pageNo,
-            hasNext: res.data.pageNo < res.data.maxPage
+            hasNext: res.data.pageNo < res.data.maxPage,
           }));
-          return res.data.datas
-        }).catch(err => {
-          console.log(err)
-          return menus
+          return res.data.datas;
         })
+        .catch((err) => {
+          console.log(err);
+          return menus;
+        });
     }
     return Promise.resolve([]);
-  }
+  };
 
   const onCancelLike = (menuId: string) => {
-    if (confirm(MyLikeString({lang: lang, key: 'alert.toggleLike'}))){
-      requestToggleLike(menuId)
-      .then(_ => {
+    if (confirm(MyLikeString({ lang: lang, key: 'alert.toggleLike' }))) {
+      requestToggleLike(menuId).then(() => {
         const afterMenus = menus.filter((data) => data.menuId != menuId);
-        set_menus(afterMenus)
-      })
+        set_menus(afterMenus);
+      });
     }
-  }
+  };
 
   const onScroll = () => {
     if (isLoading) return;
 
     const maxScrollPos = scrollRef.current!.scrollHeight - scrollRef.current!.clientHeight;
-    const currentScrollPos = scrollRef.current!.scrollTop
-    if (maxScrollPos - currentScrollPos < 10){
-      set_isLoading(true);  // prevent bouncing issue
+    const currentScrollPos = scrollRef.current!.scrollTop;
+    if (maxScrollPos - currentScrollPos < 10) {
+      set_isLoading(true); // prevent bouncing issue
       loadLikedMenu()
-      .then(res => {
-        set_menus(data => [
-          ...data,
-          ...res
-        ])
-      })
-      .catch(err => {
-        console.log(err)
-      })
-      .finally(() => {
-        set_isLoading(false)
-      })
+        .then((res) => {
+          set_menus((data) => [...data, ...res]);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          set_isLoading(false);
+        });
     }
-  }
+  };
 
   return (
-    <MyLikeView 
+    <MyLikeView
       datas={{
-        lang: lang, 
+        lang: lang,
         menus: menus,
-      }} 
+      }}
       refs={{
         scrollRef: scrollRef,
-      }} 
+      }}
       callbacks={{
         onCancelLike: onCancelLike,
-        onScroll: onScroll
-      }} 
+        onScroll: onScroll,
+      }}
     />
   );
 };
