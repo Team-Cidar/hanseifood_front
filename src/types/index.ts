@@ -30,6 +30,7 @@ export type MenuSpecific = {
   likeCount: number;
   commentCount: number;
   deleted: boolean;
+  deletedAt: Date | null;
 }
 
 export const MenuEnum = {

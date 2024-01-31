@@ -132,7 +132,7 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
   };
 
   const handleCommentClick = () => {
-    set_isFeedbackModal({ isFeedbackModal: !isFeedbackModal });
+    set_isFeedbackModal(data => ({ ...data, isFeedbackModal: !isFeedbackModal }));
   };
 
   return (

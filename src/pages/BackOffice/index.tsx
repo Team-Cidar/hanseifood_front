@@ -86,15 +86,24 @@ const BackOffice = () => {
           header={`${historyTarget.date} (${historyTarget.menuType}) History`}
           body={
             <div style={{overflow: 'scroll'}}>
-              {historyTarget.history.map((value) => {
+              {historyTarget.history.map((menu) => {
                 return (
-                  <MenuSpecificItem key={value.menuId} menu={value} onInteraction={() => {}}/>
+                  <MenuSpecificItem 
+                    key={menu.menuId} 
+                    menu={menu} 
+                    onInteraction={() => {
+                      // set current menu as this specific menu history
+                      console.log(menu);
+                    }}/>
                 )
               })}
             </div>
           }
           bottom={
-            <IconButton width={'84'} height={'32'} onClick={() => set_showHistory(false)} label={"닫기"} />
+            <IconButton 
+              width={'84'} 
+              height={'32'} 
+              onClick={() => set_showHistory(false)} label={"닫기"} />
           }
         />)
       }
