@@ -84,10 +84,10 @@ const BackOffice = () => {
 
   const __deleteMenu = (menu: Menu | undefined, menuType: string) => {
     if (!menu) {
-        alert(`Menu [${date} (${menuType})] is not exists!`);
+        alert(`메뉴 [${date} (${menuType})]가 존재하지 않습니다!`);
         return;
     }
-    if (!confirm(`Are you sure to delete menu [${date} (${menuType})]`)) return;
+    if (!confirm(`[${date} (${menuType})] 메뉴를 삭제하겠습니까?`)) return;
     requestDeleteMenu(menu.menuId)
     .then(res => {
       __handleGetMenu();
