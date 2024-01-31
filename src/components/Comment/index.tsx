@@ -1,22 +1,32 @@
-import React from 'react';
-import { CommentText, CommentView, Container, DateText, DateView, NameText } from './Comment.styled';
+import { CommentText, CommentView, Container, DateText, DateView, HeaderWrapper, NameText, SvgButton } from './Comment.styled';
+import { Comment as CommentType } from '@type/index';
+import SvgIcon from '@components/SvgIcon';
+import { EColor } from '@styles/color';
 
-interface ToggleComponentProps {
-  writer: string;
-  content: string;
-  createTime: string;
-  onClickDeclaration: () => void;
+interface CommentComponentProps {
+  comment: CommentType
+  onClickDelete: (commentId: string) => void;
 }
 
 
-export const Comment = ({ writer, content, createTime, onClickDeclaration}: ToggleComponentProps) => {
+export const Comment = ({ comment, onClickDelete}: CommentComponentProps) => {
   return (
     <Container>
-      <NameText>{writer}</NameText>
+      <HeaderWrapper>
+        <NameText>{comment.commenter.nickname}</NameText>
+        <SvgButton onClick={() => onClickDelete(comment.commentId)}>
+          <SvgIcon 
+            name='delete'
+            width={20}
+            height={20}
+            fill={EColor.TEXT_300}
+          />
+        </SvgButton>
+      </HeaderWrapper>
       <CommentView>
-        <CommentText>{content}</CommentText>
+        <CommentText>{comment.comment}</CommentText>
         <DateView>
-          <DateText>{createTime}</DateText>
+          <DateText>{comment.commentedAt}</DateText>
         </DateView>
       </CommentView>
 

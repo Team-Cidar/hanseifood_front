@@ -7,8 +7,14 @@ export const Container = styled.div`
   flex-direction: column;
   width: 100%;
   padding: 12px;
-	border: 1px solid ${EColor.TEXT_400};
-	border-width: 1.2px 0px 1.2px 0px;
+	/* border: 1px solid ${EColor.TEXT_400};
+	border-width: 1.2px 0px 1.2px 0px; */
+`;
+
+export const HeaderWrapper = styled.div`
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 `;
 
 export const CommentView = styled.div`
@@ -40,4 +46,11 @@ export const DateView = styled.div`
 export const DateText = styled.div`
 	${body5};
 	color: ${EColor.TEXT_800};
+`;
+
+export const SvgButton = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 4px;
 `;

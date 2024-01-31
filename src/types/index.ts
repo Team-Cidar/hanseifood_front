@@ -30,7 +30,7 @@ export type MenuSpecific = {
   likeCount: number;
   commentCount: number;
   deleted: boolean;
-  deletedAt: Date | null;
+  deletedAt: string | null;
 }
 
 export const MenuEnum = {
@@ -95,4 +95,19 @@ export type Paging = {
   currentPage: number,
   pageSize: number,
   hasNext: boolean,
+}
+
+export type Commenter = {
+  kakaoId: string,
+  nickname: string
+}
+
+export type Comment = {
+  commentId: string,
+  menu: MenuSpecific,
+  commenter: Commenter,
+  comment: string,
+  commentedAt: string,
+  deleted: boolean,
+  deletedAt: string | null
 }

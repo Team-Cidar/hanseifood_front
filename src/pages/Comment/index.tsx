@@ -1,12 +1,18 @@
 import { Comment } from '@components/Comment';
-import React from 'react';
+import { Divider } from '@components/Divider';
+import { DefaultComment } from '@type/defaults';
 
 export const CommentPage = () => {
+  const onDelete = (commentId: string) => {
+    console.log(commentId)
+  }
   return (
-    <div>
-      <Comment writer={"귀요미 호주니"} content={"음식이 친절하고 직원이 맛있어요!"} createTime={"2024-01-19 18:30"} />
-      <Comment writer={"귀요미 호주니"} content={"음식이 친절하고 직원이 맛있어요!"} createTime={"2024-01-19 18:30"} />
-      <Comment writer={"귀요미 호주니"} content={"음식이 친절하고 직원이 맛있어요!"} createTime={"2024-01-19 18:30"} />
+    <div style={{padding: '18px'}}>
+      <Comment comment={DefaultComment} onClickDelete={onDelete} />
+      <Divider />
+      <Comment comment={DefaultComment} onClickDelete={onDelete} />
+      <Divider />
+      <Comment comment={DefaultComment} onClickDelete={onDelete} />
     </div>
   );
 };

@@ -47,7 +47,7 @@ export const requestTokenVerify = (accessToken: string) => {
   });
 };
 
-export const requestMenusByLike = (pageNo: number = 1, pageSize: number = 10) => {
+export const requestMenusByLike = (pageNo: number, pageSize: number) => {
   return request.get(`/likes/menus/users?pageNo=${pageNo}&pageSize=${pageSize}`);
 }
 
@@ -63,4 +63,12 @@ export const requestMenuHistory = (dateTime: string, menuType: string) => {
 
 export const requestDeleteMenu = (menuId: string) => {
   return request.delete(`/back/menus?menuId=${menuId}`)
+}
+
+export const requestCommentByUser = (pageNo: number, pageSize: number) => {
+  return request.get(`/comments/menus/users?pageNo=${pageNo}&pageSize=${pageSize}`);
+}
+
+export const requestDeleteComment = (commentId: string) => {
+  return request.delete(`/comments/menus?commentId=${commentId}`);
 }

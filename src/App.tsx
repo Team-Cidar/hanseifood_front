@@ -14,6 +14,7 @@ import Login from '@pages/Login';
 import LoginConfirm from '@pages/LoginConfirm';
 import { CommentPage } from '@pages/Comment';
 import MyLike from '@pages/MyLike';
+import MyComment from '@pages/MyComment';
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/ticket" element={<TicketPage />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/mypage/like" element={<MyLike />} />
+          <Route path="/mypage/comment" element={<MyComment />} />
           <Route path="/maintenance" element={<Maintenance />} />
           <Route path="/help" element={<Help />} />
           <Route path="/about-me" element={<AboutMe />} />

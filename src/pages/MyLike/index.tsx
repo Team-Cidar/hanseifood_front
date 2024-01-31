@@ -1,18 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
-import MyLikeView from './MyLikeView';
+import { useRecoilValue } from 'recoil';
+
 import { requestMenusByLike, requestToggleLike } from '@apis/index';
 import { MenuSpecific, Paging } from '@type/index';
-import { useRecoilValue } from 'recoil';
 import { langState } from '@modules/atoms';
 import { DefaultPaging } from '@type/defaults';
 import { MyLikeString } from '@utils/constants/strings';
+import MyLikeView from './MyLikeView';
 
 const MyLike = () => {
   const [menus, set_menus] = useState<MenuSpecific[]>([]);
   const [paging, set_paging] = useState<Paging>(DefaultPaging);
+  const [isLoading, set_isLoading] = useState<boolean>(false);
   const lang = useRecoilValue(langState);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [isLoading, set_isLoading] = useState<boolean>(false);
 
   useEffect(() => {
     loadLikedMenu()

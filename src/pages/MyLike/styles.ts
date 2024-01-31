@@ -15,7 +15,6 @@ export const Container = styled.div`
 export const Body  = styled.div`
 	overflow: scroll;
 	padding: 12px;
-/* as a list view, must include scroll position detector */
 `;
 
 export const Logo = styled.div`

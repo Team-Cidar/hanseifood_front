@@ -53,6 +53,7 @@ const MyPageView = () => {
       <div>
         <ListButton
           label={MyPageString({lang: lang, key: 'label.comment'})}
+          onClick={() => handleNavigate('mypage/comment')}
         />
         <ListButton
           label={MyPageString({lang: lang, key: 'label.like'})}
