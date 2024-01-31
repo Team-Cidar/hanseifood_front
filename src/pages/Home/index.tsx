@@ -47,7 +47,7 @@ const Home = () => {
   };
 
   const handleFeedbackModal = () => {
-    set_isFeedbackModal({ isFeedbackModal: !isFeedbackModal });
+    set_isFeedbackModal(data => ({ ...data, isFeedbackModal: !isFeedbackModal }));
   };
   return (
     <>

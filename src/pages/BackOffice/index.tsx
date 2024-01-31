@@ -4,13 +4,13 @@ import { MenuHistory, StateGetter, StateSetter } from "./types";
 import { requestDayTargetFood, requestExcelWeekFood, requestMenuHistory, requestUploadMenu } from "@apis/index";
 import { getFormattedDate } from "@utils/GetFormattedDate";
 import { WeekMenuStringFormator } from "@utils/WeekMenuStringFormator";
-import { userState } from "@modules/atoms";
-import { User } from "@type/index";
-import { useRecoilState } from "recoil";
 import { Modal } from "@components/Modal";
 import { DefaultMenuHistory } from "./types.default";
 import MenuSpecificItem from "@components/MenuSpecificItem";
 import { IconButton } from "@components/Button";
+import { userState } from "@modules/atoms";
+import { User } from "@type/index";
+import { useRecoilState } from "recoil";
 
 const BackOffice = () => {
   const [date, set_date] = useState<string>(getFormattedDate());
@@ -25,6 +25,7 @@ const BackOffice = () => {
   const Getter: StateGetter = [date, student, employee, additional, placeholder];
   const Setter: StateSetter = [set_date, set_student, set_employee, set_additional];
 
+  console.log("핳허" + page);
   useEffect(() => {
     set_page(data => ({ ...data, page: "backoffice" }));
     requestDayTargetFood(date)
