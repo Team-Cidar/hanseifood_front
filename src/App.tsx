@@ -9,12 +9,16 @@ import Error404 from '@pages/Error404';
 import Navbar from '@components/Navbar';
 import TicketPage from '@pages/TicketPage';
 import MyPage from '@pages/MyPage';
-import BackOffice from '@pages/BackOffice';
+import BackofficeMenu from '@pages/BackOfficeMenu';
 import Login from '@pages/Login';
 import LoginConfirm from '@pages/LoginConfirm';
 import { CommentPage } from '@pages/Comment';
 import MyLike from '@pages/MyLike';
 import MyComment from '@pages/MyComment';
+import BackOffice from '@pages/BackOffice';
+import BackOfficeComment from '@pages/BackOfficeComment';
+import BackOfficeUser from '@pages/BackOfficeUser';
+import BackOfficeChart from '@pages/BackOfficeChart';
 
 const App = () => {
   return (
@@ -35,6 +39,10 @@ const App = () => {
           <Route path="/help" element={<Help />} />
           <Route path="/about-me" element={<AboutMe />} />
           <Route path="/back-office" element={<BackOffice />} />
+          <Route path="/back-office/menus" element={<BackofficeMenu />} />
+          <Route path="/back-office/comments" element={<BackOfficeComment />} />
+          <Route path="/back-office/users" element={<BackOfficeUser />} />
+          <Route path="/back-office/charts" element={<BackOfficeChart />} />
           <Route path="/login" element={<Login />} />
           <Route path="/login/confirm" element={<LoginConfirm />} />
           <Route path="*" element={<Error404 />} />
