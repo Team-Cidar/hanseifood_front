@@ -6,6 +6,7 @@ import TicketPage from './TicketPage';
 import LoginConfirm from './LoginConfirm';
 import MyLike from './MyLike';
 import MyComment from './MyComment';
+import Comment from './Comment';
 
 interface IStringConst {
   lang: Lang;
@@ -38,4 +39,8 @@ export const MyLikeString = ({ lang, key }: IStringConst) => {
 
 export const MyCommentString = ({ lang, key }: IStringConst) => {
   return MyComment[key][lang.langType.code];
+};
+
+export const CommentPageString = ({ lang, key }: IStringConst) => {
+  return Comment[key][lang.langType.code];
 };

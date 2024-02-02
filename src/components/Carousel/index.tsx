@@ -117,9 +117,13 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
     }
   };
 
-  const handleNavigate = (name: string) => {
+  const handleNavigate = (name: string, menuId: string) => {
+    if (menuId == '') {
+      alert(HomeString({ lang: lang, key: 'menu.empty' }));
+      return;
+    }
     set_page((data) => ({ ...data, page: name }));
-    navigate(`/${name}`);
+    navigate(`/${name}/${menuId}`);
   };
 
   return (
@@ -152,7 +156,7 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
                       })
                     )}
                   </CarouselStyled.MenuCard>
-                  <CarouselStyled.FeedbackBottom onClick={() => handleNavigate('home/comment')}>
+                  <CarouselStyled.FeedbackBottom onClick={() => handleNavigate('home/comments', res[1].menuId)}>
                     <CarouselStyled.SvgView>
                       <SvgIcon name={'comment'} width={14} height={14} fill={EColor.TEXT_500} />
                       <CarouselStyled.SvgText>{res[1].commentCount}</CarouselStyled.SvgText>

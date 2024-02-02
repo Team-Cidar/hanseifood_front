@@ -1,4 +1,4 @@
-import {StringConstant} from '@type/index';
+import { StringConstant } from '@type/index';
 
 const Home: StringConstant = {
   title: {
@@ -14,12 +14,12 @@ const Home: StringConstant = {
   toggleLabelStudent: {
     ko: '학생 식당 식단표',
     en: 'Student Menu',
-    zh: '学生食堂菜单'
+    zh: '学生食堂菜单',
   },
   toggleLabelEmployee: {
     ko: '교직원 식당 식단표',
     en: 'Employee Menu',
-    zh: '学院食堂菜单'
+    zh: '学院食堂菜单',
   },
   toggleLabelStudentAndEmployee: {
     ko: '학생 & 교직원 식당 식단표',
@@ -29,8 +29,8 @@ const Home: StringConstant = {
   'menu.empty': {
     ko: '메뉴가 존재하지 않습니다.',
     en: 'Menu not exists',
-    zh: '没有彩蛋'
-  }
+    zh: '没有彩蛋',
+  },
 } as const;
 
 export default Home;

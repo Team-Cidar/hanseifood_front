@@ -13,7 +13,6 @@ export const Container = styled.div`
   border-radius: 22px;
   object-fit: contain;
   width: 100%;
-  height: 212px;
   padding: 16px 16px 8px 16px;
   margin-bottom: 12px;
   box-shadow: 0 3px 3px ${EColor.TEXT_400};

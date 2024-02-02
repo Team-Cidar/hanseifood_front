@@ -57,6 +57,10 @@ export const requestToggleLike = (menuId: string) => {
   });
 };
 
+export const requestCheckMenuLiked = (menuId: string) => {
+  return request.get(`/likes/menus?menuId=${menuId}`);
+};
+
 export const requestMenuHistory = (dateTime: string, menuType: string) => {
   return request.get(`/back/menus/history?date=${dateTime}&menuType=${menuType}`);
 };
@@ -71,4 +75,19 @@ export const requestCommentByUser = (pageNo: number, pageSize: number) => {
 
 export const requestDeleteComment = (commentId: string) => {
   return request.delete(`/comments/menus?commentId=${commentId}`);
+};
+
+export const reqeustMenuByMenuId = (menuId: string) => {
+  return request.get(`/menus/${menuId}`);
+};
+
+export const requestCommentsByMenuId = (menuId: string, pageNo: number, pageSize: number) => {
+  return request.get(`/comments/menus?menuId=${menuId}&pageNo=${pageNo}&pageSize=${pageSize}`);
+};
+
+export const requestAddComment = (menuId: string, comment: string) => {
+  return request.post(`/comments/menus`, {
+    menuId: menuId,
+    comment: comment,
+  });
 };
