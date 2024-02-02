@@ -19,6 +19,10 @@ const MyLike = () => {
     loadLikedMenu().then((res) => set_menus(res));
   }, []);
 
+  useEffect(() => {
+    set_isLoading(false);
+  }, [menus]);
+
   const loadLikedMenu = async (): Promise<MenuSpecific[]> => {
     if (paging.hasNext) {
       return requestMenusByLike(paging.currentPage + 1, paging.pageSize)
@@ -60,9 +64,6 @@ const MyLike = () => {
         })
         .catch((err) => {
           console.log(err);
-        })
-        .finally(() => {
-          set_isLoading(false);
         });
     }
   };

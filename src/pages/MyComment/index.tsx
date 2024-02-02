@@ -29,6 +29,10 @@ const MyComment = () => {
     if (modalMenu.menuId != DefaultMenuSpecific.menuId) set_showModal(true);
   }, [modalMenu]);
 
+  useEffect(() => {
+    set_isLoading(false);
+  }, [comments]);
+
   const loadComments = async (): Promise<Comment[]> => {
     if (paging.hasNext) {
       return requestCommentByUser(paging.currentPage + 1, paging.pageSize)
@@ -61,9 +65,6 @@ const MyComment = () => {
         })
         .catch((err) => {
           console.log(err);
-        })
-        .finally(() => {
-          set_isLoading(false);
         });
     }
   };
