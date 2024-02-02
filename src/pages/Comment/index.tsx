@@ -109,6 +109,7 @@ export const CommentPage = () => {
       .then((res) => {
         if (!paging.hasNext) set_comments((data) => [...data, res.data]);
         set_commentText('');
+        inputRef.current!.blur();
       })
       .catch((err) => console.log(err));
   };
