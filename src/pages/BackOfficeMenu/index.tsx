@@ -8,7 +8,7 @@ import {
   requestMenuHistory,
   requestUploadMenu,
 } from '@apis/index';
-import { getFormattedDate } from '@utils/GetFormattedDate';
+import { formatDate, getFormattedDate } from '@utils/GetFormattedDate';
 import { WeekMenuStringFormator } from '@utils/WeekMenuStringFormator';
 import { Modal } from '@components/Modal';
 import MenuSpecificItem from '@components/MenuSpecificItem';
@@ -36,6 +36,15 @@ const BackOfficeMenu = () => {
   const Setter: StateSetter = [set_date, set_student, set_employee, set_additional];
 
   useEffect(() => {
+    const dateObj = new Date(date);
+    const day = dateObj.getUTCDay();
+    if ([6, 0].includes(day)) {
+      alert('주말은 선택할 수 없습니다. 금요일로 이동합니다.');
+      if (day) dateObj.setUTCDate(dateObj.getUTCDate() - 1);
+      else dateObj.setDate(dateObj.getDate() - 2);
+      set_date(formatDate(dateObj));
+      return;
+    }
     set_page((data) => ({ ...data, page: 'backoffice' }));
     __handleGetMenu();
   }, [date]);
