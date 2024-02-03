@@ -1,4 +1,4 @@
-import { Comment, Commenter, MenuSpecific, Paging } from '.';
+import { Comment, Commenter, MenuSpecific, Paging, UserInfo, UserRoleData } from '.';
 
 export const DefaultPaging = <Paging>{
   currentPage: 0,
@@ -30,4 +30,13 @@ export const DefaultComment = <Comment>{
   commentedAt: '2024-01-31 01:23:45',
   deleted: true,
   deletedAt: '2024-01-30 01:23:45',
+};
+
+export const DefaultUserInfo = <UserInfo>{
+  kakaoId: '',
+  email: '',
+  kakaoName: '',
+  isAdmin: false,
+  nickname: '',
+  role: UserRoleData.G,
 };

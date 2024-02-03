@@ -33,14 +33,6 @@ export type MenuSpecific = {
   deletedAt: string | null;
 };
 
-export const MenuEnum = {
-  A: { text: 'additionalMenu' },
-  S: { text: 'studentMenu' },
-  E: { text: 'additionalMenu' },
-  N: { text: 'none' },
-} as const;
-type MenuEnum = (typeof MenuEnum)[keyof typeof MenuEnum];
-
 export type User = {
   isEmployee: boolean;
   isFeedbackModal: boolean;
@@ -65,13 +57,6 @@ export type ConstText = {
 export type StringSetter = (newLabel: string | ((prevLabel: string) => string)) => void;
 export type BooleanSetter = (newValue: boolean | ((prevValue: boolean) => boolean)) => void;
 
-export const LangEnum = {
-  KO: { text: '한국어', code: 'ko' },
-  EN: { text: 'English', code: 'en' },
-  ZH: { text: '中文', code: 'zh' },
-} as const;
-type LangEnum = (typeof LangEnum)[keyof typeof LangEnum];
-
 export type UserKakaoInfo = {
   kakaoId: string;
   email: string;
@@ -84,7 +69,7 @@ export type UserInfo = {
   kakaoName: string;
   isAdmin: boolean;
   nickname: string;
-  role: string;
+  role: UserRole;
 };
 
 export type Paging = {
@@ -107,3 +92,68 @@ export type Comment = {
   deleted: boolean;
   deletedAt: string | null;
 };
+
+export const LangEnum = {
+  KO: { text: '한국어', code: 'ko' },
+  EN: { text: 'English', code: 'en' },
+  ZH: { text: '中文', code: 'zh' },
+} as const;
+type LangEnum = (typeof LangEnum)[keyof typeof LangEnum];
+
+export const MenuEnum = {
+  A: { text: 'additionalMenu' },
+  S: { text: 'studentMenu' },
+  E: { text: 'additionalMenu' },
+  N: { text: 'none' },
+} as const;
+type MenuEnumKey = keyof typeof MenuEnum;
+type MenuEnum = (typeof MenuEnum)[MenuEnumKey];
+
+export const MenuListItem = {
+  COMMENT: { labelKey: 'listbutton.label.comment', route: 'myComment' },
+  LIKE: { labelKey: 'listbutton.label.like', route: 'myLike' },
+  HELP: { labelKey: 'listbutton.label.help', route: 'help' },
+  ABOUT: { labelKey: 'listbutton.label.aboutme', route: 'aboutme' },
+  BACK: { labelKey: 'listbutton.label.backoffice', route: 'back' },
+} as const;
+type MenuListItem = (typeof MenuListItem)[keyof typeof MenuListItem];
+
+// After modifying the structure of this UserRoleEnum, It's mandatory to clean up user's userInfoState(user info of recoil persist)
+export const UserRoleData = {
+  A: <UserRoleValueType>{
+    text: 'Admin',
+    value: 'A',
+    accessibleMenuItems: <AccessibleMenuItemGroup>[
+      [MenuListItem.COMMENT, MenuListItem.LIKE],
+      [MenuListItem.HELP, MenuListItem.ABOUT],
+      [MenuListItem.BACK],
+    ],
+  },
+  M: <UserRoleValueType>{
+    text: 'Manager',
+    value: 'M',
+    accessibleMenuItems: <AccessibleMenuItemGroup>[
+      [MenuListItem.COMMENT, MenuListItem.LIKE],
+      [MenuListItem.HELP, MenuListItem.ABOUT],
+      [MenuListItem.BACK],
+    ],
+  },
+  U: <UserRoleValueType>{
+    text: 'User',
+    value: 'U',
+    accessibleMenuItems: <AccessibleMenuItemGroup>[
+      [MenuListItem.COMMENT, MenuListItem.LIKE],
+      [MenuListItem.HELP, MenuListItem.ABOUT],
+    ],
+  },
+  G: <UserRoleValueType>{
+    // default, for only usage in front-end
+    text: 'Guest',
+    value: 'G',
+    accessibleMenuItems: <AccessibleMenuItemGroup>[[MenuListItem.HELP, MenuListItem.ABOUT]],
+  },
+} as const;
+type AccessibleMenuItemGroup = MenuListItem[][];
+type UserRoleValueType = { text: string; value: string; accessibleMenuItems: AccessibleMenuItemGroup };
+export type UserRoleKey = keyof typeof UserRoleData;
+export type UserRole = (typeof UserRoleData)[UserRoleKey];

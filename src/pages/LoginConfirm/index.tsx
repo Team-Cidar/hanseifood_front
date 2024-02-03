@@ -1,6 +1,6 @@
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { LoginConfirmView } from './LoginConfirmView';
-import { Lang, UserInfo, UserKakaoInfo } from '@type/index';
+import { Lang, UserInfo, UserKakaoInfo, UserRole, UserRoleData, UserRoleKey } from '@type/index';
 import { langState, userInfoState } from '@modules/atoms';
 import { LoginConfirmString } from '@utils/constants/strings';
 import { useEffect, useRef, useState } from 'react';
@@ -40,24 +40,28 @@ const LoginConfirm = () => {
   };
 
   const onSuccessClick = async () => {
-    requestConfirmLogin(kakaoCode)
-      .then(async (res) => {
-        if (res.data.status) {
-          localStorage.setItem('access_token', res.data.accessToken);
-          localStorage.setItem('refresh_token', res.data.refreshToken);
-          saveUserInfoGoHome(res.data.user);
-          return;
-        }
-        set_kakaoInfo({
-          kakaoId: res.data.user.kakaoId,
-          kakaoName: res.data.user.kakaoName,
-          email: res.data.user.email,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    showUserNicknameInput();
+    if (
+      !requestConfirmLogin(kakaoCode)
+        .then(async (res) => {
+          if (res.data.status) {
+            localStorage.setItem('access_token', res.data.accessToken);
+            localStorage.setItem('refresh_token', res.data.refreshToken);
+            const roleKey: UserRoleKey = res.data.user.role;
+            saveUserInfoGoHome({ ...res.data.user, role: UserRoleData[roleKey] as UserRole } as UserInfo);
+            return true;
+          }
+          set_kakaoInfo({
+            kakaoId: res.data.user.kakaoId,
+            kakaoName: res.data.user.kakaoName,
+            email: res.data.user.email,
+          });
+          return false;
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    )
+      showUserNicknameInput();
   };
 
   const handleSubmit = async (nickname: string) => {
@@ -67,8 +71,8 @@ const LoginConfirm = () => {
     }
     requestRegisterUser(kakaoInfo, nickname)
       .then((res) => {
-        saveUserInfoGoHome(res.data.user);
-        console.log(res);
+        const roleKey: UserRoleKey = res.data.user.role;
+        saveUserInfoGoHome({ ...res.data.user, role: UserRoleData[roleKey] as UserRole } as UserInfo);
       })
       .catch((err) => {
         console.log(err);

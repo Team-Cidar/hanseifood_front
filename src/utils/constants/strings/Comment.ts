@@ -31,6 +31,11 @@ const Comment: StringConstant = {
     en: 'Inappropriate access',
     zh: 'Inappropriate access',
   },
+  'alert.error.guest': {
+    ko: '로그인이 필요합니다.',
+    en: 'Please sign in first.',
+    zh: '请先登录',
+  },
   'placeholder.comment': {
     ko: '맛있어요!',
     en: 'Savory!',

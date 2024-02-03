@@ -1,3 +1,4 @@
+import { DefaultUserInfo } from '@type/defaults';
 import { User, WeeklyData, Lang, LangEnum, UserInfo } from '@type/index';
 import { atom } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
@@ -43,13 +44,6 @@ export const langState = atom<Lang>({
 
 export const userInfoState = atom<UserInfo>({
   key: 'userInfoState',
-  default: {
-    kakaoId: '',
-    email: '',
-    kakaoName: '',
-    isAdmin: false,
-    nickname: '',
-    role: '',
-  },
+  default: DefaultUserInfo,
   effects_UNSTABLE: [persistAtom],
 });

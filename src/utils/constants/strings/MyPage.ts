@@ -31,15 +31,25 @@ const MyPage: StringConstant = {
     en: 'About me',
     zh: '开发人员',
   },
-  'label.comment': {
+  'listbutton.label.comment': {
     ko: '댓글 목록',
     en: 'Comments History',
     zh: '回帖列表',
   },
-  'label.like': {
+  'listbutton.label.like': {
     ko: '좋아요 목록',
     en: 'Like History',
     zh: '点赞列表',
+  },
+  'listbutton.label.backoffice': {
+    ko: '백 오피스',
+    en: '백 오피스',
+    zh: '백 오피스',
+  },
+  'confirm.logout': {
+    ko: '정말 로그아웃 하시겠습니까?',
+    en: 'Are you sure to sign out?',
+    zh: '您确定要退出吗？',
   },
 } as const;
 

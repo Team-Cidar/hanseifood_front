@@ -3,7 +3,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { DefaultMenuSpecific, DefaultPaging } from '@type/defaults';
 import { CommentView } from './CommentView';
-import { MenuSpecific, Paging, Comment, Lang, UserInfo, User } from '@type/index';
+import { MenuSpecific, Paging, Comment, Lang, UserInfo, User, UserRoleData } from '@type/index';
 import { langState, userInfoState, userState } from '@modules/atoms';
 import {
   reqeustMenuByMenuId,
@@ -17,7 +17,6 @@ import { CommentPageString } from '@utils/constants/strings';
 import { useNavigate } from 'react-router-dom';
 
 export const CommentPage = () => {
-  // const [menuId, set_menuId] = useState<string>('');
   const menuId = window.location.pathname.split('/').pop()!;
   const [menu, set_menu] = useState<MenuSpecific>(DefaultMenuSpecific);
   const [comments, set_comments] = useState<Comment[]>([]);
@@ -120,6 +119,8 @@ export const CommentPage = () => {
   };
 
   const onToggleLike = () => {
+    if (!__checkLoggedIn()) return;
+
     if (!confirm(CommentPageString({ lang: lang, key: isLiked ? 'confirm.like.cancel' : 'confirm.like' }))) return;
     set_isLiked(!isLiked);
     requestToggleLike(menuId)
@@ -142,12 +143,23 @@ export const CommentPage = () => {
   };
 
   const onInputFocus = () => {
+    if (!__checkLoggedIn()) return;
+
     scrollRef.current!.scrollTop = 0;
     inputRef.current!.placeholder = '';
   };
 
   const onInputBlur = () => {
     inputRef.current!.placeholder = CommentPageString({ lang: lang, key: 'placeholder.comment' });
+  };
+
+  const __checkLoggedIn = () => {
+    if (userInfo.role.value == UserRoleData.G.value) {
+      alert(CommentPageString({ lang: lang, key: 'alert.error.guest' }));
+      navigate('/login');
+      return false;
+    }
+    return true;
   };
 
   return (

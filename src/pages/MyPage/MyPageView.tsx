@@ -1,34 +1,35 @@
-import { useState } from 'react';
-import { Container, Button } from './styles';
-import { Link } from 'react-router-dom';
+import { Container } from './styles';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
-import { langState, userState } from '@modules/atoms';
+import { langState, userInfoState, userState } from '@modules/atoms';
 import { MyPageString } from '@utils/constants/strings';
 import PageLogo from '@components/PageLogo';
 import { Divider } from '@components/Divider';
 import { ListButton } from '@components/ListButton';
-import { User } from '@type/index';
+import { User, UserInfo, UserRoleData } from '@type/index';
 import { useNavigate } from 'react-router-dom';
+import ROUTES_FROM_KEY from '@utils/constants/enum_strings/route_strings';
+import { DefaultUserInfo } from '@type/defaults';
 
 const MyPageView = () => {
   const navigate = useNavigate();
   const lang = useRecoilValue(langState);
+  const [userInfo, set_userInfo] = useRecoilState<UserInfo>(userInfoState);
   const [{ page }, set_page] = useRecoilState<User>(userState);
-  const [Login, setLogin] = useState('False');
 
   const handleNavigate = (name: string) => {
     set_page((data) => ({ ...data, page: name }));
     navigate(`/${name}`);
+    console.log(page); // temp
   };
 
   return (
     <Container>
-      <Button as={Link} to="/back-office">
+      {/* <Button as={Link} to="/back-office">
         BackOffice로 이동
-      </Button>
+      </Button> */}
       <PageLogo title={MyPageString({ lang: lang, key: 'title' })} subtitle={``} />
-      {Login === 'False' ? (
+      {userInfo.role.value == UserRoleData.G.value ? (
         <ListButton
           label={MyPageString({ lang: lang, key: 'listbutton.label.login' })}
           onClick={() => handleNavigate('login')}
@@ -37,22 +38,39 @@ const MyPageView = () => {
         <ListButton
           label={MyPageString({ lang: lang, key: 'listbutton.label.logout' })}
           onClick={() => {
-            if (confirm('정말 로그아웃 하시겠습니까?') == true) {
-              localStorage.clear();
-              window.location.href =
-                'https://kauth.kakao.com/oauth/logout?client_id=c8300aee5549fc7db67a25a714144789&logout_redirect_uri=http://localhost:8080';
-            }
+            if (!confirm(MyPageString({ lang: lang, key: 'confirm.logout' }))) return;
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('refresh_token');
+            set_userInfo(DefaultUserInfo);
           }}
         />
       )}
       <Divider />
-      <div>
+      {userInfo.role.accessibleMenuItems.map((menuGroup, idx) => {
+        // menu group (to separate each group using Divider)
+        return (
+          <div key={idx}>
+            {menuGroup.map((menu, idx) => {
+              // menu item
+              return (
+                <ListButton
+                  key={idx}
+                  label={MyPageString({ lang: lang, key: menu.labelKey })}
+                  onClick={() => handleNavigate(ROUTES_FROM_KEY[menu.route])}
+                />
+              );
+            })}
+            <Divider />
+          </div>
+        );
+      })}
+      {/* <div>
         <ListButton
-          label={MyPageString({ lang: lang, key: 'label.comment' })}
+          label={MyPageString({ lang: lang, key: 'listbutton.label.comment' })}
           onClick={() => handleNavigate('mypage/comment')}
         />
         <ListButton
-          label={MyPageString({ lang: lang, key: 'label.like' })}
+          label={MyPageString({ lang: lang, key: 'listbutton.label.like' })}
           onClick={() => handleNavigate('mypage/like')}
         />
       </div>
@@ -70,7 +88,7 @@ const MyPageView = () => {
           label={MyPageString({ lang: lang, key: 'listbutton.label.aboutme' })}
           onClick={() => handleNavigate('about-me')}
         />
-      </div>
+      </div> */}
     </Container>
   );
 };
