@@ -14,9 +14,11 @@ import {
   requestToggleLike,
 } from '@apis/index';
 import { CommentPageString } from '@utils/constants/strings';
+import { useNavigate } from 'react-router-dom';
 
 export const CommentPage = () => {
-  const [menuId, set_menuId] = useState<string>('');
+  // const [menuId, set_menuId] = useState<string>('');
+  const menuId = window.location.pathname.split('/').pop()!;
   const [menu, set_menu] = useState<MenuSpecific>(DefaultMenuSpecific);
   const [comments, set_comments] = useState<Comment[]>([]);
   const [paging, set_paging] = useState<Paging>(DefaultPaging);
@@ -27,6 +29,7 @@ export const CommentPage = () => {
   const lang = useRecoilValue<Lang>(langState);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const navigate = useNavigate();
 
   const [page, set_page] = useRecoilState<User>(userState);
 
@@ -34,15 +37,17 @@ export const CommentPage = () => {
     console.log(page); // temp
     set_page((data) => ({ ...data, page: '/home/comments' })); // temp
 
-    const _id = window.location.pathname.split('/').pop();
-    set_menuId(_id!);
-    reqeustMenuByMenuId(_id!)
+    if (menuId == '' || menuId == 'comments') {
+      alert(CommentPageString({ lang: lang, key: 'alert.error.menuid' }));
+      navigate(-1);
+    }
+    reqeustMenuByMenuId(menuId)
       .then((res) => {
         set_menu(res.data);
       })
       .catch((err) => console.log(err));
-    loadComments(_id!).then((res) => set_comments(res));
-    requestCheckMenuLiked(_id!)
+    loadComments().then((res) => set_comments(res));
+    requestCheckMenuLiked(menuId)
       .then((res) => {
         set_isLiked(res.data.like);
       })
@@ -54,9 +59,9 @@ export const CommentPage = () => {
     set_isLoading(false);
   }, [comments]);
 
-  const loadComments = async (menuId: string): Promise<Comment[]> => {
+  const loadComments = async (): Promise<Comment[]> => {
     if (paging.hasNext) {
-      return requestCommentsByMenuId(menuId!, paging.currentPage + 1, paging.pageSize)
+      return requestCommentsByMenuId(menuId, paging.currentPage + 1, paging.pageSize)
         .then((res) => {
           set_paging((data) => ({
             ...data,
@@ -80,7 +85,7 @@ export const CommentPage = () => {
     const currentScrollPos = scrollRef.current!.scrollTop;
     if (maxScrollPos - currentScrollPos < 10) {
       set_isLoading(true); // prevent bouncing issue
-      loadComments(menuId)
+      loadComments()
         .then((res) => {
           set_comments((data) => [...data, ...res]);
         })

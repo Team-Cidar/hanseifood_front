@@ -26,6 +26,11 @@ const Comment: StringConstant = {
     en: 'Please enter comments',
     zh: '请输入留言内容',
   },
+  'alert.error.menuid': {
+    ko: '잘못된 접근입니다.',
+    en: 'Inappropriate access',
+    zh: 'Inappropriate access',
+  },
   'placeholder.comment': {
     ko: '맛있어요!',
     en: 'Savory!',
