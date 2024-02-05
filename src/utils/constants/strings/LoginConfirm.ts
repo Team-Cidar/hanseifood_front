@@ -1,4 +1,4 @@
-import {StringConstant} from '@type/index';
+import { StringConstant } from '@type/index';
 
 const LoginConfirm: StringConstant = {
   'title.direction.kakao.done': {
@@ -29,8 +29,8 @@ const LoginConfirm: StringConstant = {
   'alert.check.nickname': {
     ko: '정말 이 닉네임으로 설정하시겠습니까?',
     en: 'Are you sure to set this nickname?',
-    zh: '您确定要设置此昵称吗？'
-  }
+    zh: '您确定要设置此昵称吗？',
+  },
 } as const;
 
 export default LoginConfirm;

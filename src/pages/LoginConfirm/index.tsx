@@ -32,7 +32,9 @@ const LoginConfirm = () => {
     }, 500);
   };
 
-  const saveUserInfoGoHome = (user: UserInfo) => {
+  const saveUserInfoGoHome = (user: UserInfo, accessToken: string, refreshToken: string) => {
+    localStorage.setItem('access_token', accessToken);
+    localStorage.setItem('refresh_token', refreshToken);
     set_userInfo({
       ...user,
     });
@@ -40,28 +42,30 @@ const LoginConfirm = () => {
   };
 
   const onSuccessClick = async () => {
-    if (
-      !requestConfirmLogin(kakaoCode)
-        .then(async (res) => {
-          if (res.data.status) {
-            localStorage.setItem('access_token', res.data.accessToken);
-            localStorage.setItem('refresh_token', res.data.refreshToken);
-            const roleKey: UserRoleKey = res.data.user.role;
-            saveUserInfoGoHome({ ...res.data.user, role: UserRoleData[roleKey] as UserRole } as UserInfo);
-            return true;
-          }
-          set_kakaoInfo({
-            kakaoId: res.data.user.kakaoId,
-            kakaoName: res.data.user.kakaoName,
-            email: res.data.user.email,
-          });
-          return false;
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-    )
-      showUserNicknameInput();
+    !requestConfirmLogin(kakaoCode)
+      .then(async (res) => {
+        if (res.data.status) {
+          const accessToken = res.data.accessToken;
+          const refreshToken = res.data.refreshToken;
+          const roleKey: UserRoleKey = res.data.user.role;
+          saveUserInfoGoHome(
+            { ...res.data.user, role: UserRoleData[roleKey] as UserRole } as UserInfo,
+            accessToken,
+            refreshToken,
+          );
+          return;
+        }
+        set_kakaoInfo({
+          kakaoId: res.data.user.kakaoId,
+          kakaoName: res.data.user.kakaoName,
+          email: res.data.user.email,
+        });
+        showUserNicknameInput();
+      })
+      .catch(() => {
+        alert(LoginConfirmString({ lang: lang, key: 'alert.fail.login' }));
+        navigate('/login');
+      });
   };
 
   const handleSubmit = async (nickname: string) => {
@@ -71,8 +75,14 @@ const LoginConfirm = () => {
     }
     requestRegisterUser(kakaoInfo, nickname)
       .then((res) => {
+        const accessToken = res.data.accessToken;
+        const refreshToken = res.data.refreshToken;
         const roleKey: UserRoleKey = res.data.user.role;
-        saveUserInfoGoHome({ ...res.data.user, role: UserRoleData[roleKey] as UserRole } as UserInfo);
+        saveUserInfoGoHome(
+          { ...res.data.user, role: UserRoleData[roleKey] as UserRole } as UserInfo,
+          accessToken,
+          refreshToken,
+        );
       })
       .catch((err) => {
         console.log(err);
