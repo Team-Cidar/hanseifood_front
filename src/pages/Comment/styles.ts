@@ -25,8 +25,10 @@ export const InputContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   height: fit-content;
+  width: 100%;
   padding: 12px 12px;
   gap: 8px;
+  background-color: ${EColor.TEXT_200};
   box-shadow: 0px -4px 4px ${EColor.TEXT_400};
 `;
 
@@ -45,6 +47,7 @@ export const SubmitButton = styled.div`
 
 export const CommentInput = styled.textarea`
   border: 0px;
+  border-radius: 0px;
   width: 100%;
   height: auto;
   border-bottom: 2px solid ${EColor.GRAY};

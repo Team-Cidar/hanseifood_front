@@ -25,7 +25,7 @@ export const CommentView = ({ datas, refs, callbacks }: CommentViewProps) => {
           );
         })}
       </Body>
-      <InputContainer>
+      <InputContainer ref={refs.footerRef}>
         <LikeButton onClick={callbacks.onToggleLike}>
           <SvgIcon name="like" width={20} height={20} fill={datas.liked ? EColor.RED : EColor.TEXT_500} />
         </LikeButton>

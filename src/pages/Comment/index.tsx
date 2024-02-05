@@ -27,6 +27,7 @@ export const CommentPage = () => {
   const userInfo = useRecoilValue<UserInfo>(userInfoState);
   const lang = useRecoilValue<Lang>(langState);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const navigate = useNavigate();
 
@@ -174,6 +175,7 @@ export const CommentPage = () => {
       }}
       refs={{
         scrollRef: scrollRef,
+        footerRef: footerRef,
         inputRef: inputRef,
       }}
       callbacks={{
