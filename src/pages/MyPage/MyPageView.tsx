@@ -6,10 +6,10 @@ import { MyPageString } from '@utils/constants/strings';
 import PageLogo from '@components/PageLogo';
 import { Divider } from '@components/Divider';
 import { ListButton } from '@components/ListButton';
-import { User, UserInfo, UserRoleData } from '@type/index';
+import { MenuListItem, User, UserInfo, UserRoleData } from '@type/index';
 import { useNavigate } from 'react-router-dom';
-import ROUTES_FROM_KEY from '@utils/constants/enum_strings/route_strings';
 import { DefaultUserInfo } from '@type/defaults';
+import { MENU_LIST_BY_ROLE, MenuListByRoleKey } from '@utils/constants/enum_values/role_menu_lists';
 
 const MyPageView = () => {
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ const MyPageView = () => {
         />
       )}
       <Divider />
-      {userInfo.role.accessibleMenuItems.map((menuGroup, idx) => {
+      {MENU_LIST_BY_ROLE[userInfo.role.value as MenuListByRoleKey].map((menuGroup: MenuListItem[], idx: number) => {
         // menu group (to separate each group using Divider)
         return (
           <div key={idx}>
@@ -56,7 +56,7 @@ const MyPageView = () => {
                 <ListButton
                   key={idx}
                   label={MyPageString({ lang: lang, key: menu.labelKey })}
-                  onClick={() => handleNavigate(ROUTES_FROM_KEY[menu.route])}
+                  onClick={() => handleNavigate(menu.route)}
                 />
               );
             })}
