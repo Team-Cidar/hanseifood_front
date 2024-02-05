@@ -16,7 +16,7 @@ export type Datas = {
 };
 export type Refs = {
   scrollRef: RefObject<HTMLDivElement>;
-  footerRef: RefObject<HTMLDivElement>;
+  containerRef: RefObject<HTMLDivElement>;
   inputRef: RefObject<HTMLTextAreaElement>;
 };
 export type Callbacks = {

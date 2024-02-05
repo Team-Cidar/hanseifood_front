@@ -15,6 +15,7 @@ import {
 } from '@apis/index';
 import { CommentPageString } from '@utils/constants/strings';
 import { useNavigate } from 'react-router-dom';
+import { useViewportResizeEffect } from '@hooks/useViewportResizeEffect';
 
 export const CommentPage = () => {
   const menuId = window.location.pathname.split('/').pop()!;
@@ -27,12 +28,13 @@ export const CommentPage = () => {
   const userInfo = useRecoilValue<UserInfo>(userInfoState);
   const lang = useRecoilValue<Lang>(langState);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const footerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const navigate = useNavigate();
 
   const [page, set_page] = useRecoilState<User>(userState);
 
+  useViewportResizeEffect(containerRef);
   useEffect(() => {
     console.log(page); // temp
     set_page((data) => ({ ...data, page: '/home/comments' })); // temp
@@ -95,7 +97,6 @@ export const CommentPage = () => {
 
   const onDelete = (commentId: string) => {
     if (!confirm(CommentPageString({ lang: lang, key: 'confirm.delete' }))) return;
-    console.log(commentId);
     requestDeleteComment(commentId)
       .then(() => {
         const afterComments = comments.filter((data) => data.commentId != commentId);
@@ -145,7 +146,6 @@ export const CommentPage = () => {
 
   const onInputFocus = () => {
     if (!__checkLoggedIn()) return;
-
     scrollRef.current!.scrollTop = 0;
     inputRef.current!.placeholder = '';
   };
@@ -175,7 +175,7 @@ export const CommentPage = () => {
       }}
       refs={{
         scrollRef: scrollRef,
-        footerRef: footerRef,
+        containerRef: containerRef,
         inputRef: inputRef,
       }}
       callbacks={{

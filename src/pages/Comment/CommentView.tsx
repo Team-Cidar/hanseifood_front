@@ -9,7 +9,7 @@ import { EColor } from '@styles/color';
 
 export const CommentView = ({ datas, refs, callbacks }: CommentViewProps) => {
   return (
-    <Container height={window.innerHeight}>
+    <Container height={window.visualViewport!.height - 48} ref={refs.containerRef}>
       <Body ref={refs.scrollRef} onScroll={callbacks.onScroll}>
         <MenuSpecificItem menu={datas.menu} onInteraction={() => {}} />
         {datas.comments.map((comment) => {
@@ -25,7 +25,7 @@ export const CommentView = ({ datas, refs, callbacks }: CommentViewProps) => {
           );
         })}
       </Body>
-      <InputContainer ref={refs.footerRef}>
+      <InputContainer>
         <LikeButton onClick={callbacks.onToggleLike}>
           <SvgIcon name="like" width={20} height={20} fill={datas.liked ? EColor.RED : EColor.TEXT_500} />
         </LikeButton>

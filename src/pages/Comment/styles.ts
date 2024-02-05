@@ -6,15 +6,14 @@ import { Title5 } from '@styles/font';
 export const Container = styled.div<ContainerProps>`
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  height: ${(props) => props.height - 48}px;
+  justify-content: space-between;
+  height: ${(props) => props.height}px;
 `;
 
 export const Body = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
   overflow: scroll;
   padding: 24px;
 `;
@@ -55,11 +54,11 @@ export const CommentInput = styled.textarea`
   color: ${EColor.TEXT_700};
   padding: 4px;
   ${Title5}
-  caret-color: transparent;
   overflow-wrap: break-word;
   word-break: break-all;
   white-space: pre-wrap;
   transition: 0.3s;
+  resize: none;
   &:focus {
     outline: none;
     border-color: ${EColor.COLOR_INTERACTION};
