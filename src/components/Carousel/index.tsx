@@ -8,11 +8,11 @@ import {
   MobileContainer,
   MobileDateText,
   MobileMenuList,
-} from "./Carousel.mobile.styled";
-import { Lang, Menus } from "@type/index";
-import SvgIcon from "@components/SvgIcon";
-import { EColor } from "@styles/color";
-import usePageControll from "@hooks/usePageControll";
+} from './Carousel.mobile.styled';
+import { Lang, Menus } from '@type/index';
+import SvgIcon from '@components/SvgIcon';
+import { EColor } from '@styles/color';
+import usePageControll from '@hooks/usePageControll';
 import { langState } from '@modules/atoms';
 import { HomeString } from '@utils/constants/strings';
 
@@ -115,7 +115,11 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
     }
   };
 
-  const handleNavigate = async (name: string) => {
+  const handleNavigate = async (name: string, menuId: string) => {
+    if (menuId == '') {
+      alert(HomeString({ lang: lang, key: 'menu.empty' }));
+      return;
+    }
     handlePage(name);
   };
 
@@ -149,7 +153,9 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
                       })
                     )}
                   </CarouselStyled.MenuCard>
-                  <CarouselStyled.FeedbackBottom onClick={() => handleNavigate('home/comments', res[1].menuId)}>
+                  <CarouselStyled.FeedbackBottom
+                    onClick={() => handleNavigate(`home/comments/${res[1].menuId}`, res[1].menuId)}
+                  >
                     <CarouselStyled.SvgView>
                       <SvgIcon name={'comment'} width={14} height={14} fill={EColor.TEXT_500} />
                       <CarouselStyled.SvgText>{res[1].commentCount}</CarouselStyled.SvgText>

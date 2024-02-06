@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 
 import { DefaultMenuSpecific } from '@type/defaults';
 import { CommentView } from './CommentView';
-import { MenuSpecific, Comment, Lang, UserInfo, User, UserRoleData } from '@type/index';
-import { langState, userInfoState, userState } from '@modules/atoms';
+import { MenuSpecific, Comment, Lang, UserInfo, UserRoleData } from '@type/index';
+import { langState, userInfoState } from '@modules/atoms';
 import {
   reqeustMenuByMenuId,
   requestAddComment,
@@ -21,10 +21,6 @@ import { usePagingData } from '@hooks/usePagingData';
 export const CommentPage = () => {
   const menuId = window.location.pathname.split('/').pop()!;
   const [menu, set_menu] = useState<MenuSpecific>(DefaultMenuSpecific);
-  /* hook */
-  // const [comments, set_comments] = useState<Comment[]>([]);
-  // const [paging, set_paging] = useState<Paging>(DefaultPaging);
-  // const [isLoading, set_isLoading] = useState<boolean>(false);
   const [commentText, set_commentText] = useState<string>('');
   const [isLiked, set_isLiked] = useState<boolean>(false);
   const userInfo = useRecoilValue<UserInfo>(userInfoState);
@@ -38,13 +34,8 @@ export const CommentPage = () => {
   );
   const navigate = useNavigate();
 
-  const [page, set_page] = useRecoilState<User>(userState);
-
   useViewportResizeEffect(containerRef);
   useEffect(() => {
-    console.log(page); // temp
-    set_page((data) => ({ ...data, page: '/home/comments' })); // temp
-
     if (menuId == '' || menuId == 'comments') {
       alert(CommentPageString({ lang: lang, key: 'alert.error.menuid' }));
       navigate(-1);
