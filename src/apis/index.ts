@@ -81,7 +81,7 @@ export const reqeustMenuByMenuId = (menuId: string) => {
   return request.get(`/menus/${menuId}`);
 };
 
-export const requestCommentsByMenuId = (menuId: string, pageNo: number, pageSize: number) => {
+export const requestCommentsByMenuId = (pageNo: number, pageSize: number, menuId: string) => {
   return request.get(`/comments/menus?menuId=${menuId}&pageNo=${pageNo}&pageSize=${pageSize}`);
 };
 
