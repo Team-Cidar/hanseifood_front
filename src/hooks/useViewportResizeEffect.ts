@@ -4,8 +4,10 @@ export const useViewportResizeEffect = (targetRef: RefObject<HTMLDivElement>) =>
   useEffect(() => {
     const handleResize = () => {
       if (window.visualViewport && targetRef.current) {
-        const currentVisualViewport = window.visualViewport.height;
-        targetRef.current!.style.height = currentVisualViewport - 48 + 'px';
+        const currentVisViewportH = window.visualViewport.height;
+        const currentVisViewportW = window.visualViewport.width;
+        targetRef.current.style.height = currentVisViewportH - 48 + 'px';
+        targetRef.current.style.width = currentVisViewportW + 'px';
         window.scrollTo(0, 0);
       }
     };
