@@ -13,23 +13,20 @@ import {
   MobileDateText,
   MobileMenuList,
 } from "./Carousel.mobile.styled";
-import { Menu, User } from "@type/index";
+import { Menu } from "@type/index";
 import SvgIcon from "@components/SvgIcon";
 import { EColor } from "@styles/color";
-import { userState } from "@modules/atoms";
-import { useRecoilState } from "recoil";
-import { useNavigate } from "react-router-dom";
+import usePageControll from "@hooks/usePageControll";
 
 interface CarouselProps {
   weeklyMenu: Menu;
 }
 
 const Carousel = ({ weeklyMenu }: CarouselProps) => {
-  const navigate = useNavigate();
+  const { handlePage } = usePageControll();
   let touchStartX: number;
   let touchEndX: number;
   const [currCarousel, setCurrCarousel] = useState(0);
-  const [{page}, set_page] = useRecoilState<User>(userState);
   const carouselRef = useRef<HTMLUListElement>(null);
 
   // 요일에 따른 초기 화면 렌더링
@@ -128,9 +125,8 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
     }
   };
 
-  const handleNavigate = (name: string) => {
-    set_page({page: name});
-    navigate(`/${name}`);
+  const handleNavigate = async (name: string) => {
+    handlePage(name);
   };
 
   return (
