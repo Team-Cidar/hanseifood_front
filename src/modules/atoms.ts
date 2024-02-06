@@ -29,9 +29,15 @@ export const userState = atom<User>({
   default: {
     isEmployee: false,
     isFeedbackModal: false,
-    page: 'home',
-    prevPage: '',
   },
+});
+
+export const naviState = atom({
+  key: 'naviState',
+  default: {
+    page: 'home',
+    prevPage: 'home',
+  }
 });
 
 export const langState = atom<Lang>({

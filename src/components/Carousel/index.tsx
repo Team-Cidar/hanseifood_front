@@ -1,6 +1,5 @@
 import React, { TouchEventHandler, useEffect, useRef, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 
 import * as CarouselStyled from './Carousel.styled';
 import {
@@ -9,24 +8,23 @@ import {
   MobileContainer,
   MobileDateText,
   MobileMenuList,
-} from './Carousel.mobile.styled';
-import { Menus, Lang, User } from '@type/index';
-import { HomeString } from '@utils/constants/strings';
-import SvgIcon from '@components/SvgIcon';
-import { EColor } from '@styles/color';
-import { userState } from '@modules/atoms';
+} from "./Carousel.mobile.styled";
+import { Lang, Menus } from "@type/index";
+import SvgIcon from "@components/SvgIcon";
+import { EColor } from "@styles/color";
+import usePageControll from "@hooks/usePageControll";
 import { langState } from '@modules/atoms';
+import { HomeString } from '@utils/constants/strings';
 
 interface CarouselProps {
   weeklyMenu: Menus;
 }
 
 const Carousel = ({ weeklyMenu }: CarouselProps) => {
-  const navigate = useNavigate();
+  const { handlePage } = usePageControll();
   let touchStartX: number;
   let touchEndX: number;
   const [currCarousel, setCurrCarousel] = useState(0);
-  const [{ page }, set_page] = useRecoilState<User>(userState);
   const carouselRef = useRef<HTMLUListElement>(null);
   const lang = useRecoilValue<Lang>(langState);
 
@@ -117,13 +115,8 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
     }
   };
 
-  const handleNavigate = (name: string, menuId: string) => {
-    if (menuId == '') {
-      alert(HomeString({ lang: lang, key: 'menu.empty' }));
-      return;
-    }
-    set_page((data) => ({ ...data, page: name }));
-    navigate(`/${name}/${menuId}`);
+  const handleNavigate = async (name: string) => {
+    handlePage(name);
   };
 
   return (

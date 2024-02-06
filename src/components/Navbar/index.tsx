@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Container,
   NavbarBox,
@@ -7,42 +6,26 @@ import {
   TicketBoxOn,
 } from './Navbar.styled';
 import SvgIcon from '@components/SvgIcon';
-import {useNavigate} from 'react-router-dom';
-import {useRecoilState} from 'recoil';
-import {User} from '@type/index';
-import {userState} from '@modules/atoms';
 import {EColor} from '@styles/color';
 import { HeaderBar } from '@components/HeaderBar';
+import usePageControll from '@hooks/usePageControll';
 
 const Navbar = () => {
-  const navigate = useNavigate();
+  const { navigation, handlePage, handlePrevPage } = usePageControll();
 
-  const [{page}, set_page] = useRecoilState<User>(userState);
-
-  console.log(page);
-
-  const handleNavigate = (name: string) => {
-    set_page({page: name});
-    navigate(`/${name}`);
-  };
-
-  const handleBack = () => {
-    navigate(-1);
-  };
-
-  if (page === "home" || page === "ticket" || page === "mypage") {
+  if (navigation.page === "home" || navigation.page === "ticket" || navigation.page === "mypage") {
     return (
       <Container>
         <NavbarBox>
-          <NavbarItem onClick={() => handleNavigate('home')}>
-            {page === 'home' ? (
+          <NavbarItem onClick={() => handlePage('home')}>
+            {navigation.page === 'home' ? (
               <SvgIcon name={'home_on'} width={78} height={70} fill={''} />
             ) : (
               <SvgIcon name={'home'} width={78} height={70} fill={''} />
             )}
           </NavbarItem>
-          <NavbarItem onClick={() => handleNavigate('ticket')}>
-            {page === 'ticket' ? (
+          <NavbarItem onClick={() => handlePage('ticket')}>
+            {navigation.page === 'ticket' ? (
               <TicketBoxOn>
                 <SvgIcon
                   name={'ticket_on'}
@@ -57,8 +40,8 @@ const Navbar = () => {
               </TicketBox>
             )}
           </NavbarItem>
-          <NavbarItem onClick={() => handleNavigate('mypage')}>
-            {page === 'mypage' ? (
+          <NavbarItem onClick={() => handlePage('mypage')}>
+            {navigation.page === 'mypage' ? (
               <SvgIcon name={'mypage_on'} width={78} height={70} fill={'white'} />
             ) : (
               <SvgIcon name={'mypage'} width={78} height={70} fill={'white'} />
@@ -68,7 +51,7 @@ const Navbar = () => {
       </Container>
     );
   } else {
-    return <HeaderBar left={<SvgIcon name={"back"} width={24} height={24} fill={"none"} />} onClickLeft={handleBack} />;
+    return <HeaderBar left={<SvgIcon name={"back"} width={24} height={24} fill={"none"} />} onClickLeft={handlePrevPage} />;
   }
 
 };
