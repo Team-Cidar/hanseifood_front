@@ -11,7 +11,7 @@ export type Menu = {
 
 export type User = {
   isEmployee: boolean;
-  page: string;
+  isFeedbackModal: boolean;
 };
 
 export type Lang = {

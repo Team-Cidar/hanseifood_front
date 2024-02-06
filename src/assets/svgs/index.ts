@@ -14,4 +14,7 @@ export { ReactComponent as mypage } from "./Mypage.svg";
 export { ReactComponent as mypage_on } from "./Mypage-on.svg";
 export { ReactComponent as email } from "./Email.svg";
 export { ReactComponent as search } from "./Search.svg";
-export {ReactComponent as kakao } from './Kakao.svg';
+export { ReactComponent as kakao } from './Kakao.svg';
+export { ReactComponent as like } from './Like.svg';
+export { ReactComponent as comment } from './Comment.svg';
+export { ReactComponent as back } from './Back.svg';

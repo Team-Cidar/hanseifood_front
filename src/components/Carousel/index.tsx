@@ -14,12 +14,16 @@ import {
   MobileMenuList,
 } from "./Carousel.mobile.styled";
 import { Menu } from "@type/index";
+import SvgIcon from "@components/SvgIcon";
+import { EColor } from "@styles/color";
+import usePageControll from "@hooks/usePageControll";
 
 interface CarouselProps {
   weeklyMenu: Menu;
 }
 
 const Carousel = ({ weeklyMenu }: CarouselProps) => {
+  const { handlePage } = usePageControll();
   let touchStartX: number;
   let touchEndX: number;
   const [currCarousel, setCurrCarousel] = useState(0);
@@ -107,8 +111,6 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
   };
 
   const handleTouchEnd: TouchEventHandler<HTMLDivElement> = (e) => {
-    e.preventDefault();
-
     touchEndX = e.changedTouches[0].clientX;
 
     if (touchStartX - touchEndX > 50) {
@@ -121,6 +123,10 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
         "all 0.3s ease-in-out"
       );
     }
+  };
+
+  const handleNavigate = async (name: string) => {
+    handlePage(name);
   };
 
   return (
@@ -151,6 +157,30 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
                       );
                     })}
                   </CarouselStyled.MenuCard>
+                  <CarouselStyled.FeedbackBottom onClick={() => handleNavigate('home/comment')}>
+                    <CarouselStyled.SvgView>
+                      <SvgIcon
+                        name={"comment"}
+                        width={14}
+                        height={14}
+                        fill={EColor.TEXT_500}
+                      />
+                      <CarouselStyled.SvgText>
+                        15
+                      </CarouselStyled.SvgText>
+                    </CarouselStyled.SvgView>
+                    <CarouselStyled.SvgView>
+                      <SvgIcon
+                        name={"like"}
+                        width={14}
+                        height={14}
+                        fill={EColor.TEXT_500}
+                      />
+                      <CarouselStyled.SvgText>
+                        3
+                      </CarouselStyled.SvgText>
+                    </CarouselStyled.SvgView>
+                  </CarouselStyled.FeedbackBottom>
                 </MobileCarouselItem>
               );
             })}

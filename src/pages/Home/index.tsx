@@ -17,6 +17,7 @@ const Home = () => {
     useRecoilState<WeeklyData>(weeklyDataState);
   const [loading, set_loading] = useState(false);
   const [{isEmployee}, set_isEmployee] = useRecoilState<User>(userState);
+  const [{ isFeedbackModal }, set_isFeedbackModal] = useRecoilState<User>(userState);
   const [isModalOpen, set_isModalOpen] = useState(false);
   const setLang = useSetRecoilState<Lang>(langState);
 
@@ -35,11 +36,15 @@ const Home = () => {
   }, []);
 
   const toggleHandler = () => {
-    set_isEmployee({isEmployee: !isEmployee});
+    set_isEmployee({ isEmployee: !isEmployee });
   };
 
   const handleModal = () => {
     set_isModalOpen(!isModalOpen);
+  };
+
+  const handleFeedbackModal = () => {
+    set_isFeedbackModal({ isFeedbackModal: !isFeedbackModal });
   };
   return (
     <>
@@ -63,6 +68,21 @@ const Home = () => {
           }
           bottom={
             <IconButton width={84} height={32} onClick={handleModal} label={"닫기"} />
+          }
+        />
+      }
+      {isFeedbackModal &&
+        <Modal
+          header={"댓글"}
+          body={
+            <div>
+              asdfas
+            </div>
+          }
+          bottom={
+            <div>
+              asdfs
+            </div>
           }
         />
       }

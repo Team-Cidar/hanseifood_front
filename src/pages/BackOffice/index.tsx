@@ -4,17 +4,22 @@ import { StateGetter, StateSetter } from "./types";
 import { requestDayTargetFood, requestExcelWeekFood, requestUploadMenu } from "@apis/index";
 import { getFormattedDate } from "@utils/GetFormattedDate";
 import { WeekMenuStringFormator } from "@utils/WeekMenuStringFormator";
+import { userState } from "@modules/atoms";
+import { User } from "@type/index";
+import { useRecoilState } from "recoil";
 
 const BackOffice = () => {
   const [date, set_date] = useState<string>(getFormattedDate());
   const [student, set_student] = useState<string>("");
   const [employee, set_employee] = useState<string>("");
   const [additional, set_additional] = useState<string>("");
+  const [{ page }, set_page] = useRecoilState<User>(userState);
 
   const Getter: StateGetter = [date, student, employee, additional];
   const Setter: StateSetter = [set_date, set_student, set_employee, set_additional];
 
   useEffect(() => {
+    set_page({ page: "backoffice" });
     requestDayTargetFood(date)
     .then(res => {
       set_student(WeekMenuStringFormator(res.data.student_menu));
