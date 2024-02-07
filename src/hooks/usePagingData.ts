@@ -30,6 +30,8 @@ type UsePagingDataHookR<T> = {
  *
  * set_datas: If you needs to modify datas list, use this. It's the setter of paging data.
  *
+ * paging: paging information e.g. current page, etc
+ *
  * @param apiFucntion
  * @param ...args - string datas that apiFunction needs in order
  * @returns UsePagingDataHookR<T>

@@ -92,6 +92,17 @@ export const requestAddComment = (menuId: string, comment: string) => {
   });
 };
 
+export const requestGetUser = (pageNo: number, pageSize: number) => {
+  return request.get(`/users?pageNo=${pageNo}&pageSize=${pageSize}`);
+};
+
+export const requestModifyUserRole = (userId: string, role: string) => {
+  return request.post('/back/users/role', {
+    userId: userId,
+    role: role,
+  });
+};
+
 export const requestCommentReport = (commentId: string, reportType: number, reportMsg: string) => {
   return request.post(`/comments/report`, {
     commentId,

@@ -68,6 +68,10 @@ export const CommentPage = () => {
     requestAddComment(menuId, commentText)
       .then((res) => {
         if (!paging.hasNext) set_datas((data) => [...data, res.data]);
+        set_menu((prev) => ({
+          ...prev,
+          commentCount: prev.commentCount + 1,
+        }));
         set_commentText('');
         inputRef.current!.blur();
       })
