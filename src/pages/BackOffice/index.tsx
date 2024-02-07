@@ -1,13 +1,10 @@
-import { useNavigate } from 'react-router-dom';
 import BackOfficeView from './BackOfficeView';
+import usePageControll from '@hooks/usePageControll';
 
 const BackOffice = () => {
-  const navigate = useNavigate();
+  const { handlePage } = usePageControll();
 
-  const onNavigate = (route: string) => {
-    navigate(route);
-  };
-  return <BackOfficeView handleOnNavigate={onNavigate} />;
+  return <BackOfficeView handleOnNavigate={handlePage} />;
 };
 
 export default BackOffice;

@@ -1,27 +1,20 @@
 import { Container } from './styles';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
-import { langState, userInfoState, userState } from '@modules/atoms';
+import { langState, userInfoState } from '@modules/atoms';
 import { MyPageString } from '@utils/constants/strings';
 import PageLogo from '@components/PageLogo';
 import { Divider } from '@components/Divider';
 import { ListButton } from '@components/ListButton';
-import { MenuListItem, User, UserInfo, UserRoleData } from '@type/index';
-import { useNavigate } from 'react-router-dom';
+import { MenuListItem, UserInfo, UserRoleData } from '@type/index';
 import { DefaultUserInfo } from '@type/defaults';
 import { MENU_LIST_BY_ROLE, MenuListByRoleKey } from '@utils/constants/enum_values/role_menu_lists';
+import usePageControll from '@hooks/usePageControll';
 
 const MyPageView = () => {
-  const navigate = useNavigate();
   const lang = useRecoilValue(langState);
   const [userInfo, set_userInfo] = useRecoilState<UserInfo>(userInfoState);
-  const [{ page }, set_page] = useRecoilState<User>(userState);
-
-  const handleNavigate = (name: string) => {
-    set_page((data) => ({ ...data, page: name }));
-    navigate(`/${name}`);
-    console.log(page); // temp
-  };
+  const { handlePage } = usePageControll();
 
   return (
     <Container>
@@ -32,7 +25,7 @@ const MyPageView = () => {
       {userInfo.role.value == UserRoleData.G.value ? (
         <ListButton
           label={MyPageString({ lang: lang, key: 'listbutton.label.login' })}
-          onClick={() => handleNavigate('login')}
+          onClick={() => handlePage('login')}
         />
       ) : (
         <ListButton
@@ -56,7 +49,7 @@ const MyPageView = () => {
                 <ListButton
                   key={idx}
                   label={MyPageString({ lang: lang, key: menu.labelKey })}
-                  onClick={() => handleNavigate(menu.route)}
+                  onClick={() => handlePage(menu.route)}
                 />
               );
             })}

@@ -6,16 +6,16 @@ import { EColor } from '@styles/color';
 const BackOfficeView = ({ handleOnNavigate }: BackOfficeViewProps) => {
   return (
     <Container>
-      <SvgButton onClick={() => handleOnNavigate('/back-office/menus')}>
+      <SvgButton onClick={() => handleOnNavigate('back-office/menus')}>
         <SvgIcon name="cloche" width="100%" height="100%" fill={EColor.TEXT_300} stroke={EColor.TEXT_900} />
       </SvgButton>
-      <SvgButton onClick={() => handleOnNavigate('/back-office/comments')}>
+      <SvgButton onClick={() => handleOnNavigate('back-office/comments')}>
         <SvgIcon name="comment" width="100%" height="100%" fill={EColor.TEXT_300} stroke={EColor.TEXT_900} />
       </SvgButton>
-      <SvgButton onClick={() => handleOnNavigate('/back-office/users')}>
+      <SvgButton onClick={() => handleOnNavigate('back-office/users')}>
         <SvgIcon name="about_me" width="100%" height="100%" fill={EColor.TEXT_300} stroke={EColor.TEXT_900} />
       </SvgButton>
-      <SvgButton onClick={() => handleOnNavigate('/back-office/charts')}>
+      <SvgButton onClick={() => handleOnNavigate('back-office/charts')}>
         <SvgIcon name="chart" width="100%" height="100%" fill={EColor.TEXT_300} stroke={EColor.TEXT_900} />
       </SvgButton>
     </Container>
