@@ -3,7 +3,7 @@ import { Paging } from '@type/index';
 import { AxiosResponse } from 'axios';
 import { RefObject, useEffect, useRef, useState } from 'react';
 
-type ApiFunctionType = (pageNo: number, pageSize: number, ...args: string[]) => Promise<AxiosResponse>;
+type ApiFunctionType = (pageNo: number, pageSize: number, ...args: []) => Promise<AxiosResponse>;
 type UsePagingDataHookR<T> = {
   scrollRef: RefObject<HTMLDivElement>;
   datas: T[];
@@ -31,10 +31,10 @@ type UsePagingDataHookR<T> = {
  * set_datas: If you needs to modify datas list, use this. It's the setter of paging data.
  *
  * @param apiFucntion
- * @param ...args - string datas that apiFunction needs in order
+ * @param ...args - any datas that apiFunction needs in order
  * @returns UsePagingDataHookR<T>
  */
-export const usePagingData = <T>(apiFunction: ApiFunctionType, ...args: string[]): UsePagingDataHookR<T> => {
+export const usePagingData = <T>(apiFunction: ApiFunctionType, ...args: []): UsePagingDataHookR<T> => {
   const [paging, set_paging] = useState<Paging>(DefaultPaging);
   const [data, set_data] = useState<T[]>([]);
   const [isLoading, set_isLoading] = useState<boolean>(false);
