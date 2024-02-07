@@ -116,26 +116,30 @@ export const MenuListItem = {
 } as const;
 export type MenuListItem = (typeof MenuListItem)[keyof typeof MenuListItem];
 
-export const UserRoleData = {
+export const UserRole = {
   A: <UserRoleValueType>{
     text: 'Admin',
     value: 'A',
+    priority: 0,
   },
   M: <UserRoleValueType>{
     text: 'Manager',
     value: 'M',
+    priority: 1,
   },
   U: <UserRoleValueType>{
     text: 'User',
     value: 'U',
+    priority: 2,
   },
   G: <UserRoleValueType>{
     // default, for only usage in front-end
     text: 'Guest',
     value: 'G',
+    priority: 9,
   },
 } as const;
-type UserRoleValueType = { text: string; value: string };
-export type UserRoleKey = keyof typeof UserRoleData;
-export type UserRole = (typeof UserRoleData)[UserRoleKey];
+type UserRoleValueType = { text: string; value: string; priority: number };
+export type UserRoleKey = keyof typeof UserRole;
+export type UserRole = (typeof UserRole)[UserRoleKey];
 export type AccessibleMenuItemGroup = MenuListItem[][];

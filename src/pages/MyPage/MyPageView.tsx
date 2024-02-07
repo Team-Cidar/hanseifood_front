@@ -6,7 +6,7 @@ import { MyPageString } from '@utils/constants/strings';
 import PageLogo from '@components/PageLogo';
 import { Divider } from '@components/Divider';
 import { ListButton } from '@components/ListButton';
-import { MenuListItem, UserInfo, UserRoleData } from '@type/index';
+import { MenuListItem, UserInfo, UserRole } from '@type/index';
 import { DefaultUserInfo } from '@type/defaults';
 import { MENU_LIST_BY_ROLE, MenuListByRoleKey } from '@utils/constants/enum_values/role_menu_lists';
 import usePageControll from '@hooks/usePageControll';
@@ -19,7 +19,7 @@ const MyPageView = () => {
   return (
     <Container>
       <PageLogo title={MyPageString({ lang: lang, key: 'title' })} subtitle={``} />
-      {userInfo.role.value == UserRoleData.G.value ? (
+      {userInfo.role.value == UserRole.G.value ? (
         <ListButton
           label={MyPageString({ lang: lang, key: 'listbutton.label.login' })}
           onClick={() => handlePage('login')}

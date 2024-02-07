@@ -1,4 +1,4 @@
-import { Comment, Commenter, MenuSpecific, Paging, UserInfo, UserRoleData } from '.';
+import { Comment, Commenter, MenuSpecific, Paging, UserInfo, UserRole } from '.';
 
 export const DefaultPaging = <Paging>{
   currentPage: 0,
@@ -38,5 +38,5 @@ export const DefaultUserInfo = <UserInfo>{
   kakaoName: '',
   isAdmin: false,
   nickname: '',
-  role: UserRoleData.G,
+  role: UserRole.G,
 };

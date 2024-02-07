@@ -1,6 +1,6 @@
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { LoginConfirmView } from './LoginConfirmView';
-import { Lang, UserInfo, UserKakaoInfo, UserRole, UserRoleData, UserRoleKey } from '@type/index';
+import { Lang, UserInfo, UserKakaoInfo, UserRole, UserRoleKey } from '@type/index';
 import { langState, userInfoState } from '@modules/atoms';
 import { LoginConfirmString } from '@utils/constants/strings';
 import { useEffect, useRef, useState } from 'react';
@@ -49,7 +49,7 @@ const LoginConfirm = () => {
           const refreshToken = res.data.refreshToken;
           const roleKey: UserRoleKey = res.data.user.role;
           saveUserInfoGoHome(
-            { ...res.data.user, role: UserRoleData[roleKey] as UserRole } as UserInfo,
+            { ...res.data.user, role: UserRole[roleKey] as UserRole } as UserInfo,
             accessToken,
             refreshToken,
           );
@@ -79,7 +79,7 @@ const LoginConfirm = () => {
         const refreshToken = res.data.refreshToken;
         const roleKey: UserRoleKey = res.data.user.role;
         saveUserInfoGoHome(
-          { ...res.data.user, role: UserRoleData[roleKey] as UserRole } as UserInfo,
+          { ...res.data.user, role: UserRole[roleKey] as UserRole } as UserInfo,
           accessToken,
           refreshToken,
         );

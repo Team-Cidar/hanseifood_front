@@ -3,7 +3,7 @@ import { useRecoilValue } from 'recoil';
 
 import { DefaultMenuSpecific } from '@type/defaults';
 import { CommentView } from './CommentView';
-import { MenuSpecific, Comment, Lang, UserInfo, UserRoleData } from '@type/index';
+import { MenuSpecific, Comment, Lang, UserInfo, UserRole } from '@type/index';
 import { langState, userInfoState } from '@modules/atoms';
 import {
   reqeustMenuByMenuId,
@@ -109,7 +109,7 @@ export const CommentPage = () => {
   };
 
   const __checkLoggedIn = () => {
-    if (userInfo.role.value == UserRoleData.G.value) {
+    if (userInfo.role.value == UserRole.G.value) {
       alert(CommentPageString({ lang: lang, key: 'alert.error.guest' }));
       handlePage('login');
       return false;
