@@ -36,7 +36,7 @@ const BackOfficeMenuView = ({
             </SvgButton>
             <InputTitle>학생</InputTitle>
             <SvgButton onClick={() => handleDeleteMenu('S')}>
-              <SvgIcon name="delete" width={20} height={20} fill={EColor.TEXT_500} />
+              <SvgIcon name="delete" width={20} height={20} fill={EColor.TEXT_300} stroke={EColor.TEXT_900} />
             </SvgButton>
           </InputTitleWrapper>
           <TextInput value={getter[1]} onChange={setter[1]} maxLength={60} placeholder={getter[4][0]} />
@@ -48,7 +48,7 @@ const BackOfficeMenuView = ({
             </SvgButton>
             <InputTitle>교직원</InputTitle>
             <SvgButton onClick={() => handleDeleteMenu('E')}>
-              <SvgIcon name="delete" width={20} height={20} fill={EColor.TEXT_500} />
+              <SvgIcon name="delete" width={20} height={20} fill={EColor.TEXT_300} stroke={EColor.TEXT_900} />
             </SvgButton>
           </InputTitleWrapper>
           <TextInput value={getter[2]} onChange={setter[2]} maxLength={60} placeholder={getter[4][1]} />
@@ -60,7 +60,7 @@ const BackOfficeMenuView = ({
             </SvgButton>
             <InputTitle>일품</InputTitle>
             <SvgButton onClick={() => handleDeleteMenu('A')}>
-              <SvgIcon name="delete" width={20} height={20} fill={EColor.TEXT_500} />
+              <SvgIcon name="delete" width={20} height={20} fill={EColor.TEXT_300} stroke={EColor.TEXT_900} />
             </SvgButton>
           </InputTitleWrapper>
           <TextInput value={getter[3]} onChange={setter[3]} maxLength={60} placeholder={getter[4][2]} />

@@ -14,9 +14,9 @@ import {
   requestToggleLike,
 } from '@apis/index';
 import { CommentPageString } from '@utils/constants/strings';
-import { useNavigate } from 'react-router-dom';
 import { useViewportResizeEffect } from '@hooks/useViewportResizeEffect';
 import { usePagingData } from '@hooks/usePagingData';
+import usePageControll from '@hooks/usePageControll';
 
 export const CommentPage = () => {
   const menuId = window.location.pathname.split('/').pop()!;
@@ -25,20 +25,16 @@ export const CommentPage = () => {
   const [isLiked, set_isLiked] = useState<boolean>(false);
   const userInfo = useRecoilValue<UserInfo>(userInfoState);
   const lang = useRecoilValue<Lang>(langState);
-  const scrollRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  const { datas, set_datas, paging } = usePagingData<Comment>(
-    { scrollRef: scrollRef, apiFunction: requestCommentsByMenuId },
-    menuId,
-  );
-  const navigate = useNavigate();
+  const { scrollRef, datas, paging, set_datas } = usePagingData<Comment>(requestCommentsByMenuId, menuId);
+  const { handlePrevPage, handlePage } = usePageControll();
 
   useViewportResizeEffect(containerRef);
   useEffect(() => {
     if (menuId == '' || menuId == 'comments') {
       alert(CommentPageString({ lang: lang, key: 'alert.error.menuid' }));
-      navigate(-1);
+      handlePrevPage();
     }
     reqeustMenuByMenuId(menuId)
       .then((res) => {
@@ -115,7 +111,7 @@ export const CommentPage = () => {
   const __checkLoggedIn = () => {
     if (userInfo.role.value == UserRoleData.G.value) {
       alert(CommentPageString({ lang: lang, key: 'alert.error.guest' }));
-      navigate('/login');
+      handlePage('login');
       return false;
     }
     return true;

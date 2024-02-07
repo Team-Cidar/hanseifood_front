@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import { requestCommentByUser, requestDeleteComment } from '@apis/index';
@@ -17,11 +17,7 @@ const MyComment = () => {
   const [modalMenu, set_modalMenu] = useState<MenuSpecific>(DefaultMenuSpecific);
   const userInfo = useRecoilValue<UserInfo>(userInfoState);
   const lang = useRecoilValue(langState);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const { datas, set_datas, onScroll } = usePagingData<Comment>({
-    scrollRef: scrollRef,
-    apiFunction: requestCommentByUser,
-  });
+  const { scrollRef, datas, set_datas } = usePagingData<Comment>(requestCommentByUser);
 
   useEffect(() => {
     if (modalMenu.menuId != DefaultMenuSpecific.menuId) set_showModal(true);
@@ -61,7 +57,6 @@ const MyComment = () => {
           scrollRef: scrollRef,
         }}
         callbacks={{
-          onScroll: onScroll,
           onDelete: onDelete,
           onClickMenu: showMenuModal,
         }}

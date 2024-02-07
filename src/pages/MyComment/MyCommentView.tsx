@@ -10,7 +10,7 @@ const MyCommentView = ({ datas, refs, callbacks }: MyCommentViewProps) => {
   return (
     <Container>
       <PageLogo title={MyCommentString({ lang: datas.lang, key: 'title' })} subtitle={``} />
-      <Body ref={refs.scrollRef} onScroll={callbacks.onScroll}>
+      <Body ref={refs.scrollRef}>
         {datas.comments.map((data) => (
           <CommentWrapper key={data.commentId}>
             <Comment comment={data} user={datas.user} onClickDelete={callbacks.onDelete} />

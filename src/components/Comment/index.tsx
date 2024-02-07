@@ -25,7 +25,7 @@ export const Comment = ({ comment, user, onClickDelete }: CommentComponentProps)
         <NameText>{comment.commenter.nickname}</NameText>
         {user && user.kakaoId == comment.commenter.kakaoId && (
           <SvgButton onClick={() => onClickDelete(comment.commentId)}>
-            <SvgIcon name="delete" width={20} height={20} fill={EColor.TEXT_300} />
+            <SvgIcon name="delete" width={20} height={20} fill={EColor.TEXT_300} stroke={EColor.TEXT_900} />
           </SvgButton>
         )}
       </HeaderWrapper>

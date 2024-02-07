@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import { requestMenusByLike, requestToggleLike } from '@apis/index';
@@ -10,11 +9,7 @@ import { usePagingData } from '@hooks/usePagingData';
 
 const MyLike = () => {
   const lang = useRecoilValue(langState);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const { datas, set_datas, onScroll } = usePagingData<MenuSpecific>({
-    scrollRef: scrollRef,
-    apiFunction: requestMenusByLike,
-  });
+  const { scrollRef, datas, set_datas } = usePagingData<MenuSpecific>(requestMenusByLike);
 
   const onCancelLike = (menuId: string) => {
     if (confirm(MyLikeString({ lang: lang, key: 'alert.toggleLike' }))) {
@@ -36,7 +31,6 @@ const MyLike = () => {
       }}
       callbacks={{
         onCancelLike: onCancelLike,
-        onScroll: onScroll,
       }}
     />
   );

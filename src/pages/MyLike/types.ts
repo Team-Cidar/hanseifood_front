@@ -18,5 +18,4 @@ export type Refs = {
 
 export type Callbacks = {
   onCancelLike: (menuId: string) => void;
-  onScroll: () => void;
 };

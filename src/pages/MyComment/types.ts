@@ -1,24 +1,23 @@
-import { Lang, Comment, UserInfo, MenuSpecific } from "@type/index";
-import { RefObject } from "react";
+import { Lang, Comment, UserInfo, MenuSpecific } from '@type/index';
+import { RefObject } from 'react';
 
 export type MyCommentViewProps = {
-    datas: Datas,
-    refs: Refs,
-    callbacks: Callbacks
+  datas: Datas;
+  refs: Refs;
+  callbacks: Callbacks;
 };
 
 export type Datas = {
-    lang: Lang,
-    comments: Comment[],
-    user: UserInfo
-}
+  lang: Lang;
+  comments: Comment[];
+  user: UserInfo;
+};
 
 export type Refs = {
-    scrollRef: RefObject<HTMLDivElement>
-}
+  scrollRef: RefObject<HTMLDivElement>;
+};
 
 export type Callbacks = {
-    onScroll: () => void,
-    onDelete: (commentId: string) => void,
-    onClickMenu: (menu: MenuSpecific) => void
-}
+  onDelete: (commentId: string) => void;
+  onClickMenu: (menu: MenuSpecific) => void;
+};
