@@ -2,7 +2,7 @@ import { Lang } from '@type/index';
 import Login from './Login';
 import Home from './Home';
 import MyPage from './MyPage';
-import TicketPage from './TicketPage';
+import NoticePage from './NoticePage';
 import LoginConfirm from './LoginConfirm';
 import MyLike from './MyLike';
 import MyComment from './MyComment';
@@ -29,8 +29,8 @@ export const MyPageString = ({ lang, key }: IStringConst) => {
   return MyPage[key][lang.langType.code];
 };
 
-export const TicketPageString = ({ lang, key }: IStringConst) => {
-  return TicketPage[key][lang.langType.code];
+export const NoticePageString = ({ lang, key }: IStringConst) => {
+  return NoticePage[key][lang.langType.code];
 };
 
 export const MyLikeString = ({ lang, key }: IStringConst) => {

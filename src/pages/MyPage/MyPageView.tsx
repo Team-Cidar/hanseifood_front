@@ -18,9 +18,6 @@ const MyPageView = () => {
 
   return (
     <Container>
-      {/* <Button as={Link} to="/back-office">
-        BackOffice로 이동
-      </Button> */}
       <PageLogo title={MyPageString({ lang: lang, key: 'title' })} subtitle={``} />
       {userInfo.role.value == UserRoleData.G.value ? (
         <ListButton
@@ -57,31 +54,6 @@ const MyPageView = () => {
           </div>
         );
       })}
-      {/* <div>
-        <ListButton
-          label={MyPageString({ lang: lang, key: 'listbutton.label.comment' })}
-          onClick={() => handleNavigate('mypage/comment')}
-        />
-        <ListButton
-          label={MyPageString({ lang: lang, key: 'listbutton.label.like' })}
-          onClick={() => handleNavigate('mypage/like')}
-        />
-      </div>
-      <Divider />
-      <div>
-        <ListButton label={MyPageString({ lang: lang, key: 'listbutton.label.tickets' })} />
-      </div>
-      <Divider />
-      <div>
-        <ListButton
-          label={MyPageString({ lang: lang, key: 'listbutton.label.help' })}
-          onClick={() => handleNavigate('help')}
-        />
-        <ListButton
-          label={MyPageString({ lang: lang, key: 'listbutton.label.aboutme' })}
-          onClick={() => handleNavigate('about-me')}
-        />
-      </div> */}
     </Container>
   );
 };

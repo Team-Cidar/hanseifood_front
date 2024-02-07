@@ -22,3 +22,4 @@ export { ReactComponent as delete } from './Delete.svg';
 export { ReactComponent as history } from './History.svg';
 export { ReactComponent as chart } from './Chart.svg';
 export { ReactComponent as send } from './Send.svg';
+export { ReactComponent as announcement } from './Announcement.svg';

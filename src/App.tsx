@@ -7,7 +7,7 @@ import AboutMe from '@pages/AboutMe';
 import Maintenance from '@pages/Maintenance';
 import Error404 from '@pages/Error404';
 import Navbar from '@components/Navbar';
-import TicketPage from '@pages/TicketPage';
+import TicketPage from '@pages/NoticePage';
 import MyPage from '@pages/MyPage';
 import BackofficeMenu from '@pages/BackOfficeMenu';
 import Login from '@pages/Login';
@@ -31,7 +31,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/home/comments/*" element={<CommentPage />} />
-          <Route path="/ticket" element={<TicketPage />} />
+          <Route path="/notice" element={<TicketPage />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/mypage/like" element={<MyLike />} />
           <Route path="/mypage/comment" element={<MyComment />} />

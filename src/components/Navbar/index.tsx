@@ -1,19 +1,13 @@
-import {
-  Container,
-  NavbarBox,
-  NavbarItem,
-  TicketBox,
-  TicketBoxOn,
-} from './Navbar.styled';
+import { Container, NavbarBox, NavbarItem, TicketBox, TicketBoxOn } from './Navbar.styled';
 import SvgIcon from '@components/SvgIcon';
-import {EColor} from '@styles/color';
+import { EColor } from '@styles/color';
 import { HeaderBar } from '@components/HeaderBar';
 import usePageControll from '@hooks/usePageControll';
 
 const Navbar = () => {
   const { navigation, handlePage, handlePrevPage } = usePageControll();
 
-  if (navigation.page === "home" || navigation.page === "ticket" || navigation.page === "mypage") {
+  if (navigation.page === 'home' || navigation.page === 'notice' || navigation.page === 'mypage') {
     return (
       <Container>
         <NavbarBox>
@@ -24,19 +18,20 @@ const Navbar = () => {
               <SvgIcon name={'home'} width={78} height={70} fill={''} />
             )}
           </NavbarItem>
-          <NavbarItem onClick={() => handlePage('ticket')}>
-            {navigation.page === 'ticket' ? (
+          <NavbarItem onClick={() => handlePage('notice')}>
+            {navigation.page === 'notice' ? (
               <TicketBoxOn>
                 <SvgIcon
-                  name={'ticket_on'}
-                  width={34}
+                  name={'announcement'}
+                  width={30}
                   height={28}
-                  fill={EColor.COLOR_INTERACTION}
+                  fill={'white'}
+                  stroke={EColor.COLOR_INTERACTION}
                 />
               </TicketBoxOn>
             ) : (
               <TicketBox>
-                <SvgIcon name={'ticket'} width={34} height={28} fill={''} />
+                <SvgIcon name={'announcement'} width={30} height={28} fill={'white'} stroke={EColor.TEXT_800} />
               </TicketBox>
             )}
           </NavbarItem>
@@ -51,9 +46,10 @@ const Navbar = () => {
       </Container>
     );
   } else {
-    return <HeaderBar left={<SvgIcon name={"back"} width={24} height={24} fill={"none"} />} onClickLeft={handlePrevPage} />;
+    return (
+      <HeaderBar left={<SvgIcon name={'back'} width={24} height={24} fill={'none'} />} onClickLeft={handlePrevPage} />
+    );
   }
-
 };
 
 export default Navbar;

@@ -1,13 +1,5 @@
 import Carousel from '@components/Carousel';
-import {
-  AdditionalButton,
-  CarouselView,
-  CarouselViewBottom,
-  Container,
-  TicketView,
-  ToggleLabel,
-  ToggleView,
-} from './Home.styled';
+import { AdditionalButton, CarouselView, CarouselViewBottom, Container, ToggleLabel, ToggleView } from './Home.styled';
 import { WeeklyData } from '@type/index';
 import { useRecoilValue } from 'recoil';
 import { userState } from '@modules/atoms';
@@ -16,7 +8,6 @@ import { langState } from '@modules/atoms';
 import { Lang } from '@type/index';
 import { HomeString } from '@utils/constants/strings';
 import { Toggle } from '@components/Toggle';
-import { TicketItem } from '@components/Ticket';
 
 type HomeViewProps = {
   weeklyData: WeeklyData;
@@ -25,20 +16,16 @@ type HomeViewProps = {
   loading: boolean;
 };
 
-export const HomeView = ({
-  weeklyData,
-  toggleHandler,
-  handleModal
-}: HomeViewProps) => {
-  const {isEmployee} = useRecoilValue(userState);
+export const HomeView = ({ weeklyData, toggleHandler, handleModal }: HomeViewProps) => {
+  const { isEmployee } = useRecoilValue(userState);
 
   const lang = useRecoilValue<Lang>(langState);
 
   return (
     <Container>
       <PageLogo
-        title={HomeString({lang: lang, key: 'title'})}
-        subtitle={HomeString({lang: lang, key: 'subtitle'})}
+        title={HomeString({ lang: lang, key: 'title' })}
+        subtitle={HomeString({ lang: lang, key: 'subtitle' })}
       />
       <CarouselView>
         {weeklyData.employeeMenu.exists && !weeklyData.studentMenu.exists ? (
@@ -52,31 +39,22 @@ export const HomeView = ({
           <AdditionalButton onClick={handleModal}>일품특선메뉴</AdditionalButton>
           <ToggleView>
             {weeklyData.employeeMenu.exists && !weeklyData.studentMenu.exists ? (
-              <ToggleLabel>
-                {HomeString({lang: lang, key: 'toggleLabelStudentAndEmployee'})}
-              </ToggleLabel>
+              <ToggleLabel>{HomeString({ lang: lang, key: 'toggleLabelStudentAndEmployee' })}</ToggleLabel>
             ) : (
               <ToggleLabel>
                 {isEmployee
-                  ? HomeString({lang: lang, key: 'toggleLabelEmployee'})
-                  : HomeString({lang: lang, key: 'toggleLabelStudent'})}
+                  ? HomeString({ lang: lang, key: 'toggleLabelEmployee' })
+                  : HomeString({ lang: lang, key: 'toggleLabelStudent' })}
               </ToggleLabel>
             )}
             {weeklyData.employeeMenu.exists && !weeklyData.studentMenu.exists ? (
-              <Toggle
-                checked={isEmployee}
-                onClick={toggleHandler}
-                disabled={true}
-              />
+              <Toggle checked={isEmployee} onClick={toggleHandler} disabled={true} />
             ) : (
               <Toggle checked={isEmployee} onClick={toggleHandler} />
             )}
           </ToggleView>
         </CarouselViewBottom>
       </CarouselView>
-      <TicketView>
-        <TicketItem label={'티켓'} height={120} />
-      </TicketView>
     </Container>
   );
 };
