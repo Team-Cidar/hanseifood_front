@@ -1,6 +1,6 @@
 import PageLogo from '@components/PageLogo';
 import { MyCommentString } from '@utils/constants/strings';
-import { Comment } from '@components/Comment';
+import { CommentComponent } from '@components/Comment';
 import SvgIcon from '@components/SvgIcon';
 import { EColor } from '@styles/color';
 import { MyCommentViewProps } from './types';
@@ -13,7 +13,7 @@ const MyCommentView = ({ datas, refs, callbacks }: MyCommentViewProps) => {
       <Body ref={refs.scrollRef}>
         {datas.comments.map((data) => (
           <CommentWrapper key={data.commentId}>
-            <Comment comment={data} user={datas.user} onClickDelete={callbacks.onDelete} />
+            <CommentComponent comment={data} user={datas.user} onClickDelete={callbacks.onDelete} />
             <SvgButton onClick={() => callbacks.onClickMenu(data.menu)}>
               <SvgIcon name="cloche" width={32} height={32} fill={EColor.COLOR_PRIMARY} />
             </SvgButton>

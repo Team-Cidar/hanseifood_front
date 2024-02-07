@@ -6,9 +6,11 @@ interface TextInputProps {
   onChange: (value: string) => void;
   maxLength: number;
   placeholder: string;
+  width?: string;
+  height?: string;
 }
 
-export const TextInput: React.FC<TextInputProps> = ({ value, onChange, maxLength, placeholder }: TextInputProps) => {
+export const TextInput: React.FC<TextInputProps> = ({ value, onChange, maxLength, placeholder, width, height }: TextInputProps) => {
   const handleChagne = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     if (maxLength === undefined || e.target.value.length <= maxLength) {
       onChange(e.target.value);
@@ -16,7 +18,7 @@ export const TextInput: React.FC<TextInputProps> = ({ value, onChange, maxLength
   };
   return (
     <TextInputContainer>
-      <TextInputBox value={value} onChange={handleChagne} placeholder={placeholder} maxLength={maxLength} />
+      <TextInputBox width={width} height={height} value={value} onChange={handleChagne} placeholder={placeholder} maxLength={maxLength} />
       <CharacterCount>
         {/* 오른쪽 하단에 글자 수 카운트(0/50) */}
         {value.length}/{maxLength}

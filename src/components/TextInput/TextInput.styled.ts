@@ -13,8 +13,8 @@ export const TextInputBox = styled.textarea`
   background-color: #f2f2f250;
   border: 2px solid #ccc;
   border-radius: 10px;
-  width: 100%;
-  height: 212px;
+  width: ${({ width }) => width ?? '100%'};
+  height: ${({ height }) => height ?? '212px'};
   resize: none;
   text-align: left;
 

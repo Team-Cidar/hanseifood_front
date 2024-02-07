@@ -18,7 +18,7 @@ interface CommentComponentProps {
   onClickDelete: (commentId: string) => void;
 }
 
-export const Comment = ({ comment, user, onClickDelete }: CommentComponentProps) => {
+export const CommentComponent = ({ comment, user, onClickDelete }: CommentComponentProps) => {
   return (
     <Container>
       <HeaderWrapper>

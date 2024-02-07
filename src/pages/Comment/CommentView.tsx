@@ -1,4 +1,4 @@
-import { Comment } from '@components/Comment';
+import { CommentComponent } from '@components/Comment';
 import { Divider } from '@components/Divider';
 import { CommentViewProps } from './types';
 import { Body, CommentInput, Container, InputContainer, LikeButton, SubmitButton } from './styles';
@@ -15,7 +15,7 @@ export const CommentView = ({ datas, refs, callbacks }: CommentViewProps) => {
         {datas.comments.map((comment) => {
           return (
             <div key={comment.commentId}>
-              <Comment
+              <CommentComponent
                 comment={comment}
                 user={datas.user}
                 onClickDelete={() => callbacks.onDelete(comment.commentId)}

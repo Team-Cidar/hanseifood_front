@@ -67,3 +67,17 @@ export const CommentInput = styled.textarea`
     transition: 0.3s;
   }
 `;
+
+export const CommentReportContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+  align-items: center;
+`;
+
+export const CheckBoxView = styled.div`
+	display: flex;
+  justify-content: center;
+  align-items: center;
+	flex-wrap: wrap;
+	margin-bottom: 8px;
+`;

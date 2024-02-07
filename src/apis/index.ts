@@ -91,3 +91,11 @@ export const requestAddComment = (menuId: string, comment: string) => {
     comment: comment,
   });
 };
+
+export const requestCommentReport = (commentId: string, reportType: number, reportMsg: string) => {
+  return request.post(`/comments/report`, {
+    commentId,
+    reportType,
+    reportMsg,
+  });
+};
