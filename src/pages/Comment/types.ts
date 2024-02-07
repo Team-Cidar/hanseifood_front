@@ -20,7 +20,6 @@ export type Refs = {
   inputRef: RefObject<HTMLTextAreaElement>;
 };
 export type Callbacks = {
-  onScroll: () => void;
   onDelete: (commentId: string) => void;
   onSubmit: () => void;
   onTextChanged: (text: string) => void;

@@ -28,7 +28,7 @@ export const CommentPage = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  const { datas, set_datas, paging, onScroll } = usePagingData<Comment>(
+  const { datas, set_datas, paging } = usePagingData<Comment>(
     { scrollRef: scrollRef, apiFunction: requestCommentsByMenuId },
     menuId,
   );
@@ -138,7 +138,6 @@ export const CommentPage = () => {
       }}
       callbacks={{
         onDelete: onDelete,
-        onScroll: onScroll,
         onSubmit: onSubmit,
         onTextChanged: onTextChanged,
         onKeyDown: onKeyDown,

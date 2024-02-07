@@ -10,7 +10,7 @@ import { EColor } from '@styles/color';
 export const CommentView = ({ datas, refs, callbacks }: CommentViewProps) => {
   return (
     <Container height={window.visualViewport!.height - 48} ref={refs.containerRef}>
-      <Body ref={refs.scrollRef} onScroll={callbacks.onScroll}>
+      <Body ref={refs.scrollRef}>
         <MenuSpecificItem menu={datas.menu} onInteraction={() => {}} />
         {datas.comments.map((comment) => {
           return (

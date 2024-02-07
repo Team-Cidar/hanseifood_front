@@ -12,7 +12,6 @@ type UsePagingDataHookR<T> = {
   set_datas: React.Dispatch<React.SetStateAction<T[]>>;
   isLoading: boolean;
   paging: Paging;
-  onScroll: () => void;
 };
 
 export const usePagingData = <T>(
@@ -26,6 +25,17 @@ export const usePagingData = <T>(
   useEffect(() => {
     loadData().then((res) => set_data(res));
   }, []);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.onscroll = onScroll;
+    }
+    return () => {
+      if (scrollRef.current) {
+        scrollRef.current.onscroll = null;
+      }
+    };
+  }, [paging, isLoading]);
 
   useEffect(() => {
     set_isLoading(false);
@@ -71,6 +81,5 @@ export const usePagingData = <T>(
     isLoading: isLoading,
     paging: paging,
     set_datas: set_data,
-    onScroll: onScroll,
   };
 };
