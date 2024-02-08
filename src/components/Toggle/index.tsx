@@ -1,4 +1,4 @@
-import { ToggleBox, ToggleIcon } from './Toggle.styled';
+import { DisabledToggleBox, DisabledToggleIcon, ToggleBox, ToggleIcon } from './Toggle.styled';
 
 interface ToggleProps {
   checked: boolean;
@@ -9,10 +9,9 @@ interface ToggleProps {
 export const Toggle = ({ checked, onClick, disabled }: ToggleProps) => {
   if (disabled) {
     return (
-      /* 토글 비활성화 디자인 필요 */
-      <ToggleBox>
-        <ToggleIcon />
-      </ToggleBox>
+      <DisabledToggleBox>
+        <DisabledToggleIcon/>
+      </DisabledToggleBox>
     );
   }
   return (

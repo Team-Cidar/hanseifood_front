@@ -23,9 +23,11 @@ export const Content = styled.div<IContentProps>`
   width: 100%;
   height: 40%;
   padding: 24px;
-  opacity: ${({$display}) => ($display ? 1 : 0)};
-  visibility: ${({$display}) => ($display ? 'visible' : 'hidden')};
-  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+  opacity: ${({ $display }) => ($display ? 1 : 0)};
+  visibility: ${({ $display }) => ($display ? 'visible' : 'hidden')};
+  transition:
+    opacity 0.5s ease-in-out,
+    visibility 0.5s ease-in-out;
 `;
 
 export const Title = styled.div`
@@ -35,6 +37,7 @@ export const Title = styled.div`
 
 export const InputText = styled.input`
   border: 0px;
+  border-radius: 0px;
   border-bottom: 2px solid ${EColor.GRAY};
   padding: 8px 8px 2px 4px;
   width: 50%;

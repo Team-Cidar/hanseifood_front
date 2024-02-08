@@ -12,9 +12,9 @@ type LoginPageProps = {
   onSuccessClick: () => void;
   handleOnFocus: (e: React.FocusEvent<HTMLInputElement>) => void;
   handleOnBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-  handleSubmit: (nickname: string) => void;
   handleEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-}
+  onChange: (text: string) => void;
+};
 
 export const LoginConfirmView = ({
   lang,
@@ -24,21 +24,20 @@ export const LoginConfirmView = ({
   onSuccessClick,
   handleOnFocus,
   handleOnBlur,
-  handleSubmit,
-  handleEnter
+  handleEnter,
+  onChange,
 }: LoginPageProps) => {
   return (
     <Container>
       <Content $display={!isNewUser}>
-        <Title>
-          {LoginConfirmString({ lang: lang, key: 'title.direction.kakao.done' })}
-        </Title>
+        <Title>{LoginConfirmString({ lang: lang, key: 'title.direction.kakao.done' })}</Title>
         <IconButton
           label={LoginConfirmString({
             lang: lang,
             key: 'button.label.kakao.confirm',
           })}
           backgroundColor="#FEE500"
+          tintColor="#FEE500"
           color="#191919"
           borderWidth="0px"
           width="100%"
@@ -46,20 +45,19 @@ export const LoginConfirmView = ({
         />
       </Content>
       <Content $display={isNewUser}>
-        <Title>
-          {LoginConfirmString({ lang: lang, key: 'title.direction.nickname' })}
-        </Title>
+        <Title>{LoginConfirmString({ lang: lang, key: 'title.direction.nickname' })}</Title>
         <InputText
           ref={inputRef}
+          value={nickname}
           placeholder={`${LoginConfirmString({
             lang: lang,
             key: 'input.placeholder',
           })}`}
           onFocus={handleOnFocus}
           onBlur={handleOnBlur}
-          onKeyUp={handleEnter}
+          onKeyDown={handleEnter}
+          onChange={(e) => onChange(e.target.value)}
         />
-        <IconButton label="확인" onClick={() => handleSubmit(nickname)} />
       </Content>
     </Container>
   );

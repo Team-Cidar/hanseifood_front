@@ -29,20 +29,84 @@ export const requestExcelWeekFood = (dateTime: string) => {
 };
 
 export const requestConfirmLogin = (kakaoCode: string | null) => {
-  return request.post('/login', {
-    'code': kakaoCode
+  return request.post('/users/login', {
+    code: kakaoCode,
   });
 };
 
 export const requestRegisterUser = (kakaoInfo: UserKakaoInfo | null, nickname: string) => {
-  return request.post('/signup', {
+  return request.post('/users', {
     ...kakaoInfo,
-    nickname
+    nickname,
   });
 };
 
 export const requestTokenVerify = (accessToken: string) => {
   return request.post('/token/verify', {
-    'token': accessToken,
+    token: accessToken,
+  });
+};
+
+export const requestMenusByLike = (pageNo: number, pageSize: number) => {
+  return request.get(`/likes/menus/users?pageNo=${pageNo}&pageSize=${pageSize}`);
+};
+
+export const requestToggleLike = (menuId: string) => {
+  return request.post('/likes/menus', {
+    menuId: menuId,
+  });
+};
+
+export const requestCheckMenuLiked = (menuId: string) => {
+  return request.get(`/likes/menus?menuId=${menuId}`);
+};
+
+export const requestMenuHistory = (dateTime: string, menuType: string) => {
+  return request.get(`/back/menus/history?date=${dateTime}&menuType=${menuType}`);
+};
+
+export const requestDeleteMenu = (menuId: string) => {
+  return request.delete(`/back/menus?menuId=${menuId}`);
+};
+
+export const requestCommentByUser = (pageNo: number, pageSize: number) => {
+  return request.get(`/comments/menus/users?pageNo=${pageNo}&pageSize=${pageSize}`);
+};
+
+export const requestDeleteComment = (commentId: string) => {
+  return request.delete(`/comments/menus?commentId=${commentId}`);
+};
+
+export const reqeustMenuByMenuId = (menuId: string) => {
+  return request.get(`/menus/${menuId}`);
+};
+
+export const requestCommentsByMenuId = (pageNo: number, pageSize: number, menuId: string) => {
+  return request.get(`/comments/menus?menuId=${menuId}&pageNo=${pageNo}&pageSize=${pageSize}`);
+};
+
+export const requestAddComment = (menuId: string, comment: string) => {
+  return request.post(`/comments/menus`, {
+    menuId: menuId,
+    comment: comment,
+  });
+};
+
+export const requestGetUser = (pageNo: number, pageSize: number) => {
+  return request.get(`/users?pageNo=${pageNo}&pageSize=${pageSize}`);
+};
+
+export const requestModifyUserRole = (userId: string, role: string) => {
+  return request.post('/back/users/role', {
+    userId: userId,
+    role: role,
+  });
+};
+
+export const requestCommentReport = (commentId: string, reportType: number, reportMsg: string) => {
+  return request.post(`/comments/report`, {
+    commentId,
+    reportType,
+    reportMsg,
   });
 };

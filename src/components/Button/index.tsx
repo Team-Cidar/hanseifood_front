@@ -1,5 +1,5 @@
 import React from 'react';
-import {Content, LabelItem, StyledIconButton, SvgItem} from './Button.styled';
+import { Content, LabelItem, StyledIconButton, SvgItem } from './Button.styled';
 
 interface IIconButtonComponentProps {
   label: string;
@@ -35,10 +35,11 @@ export const IconButton = ({
       color={color}
       $backgroundcolor={backgroundColor}
       tintcolor={tintColor}
-      borderwidth={borderWidth}
+      $borderwidth={borderWidth}
       borderradius={borderRadius}
       padding={padding}
-      onClick={e => onClick(e)}>
+      onClick={(e) => onClick(e)}
+    >
       <Content>
         {svg ? <SvgItem>{svg}</SvgItem> : <></>}
         <LabelItem>{label.toUpperCase()}</LabelItem>

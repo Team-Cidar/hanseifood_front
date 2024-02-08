@@ -6,9 +6,11 @@ interface TextInputProps {
   onChange: (value: string) => void;
   maxLength: number;
   placeholder: string;
+  width?: string;
+  height?: string;
 }
 
-export const TextInput: React.FC<TextInputProps> = ({ value, onChange, maxLength, placeholder }: TextInputProps) => {
+export const TextInput: React.FC<TextInputProps> = ({ value, onChange, maxLength, placeholder, width, height }: TextInputProps) => {
   const handleChagne = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     if (maxLength === undefined || e.target.value.length <= maxLength) {
       onChange(e.target.value);
@@ -16,12 +18,7 @@ export const TextInput: React.FC<TextInputProps> = ({ value, onChange, maxLength
   };
   return (
     <TextInputContainer>
-      <TextInputBox
-        value={value}
-        onChange={handleChagne}
-        placeholder={placeholder}
-        maxLength={maxLength}
-      />
+      <TextInputBox width={width} height={height} value={value} onChange={handleChagne} placeholder={placeholder} maxLength={maxLength} />
       <CharacterCount>
         {/* 오른쪽 하단에 글자 수 카운트(0/50) */}
         {value.length}/{maxLength}
@@ -29,7 +26,6 @@ export const TextInput: React.FC<TextInputProps> = ({ value, onChange, maxLength
     </TextInputContainer>
   );
 };
-
 
 /////////////////// 닉네임 입력 ////////////////////
 export const NickInput: React.FC<TextInputProps> = ({ value, onChange, maxLength }) => {
@@ -58,9 +54,9 @@ export const PassInput: React.FC<TextInputProps> = ({ value, onChange }) => {
     onChange(event.target.value);
   };
 
-  const validatePassword = (value: string) => { // 비밀번호 틀렸을 때 에러처리(빨간 border 처리) 하려고 만든 임시 코드 임니다
+  const validatePassword = (value: string) => {
+    // 비밀번호 틀렸을 때 에러처리(빨간 border 처리) 하려고 만든 임시 코드 임니다
     setError(value !== '1234' && value !== ''); // 1234일 때, 아무것도 적지 않고 포커스 풀었을 때는 에러처리 안되게 했슴니다
-
   };
 
   return (
