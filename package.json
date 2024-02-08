@@ -1,7 +1,7 @@
 {
   "name": "hanseifood_front",
-  "version": "1.1.0",
-  "description": "전체 리뉴얼, 백오피스 페이지 추가, 카카오 로그인 구현, 디자인 수정",
+  "version": "2.0.0",
+  "description": "관리자 페이지 추가, 식단 댓글 & 좋아요 기능",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config config/webpack.dev.js",
@@ -10,7 +10,7 @@
   "browserslist": [
     "ie 11"
   ],
-  "author": "",
+  "author": "team_cidar",
   "license": "ISC",
   "dependencies": {
     "@babel/cli": "^7.21.5",
