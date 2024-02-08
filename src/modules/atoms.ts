@@ -1,5 +1,5 @@
-import { DefaultUserInfo } from '@type/defaults';
-import { User, WeeklyData, Lang, LangEnum, UserInfo } from '@type/index';
+import { DefaultNavInfo, DefaultUserInfo } from '@type/defaults';
+import { User, WeeklyData, Lang, LangEnum, UserInfo, NavInfo } from '@type/index';
 import { atom } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
 
@@ -32,12 +32,10 @@ export const userState = atom<User>({
   },
 });
 
-export const naviState = atom({
+export const naviState = atom<NavInfo>({
   key: 'naviState',
-  default: {
-    page: 'home',
-    prevPage: 'home',
-  }
+  default: DefaultNavInfo,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const langState = atom<Lang>({

@@ -91,6 +91,11 @@ export type Comment = {
   deletedAt: string | null;
 };
 
+export type NavInfo = {
+  page: string;
+  history: string[];
+};
+
 export const LangEnum = {
   KO: { text: '한국어', code: 'ko' },
   EN: { text: 'English', code: 'en' },

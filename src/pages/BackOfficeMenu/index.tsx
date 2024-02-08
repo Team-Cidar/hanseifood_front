@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
 
 import {
   requestDayTargetFood,
@@ -13,8 +12,7 @@ import { WeekMenuStringFormator } from '@utils/WeekMenuStringFormator';
 import { Modal } from '@components/Modal';
 import MenuSpecificItem from '@components/MenuSpecificItem';
 import { IconButton } from '@components/Button';
-import { userState } from '@modules/atoms';
-import { Menu, User } from '@type/index';
+import { Menu } from '@type/index';
 import BackOfficeMenuView from './BackOfficeMenuView';
 import { MenuHistory, StateGetter, StateSetter } from './types';
 import { DefaultMenuHistory } from './types.default';
@@ -27,7 +25,6 @@ const BackOfficeMenu = () => {
   const [studentMenu, set_studentMenu] = useState<Menu | undefined>(undefined);
   const [employeeMenu, set_employeeMenu] = useState<Menu | undefined>(undefined);
   const [additionalMenu, set_additionalMenu] = useState<Menu | undefined>(undefined);
-  const [{ page }, set_page] = useRecoilState<User>(userState);
   const [placeholder, set_placeholder] = useState<string[]>([]);
   const [showHistory, set_showHistory] = useState<boolean>(false);
   const [historyTarget, set_historyTarget] = useState<MenuHistory>(DefaultMenuHistory);
@@ -45,7 +42,6 @@ const BackOfficeMenu = () => {
       set_date(formatDate(dateObj));
       return;
     }
-    set_page((data) => ({ ...data, page: 'backoffice' }));
     __handleGetMenu();
   }, [date]);
 
@@ -175,7 +171,7 @@ const BackOfficeMenu = () => {
                     menu={menu}
                     onInteraction={() => {
                       // set current menu as this specific menu history
-                      console.log(menu);
+                      alert('이전 메뉴를 현재 메뉴로 등록하는 기능 추가 예정입니다.');
                     }}
                   />
                 );

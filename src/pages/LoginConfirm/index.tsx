@@ -4,14 +4,14 @@ import { Lang, UserInfo, UserKakaoInfo, UserRole, UserRoleKey } from '@type/inde
 import { langState, userInfoState } from '@modules/atoms';
 import { LoginConfirmString } from '@utils/constants/strings';
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { requestConfirmLogin, requestRegisterUser } from '@apis/index';
+import usePageControll from '@hooks/usePageControll';
 
 const LoginConfirm = () => {
   const lang = useRecoilValue<Lang>(langState);
   const kakaoCode = new URLSearchParams(location.search).get('code');
   const inputRef = useRef<HTMLInputElement>(null);
-  const navigate = useNavigate();
+  const { handlePage } = usePageControll();
 
   const set_userInfo = useSetRecoilState(userInfoState);
   const [isNewUser, set_isNewUser] = useState(false);
@@ -21,7 +21,7 @@ const LoginConfirm = () => {
   useEffect(() => {
     if (!kakaoCode) {
       alert(LoginConfirmString({ lang: lang, key: 'alert.fail.login' }));
-      navigate('/login');
+      handlePage('login');
     }
   }, []);
 
@@ -38,7 +38,7 @@ const LoginConfirm = () => {
     set_userInfo({
       ...user,
     });
-    navigate('/home');
+    handlePage('home');
   };
 
   const onSuccessClick = async () => {
@@ -64,7 +64,7 @@ const LoginConfirm = () => {
       })
       .catch(() => {
         alert(LoginConfirmString({ lang: lang, key: 'alert.fail.login' }));
-        navigate('/login');
+        handlePage('login');
       });
   };
 

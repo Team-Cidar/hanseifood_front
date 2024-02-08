@@ -1,4 +1,4 @@
-import { Comment, Commenter, MenuSpecific, Paging, UserInfo, UserRole } from '.';
+import { Comment, Commenter, MenuSpecific, NavInfo, Paging, UserInfo, UserRole } from '.';
 
 export const DefaultPaging = <Paging>{
   currentPage: 0,
@@ -39,4 +39,9 @@ export const DefaultUserInfo = <UserInfo>{
   isAdmin: false,
   nickname: '',
   role: UserRole.G,
+};
+
+export const DefaultNavInfo = <NavInfo>{
+  page: '',
+  history: [],
 };
