@@ -29,13 +29,13 @@ export const requestExcelWeekFood = (dateTime: string) => {
 };
 
 export const requestConfirmLogin = (kakaoCode: string | null) => {
-  return request.post('/login', {
+  return request.post('/users/login', {
     code: kakaoCode,
   });
 };
 
 export const requestRegisterUser = (kakaoInfo: UserKakaoInfo | null, nickname: string) => {
-  return request.post('/signup', {
+  return request.post('/users', {
     ...kakaoInfo,
     nickname,
   });
