@@ -1,52 +1,25 @@
-import { ButtonView, Container, InputBox, InputContainer, InputTitle, InputView, SubText } from './styles';
-import { IconButton } from '@components/Button';
-import PageLogo from '@components/PageLogo';
+import SvgIcon from '@components/SvgIcon';
+import { Container, SvgButton } from './styles';
 import { BackOfficeViewProps } from './types';
-import { TextInput } from '@components/TextInput';
+import { EColor } from '@styles/color';
 
-const BackOfficeView = ({getter, setter, handleUploadMenu, handleExcelWeekMenu}: BackOfficeViewProps) => (
-  <Container>
-    <PageLogo title={'식단표 업로드'} />
-    <InputContainer>
-      <input
-        type="date"
-        value={getter[0]}
-        onChange={(e) => setter[0](e.target.value)} />
-      <InputView>
-        <InputBox>
-          <InputTitle>
-            학생메뉴
-          </InputTitle>
-          <TextInput value={getter[1]} onChange={setter[1]} maxLength={60} placeholder="ex) 돼지고기김치찌개, 시금치무침, 연두부, 밥, 된장국" />
-        </InputBox>
-        <InputBox>
-          <InputTitle>
-            교직원메뉴
-          </InputTitle>
-          <TextInput value={getter[2]} onChange={setter[2]} maxLength={60} placeholder="ex) 돼지고기김치찌개, 시금치무침, 연두부, 밥, 된장국" />
-        </InputBox>
-        <InputBox>
-          <InputTitle>
-            일품특선
-          </InputTitle>
-          <TextInput value={getter[3]} onChange={setter[3]} maxLength={60} placeholder="ex) 돼지고기김치찌개, 시금치무침, 연두부, 밥, 된장국" />
-        </InputBox>
-      </InputView>
-      <SubText>',' 로 입력할 식단표를 나눠서 입력해주세요</SubText>
-    </InputContainer>
-    <ButtonView>
-      <IconButton
-        label="식단표 업로드"
-        width={"132px"}
-        height={"50px"}
-        onClick={handleUploadMenu} />
-      <IconButton
-        label="엑셀파일 추출하기"
-        width={"152px"}
-        height={"50px"}
-        onClick={handleExcelWeekMenu} />
-    </ButtonView>
-  </Container>
-);
+const BackOfficeView = ({ handleOnNavigate }: BackOfficeViewProps) => {
+  return (
+    <Container>
+      <SvgButton onClick={() => handleOnNavigate('back-office/menus')}>
+        <SvgIcon name="cloche" width="100%" height="100%" fill={EColor.TEXT_300} stroke={EColor.TEXT_900} />
+      </SvgButton>
+      <SvgButton onClick={() => handleOnNavigate('back-office/comments')}>
+        <SvgIcon name="comment" width="100%" height="100%" fill={EColor.TEXT_300} stroke={EColor.TEXT_900} />
+      </SvgButton>
+      <SvgButton onClick={() => handleOnNavigate('back-office/users')}>
+        <SvgIcon name="about_me" width="100%" height="100%" fill={EColor.TEXT_300} stroke={EColor.TEXT_900} />
+      </SvgButton>
+      <SvgButton onClick={() => handleOnNavigate('back-office/charts')}>
+        <SvgIcon name="chart" width="100%" height="100%" fill={EColor.TEXT_300} stroke={EColor.TEXT_900} />
+      </SvgButton>
+    </Container>
+  );
+};
 
 export default BackOfficeView;
