@@ -7,8 +7,8 @@ export const DefaultPaging = <Paging>{
 };
 
 export const DefaultMenuSpecific = <MenuSpecific>{
-  date: '2023-01-31',
-  menus: ['스타벅스', '이디야', '투썸'],
+  date: '2023-12-01',
+  menus: [''],
   menuId: 'default-menu',
   menuType: 'S',
   likeCount: 0,

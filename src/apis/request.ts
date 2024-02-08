@@ -26,4 +26,17 @@ request.interceptors.response.use(
   },
 );
 
+request.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  async (error) => {
+    if (error.response.status == 401) {
+      alert('로그인 / 재로그인이 필요합니다.');
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  },
+);
+
 export default request;
