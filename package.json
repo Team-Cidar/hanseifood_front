@@ -11,6 +11,7 @@
     "ie 11"
   ],
   "author": "team_cidar",
+  "homepage": ".",
   "license": "ISC",
   "dependencies": {
     "@babel/cli": "^7.21.5",
