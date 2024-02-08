@@ -94,14 +94,23 @@ const LoginConfirm = () => {
   };
 
   const handleOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    if (nickname != '') handleSubmit(nickname);
+    set_nickname('');
     e.target.placeholder = LoginConfirmString({
       lang: lang,
       key: 'input.placeholder',
     });
   };
 
-  const handleEnter = () => {
-    set_nickname(inputRef.current!.value);
+  const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key == 'Enter' && inputRef.current) {
+      e.preventDefault();
+      inputRef.current.blur();
+    }
+  };
+
+  const onChange = (text: string) => {
+    set_nickname(text);
   };
 
   return (
@@ -113,8 +122,8 @@ const LoginConfirm = () => {
       onSuccessClick={onSuccessClick}
       handleOnFocus={handleOnFocus}
       handleOnBlur={handleOnBlur}
-      handleSubmit={handleSubmit}
       handleEnter={handleEnter}
+      onChange={onChange}
     />
   );
 };

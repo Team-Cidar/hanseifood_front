@@ -12,8 +12,8 @@ type LoginPageProps = {
   onSuccessClick: () => void;
   handleOnFocus: (e: React.FocusEvent<HTMLInputElement>) => void;
   handleOnBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-  handleSubmit: (nickname: string) => void;
   handleEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onChange: (text: string) => void;
 };
 
 export const LoginConfirmView = ({
@@ -24,8 +24,8 @@ export const LoginConfirmView = ({
   onSuccessClick,
   handleOnFocus,
   handleOnBlur,
-  handleSubmit,
   handleEnter,
+  onChange,
 }: LoginPageProps) => {
   return (
     <Container>
@@ -48,15 +48,16 @@ export const LoginConfirmView = ({
         <Title>{LoginConfirmString({ lang: lang, key: 'title.direction.nickname' })}</Title>
         <InputText
           ref={inputRef}
+          value={nickname}
           placeholder={`${LoginConfirmString({
             lang: lang,
             key: 'input.placeholder',
           })}`}
           onFocus={handleOnFocus}
           onBlur={handleOnBlur}
-          onKeyUp={handleEnter}
+          onKeyDown={handleEnter}
+          onChange={(e) => onChange(e.target.value)}
         />
-        <IconButton label="확인" onClick={() => handleSubmit(nickname)} />
       </Content>
     </Container>
   );
