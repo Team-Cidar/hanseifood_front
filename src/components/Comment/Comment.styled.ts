@@ -1,5 +1,5 @@
 import { EColor } from '@styles/color';
-import { Title5, body3, body5 } from '@styles/font';
+import { Title5, body3, body4, body5 } from '@styles/font';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -52,5 +52,19 @@ export const SvgButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px;
+`;
+
+export const HeaderRight = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-right: 4px;
+`;
+
+export const ReportCommentText = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  ${body4}
+  color: ${EColor.TEXT_700};
+  margin-right: 4px;
 `;

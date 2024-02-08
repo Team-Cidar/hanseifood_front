@@ -81,3 +81,11 @@ export const CheckBoxView = styled.div`
 	flex-wrap: wrap;
 	margin-bottom: 8px;
 `;
+
+export const ModalBottomView = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
