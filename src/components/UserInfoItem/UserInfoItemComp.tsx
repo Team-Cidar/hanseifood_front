@@ -23,7 +23,7 @@ const UserInfoItemComp = ({ datas, refs, callbacks }: UserInfoItemCompProps) => 
     {datas.showKaKaoInfo && (
       <>
         <Row>
-          <Label>Kakao Id</Label>
+          <Label>Identifier</Label>
           <Content>{datas.user.kakaoId}</Content>
         </Row>
         <Row>
