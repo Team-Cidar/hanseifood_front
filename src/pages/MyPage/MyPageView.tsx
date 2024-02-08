@@ -1,71 +1,59 @@
-// MyPageView.tsx
+import { Container } from './styles';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
-import React, { useEffect, useState } from 'react';
-import { Container, Logo, Button } from './styles';
-import { Link } from 'react-router-dom';
-import {useRecoilState, useRecoilValue} from 'recoil';
-
-import {langState, userState} from '@modules/atoms';
-import {MyPageString} from '@utils/constants/strings';
+import { langState, userInfoState } from '@modules/atoms';
+import { MyPageString } from '@utils/constants/strings';
 import PageLogo from '@components/PageLogo';
-import {Divider} from '@components/Divider';
-import {ListButton} from '@components/ListButton';
-import {User} from '@type/index';
-import {useNavigate} from 'react-router-dom';
-import axios from 'axios';
+import { Divider } from '@components/Divider';
+import { ListButton } from '@components/ListButton';
+import { MenuListItem, UserInfo, UserRole } from '@type/index';
+import { DefaultUserInfo } from '@type/defaults';
+import { MENU_LIST_BY_ROLE, MenuListByRoleKey } from '@utils/constants/enum_values/role_menu_lists';
+import usePageControll from '@hooks/usePageControll';
 
 const MyPageView = () => {
-  const navigate = useNavigate();
   const lang = useRecoilValue(langState);
-  const [{page}, set_page] = useRecoilState<User>(userState);
-  const [Login, setLogin] = useState('False');
-
-  const handleNavigate = (name: string) => {
-    set_page({page: name});
-    navigate(`/${name}`);
-  };
+  const [userInfo, set_userInfo] = useRecoilState<UserInfo>(userInfoState);
+  const { handlePage } = usePageControll();
 
   return (
     <Container>
-      <Button as={Link} to="/back-office">
-        BackOffice로 이동
-      </Button>
-      <PageLogo
-        title={MyPageString({lang: lang, key: 'title'})}
-        subtitle={``}
-      />
-      {Login === 'False' ? (
-      <ListButton
-        label={MyPageString({lang: lang, key: 'listbutton.label.login'})}
-        onClick={() => handleNavigate('login')}
-      />
+      <PageLogo title={MyPageString({ lang: lang, key: 'title' })} subtitle={``} />
+      {userInfo.role.value == UserRole.G.value ? (
+        <ListButton
+          label={MyPageString({ lang: lang, key: 'listbutton.label.login' })}
+          onClick={() => handlePage('login')}
+        />
       ) : (
         <ListButton
-        label={MyPageString({lang: lang, key: 'listbutton.label.logout'})}
-        onClick={() => {if (confirm("정말 로그아웃 하시겠습니까?") == true){
-          localStorage.clear();
-          window.location.href = "https://kauth.kakao.com/oauth/logout?client_id=c8300aee5549fc7db67a25a714144789&logout_redirect_uri=http://localhost:8080";
-        }}}
-      />
-      )
-      }
+          label={MyPageString({ lang: lang, key: 'listbutton.label.logout' })}
+          onClick={() => {
+            if (!confirm(MyPageString({ lang: lang, key: 'confirm.logout' }))) return;
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('refresh_token');
+            set_userInfo(DefaultUserInfo);
+          }}
+        />
+      )}
       <Divider />
-      <div>
-        <ListButton
-          label={MyPageString({lang: lang, key: 'listbutton.label.tickets'})}
-        />
-      </div>
-      <Divider />
-      <div>
-        <ListButton
-          label={MyPageString({lang: lang, key: 'listbutton.label.help'})}
-          onClick={() => handleNavigate('help')}
-        />
-        <ListButton
-          label={MyPageString({lang: lang, key: 'listbutton.label.aboutme'})}
-          onClick={() => handleNavigate('about-me')}
-        />
-      </div>
+      {MENU_LIST_BY_ROLE[userInfo.role.value as MenuListByRoleKey].map((menuGroup: MenuListItem[], idx: number) => {
+        // menu group (to separate each group using Divider)
+        return (
+          <div key={idx}>
+            {menuGroup.map((menu, idx) => {
+              // menu item
+              return (
+                <ListButton
+                  key={idx}
+                  label={MyPageString({ lang: lang, key: menu.labelKey })}
+                  onClick={() => handlePage(menu.route)}
+                />
+              );
+            })}
+            <Divider />
+          </div>
+        );
+      })}
     </Container>
   );
 };

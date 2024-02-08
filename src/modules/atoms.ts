@@ -1,16 +1,26 @@
-import { User, WeeklyData, Lang, LangEnum, UserInfo } from '@type/index';
+import { DefaultNavInfo, DefaultUserInfo } from '@type/defaults';
+import { User, WeeklyData, Lang, LangEnum, UserInfo, NavInfo } from '@type/index';
 import { atom } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
 
-const {persistAtom} = recoilPersist();
+const { persistAtom } = recoilPersist();
 
 export const weeklyDataState = atom<WeeklyData>({
   key: 'weeklyDataState',
   default: {
-    only_employee: false,
-    student_menu: {},
-    employee_menu: {},
-    additional_menu: {},
+    keys: [],
+    studentMenu: {
+      exists: false,
+      menus: {},
+    },
+    employeeMenu: {
+      exists: false,
+      menus: {},
+    },
+    additionalMenu: {
+      exists: false,
+      menus: {},
+    },
   },
 });
 
@@ -22,12 +32,10 @@ export const userState = atom<User>({
   },
 });
 
-export const naviState = atom({
+export const naviState = atom<NavInfo>({
   key: 'naviState',
-  default: {
-    page: 'home',
-    prevPage: 'home',
-  }
+  default: DefaultNavInfo,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const langState = atom<Lang>({
@@ -40,13 +48,6 @@ export const langState = atom<Lang>({
 
 export const userInfoState = atom<UserInfo>({
   key: 'userInfoState',
-  default: {
-    kakao_id: '',
-    email: '',
-    kakao_name: '',
-    is_admin: false,
-    nickname: '',
-    role: '',
-  },
-  effects_UNSTABLE: [persistAtom]
+  default: DefaultUserInfo,
+  effects_UNSTABLE: [persistAtom],
 });

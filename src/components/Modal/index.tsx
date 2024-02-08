@@ -11,17 +11,11 @@ export const Modal = ({ header, body, bottom }: IModal) => {
   return (
     <ModalWrapper>
       <ModalContent>
-        <ModalHeader>
-          {header}
-        </ModalHeader>
+        <ModalHeader>{header}</ModalHeader>
         <ModalBody>
-          <ScrollBar>
-            {body}
-          </ScrollBar>
+          <ScrollBar>{body}</ScrollBar>
         </ModalBody>
-        <ModalBottom>
-          {bottom}
-        </ModalBottom>
+        <ModalBottom>{bottom}</ModalBottom>
       </ModalContent>
     </ModalWrapper>
   );

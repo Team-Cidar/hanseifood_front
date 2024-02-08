@@ -1,10 +1,6 @@
-import { EColor } from "@styles/color";
-import {
-  Title3,
-  Title6,
-  body1,
-} from "@styles/font";
-import styled from "styled-components";
+import { EColor } from '@styles/color';
+import { Title3, Title6, body1 } from '@styles/font';
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;

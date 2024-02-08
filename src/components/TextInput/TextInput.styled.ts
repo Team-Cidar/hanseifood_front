@@ -6,34 +6,35 @@ export const TextInputContainer = styled.div<{ width?: string }>`
 `;
 
 export const TextInputBox = styled.textarea`
-  margin: 8px;
+  /* margin: 8px; */
   padding: 10px;
   font-size: 15px;
   font-family: Arial, sans-serif;
-  background-color: #F2F2F250;
+  background-color: #f2f2f250;
   border: 2px solid #ccc;
   border-radius: 10px;
-  width: 100%;
-  height: 212px;
+  width: ${({ width }) => width ?? '100%'};
+  height: ${({ height }) => height ?? '212px'};
   resize: none;
   text-align: left;
 
-  &:focus { // 눌렀을 때 색 바뀌게
+  &:focus {
+    // 눌렀을 때 색 바뀌게
     outline: none;
-    background-color: #8BF7FB30;
-    border-color: #00FFFF;
-    box-shadow: 5px 5px 10px #F2F2F2;
+    background-color: #8bf7fb30;
+    border-color: #00ffff;
+    box-shadow: 5px 5px 10px #f2f2f2;
   }
 `;
 
 export const CharacterCount = styled.div`
-    position: absolute;
-    bottom: 20px;
-    right: 0px;
-    font-size: 12px;
-    color: #555;
-    display: flex;
-    flex-direction: column;
+  position: absolute;
+  bottom: 20px;
+  right: 8px;
+  font-size: 12px;
+  color: #555;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const TInputContainer = styled.div`
@@ -51,21 +52,18 @@ export const TInputBox = styled.input<{ error?: boolean }>`
   font-size: 14px;
   font-family: Arial, sans-serif;
 
-  background-color: #F2F2F250;
+  background-color: #f2f2f250;
 
   border: 2px solid ${(props) => (props.error ? 'red' : '#ccc')};
   border-radius: 10px;
 
   text-align: left;
-  
 
-
-  &:focus { // 눌렀을 때 색 바뀌게
+  &:focus {
+    // 눌렀을 때 색 바뀌게
     outline: none;
-    background-color: #8BF7FB30;
-    border-color: #00FFFF;
-    box-shadow: 5px 5px 10px #F2F2F2;
+    background-color: #8bf7fb30;
+    border-color: #00ffff;
+    box-shadow: 5px 5px 10px #f2f2f2;
   }
-
 `;
-

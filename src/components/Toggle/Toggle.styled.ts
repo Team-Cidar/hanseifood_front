@@ -26,3 +26,23 @@ export const ToggleIcon = styled.div<StyledToggleProps>`
   left: ${({ checked }) => (checked ? '23px' : '1px')};
   transition: 0.3s;
 `;
+
+export const DisabledToggleBox = styled.div`
+  border: 2px solid ${EColor.TEXT_500};
+  border-radius: 24px;
+  width: 42px;
+  height: 20px;
+  position: relative;
+  transition: 0.3s;
+  padding: 1px;
+`;
+
+export const DisabledToggleIcon = styled.div`
+  background-color: ${EColor.TEXT_400};
+  border: 2px solid ${EColor.TEXT_500};
+  width: 14px;
+  height: 14px;
+  border-radius: 24px;
+  position: absolute;
+  transition: 0.3s;
+`;

@@ -1,17 +1,17 @@
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { LoginConfirmView } from './LoginConfirmView';
-import { Lang, UserInfo, UserKakaoInfo } from '@type/index';
+import { Lang, UserInfo, UserKakaoInfo, UserRole, UserRoleKey } from '@type/index';
 import { langState, userInfoState } from '@modules/atoms';
 import { LoginConfirmString } from '@utils/constants/strings';
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { requestConfirmLogin, requestRegisterUser } from '@apis/index';
+import usePageControll from '@hooks/usePageControll';
 
 const LoginConfirm = () => {
   const lang = useRecoilValue<Lang>(langState);
   const kakaoCode = new URLSearchParams(location.search).get('code');
   const inputRef = useRef<HTMLInputElement>(null);
-  const navigate = useNavigate();
+  const { handlePage } = usePageControll();
 
   const set_userInfo = useSetRecoilState(userInfoState);
   const [isNewUser, set_isNewUser] = useState(false);
@@ -21,7 +21,7 @@ const LoginConfirm = () => {
   useEffect(() => {
     if (!kakaoCode) {
       alert(LoginConfirmString({ lang: lang, key: 'alert.fail.login' }));
-      navigate('/login');
+      handlePage('login');
     }
   }, []);
 
@@ -32,31 +32,40 @@ const LoginConfirm = () => {
     }, 500);
   };
 
-  const saveUserInfoGoHome = (user: UserInfo) => {
+  const saveUserInfoGoHome = (user: UserInfo, accessToken: string, refreshToken: string) => {
+    localStorage.setItem('access_token', accessToken);
+    localStorage.setItem('refresh_token', refreshToken);
     set_userInfo({
       ...user,
     });
-    navigate('/home');
+    handlePage('home');
   };
 
   const onSuccessClick = async () => {
-    requestConfirmLogin(kakaoCode)
-    .then(async res => {
-      if (res.data.status) {
-        await localStorage.setItem('access_token', res.data.access_token);
-        await localStorage.setItem('refresh_token', res.data.refresh_token);
-        saveUserInfoGoHome(res.data.user);
-        return;
-      }
-      set_kakaoInfo({
-        "kakao_id": res.data.user.kakao_id,
-        "kakao_name": res.data.user.kakao_name,
-        "email": res.data.user.email,
+    !requestConfirmLogin(kakaoCode)
+      .then(async (res) => {
+        if (res.data.status) {
+          const accessToken = res.data.accessToken;
+          const refreshToken = res.data.refreshToken;
+          const roleKey: UserRoleKey = res.data.user.role;
+          saveUserInfoGoHome(
+            { ...res.data.user, role: UserRole[roleKey] as UserRole } as UserInfo,
+            accessToken,
+            refreshToken,
+          );
+          return;
+        }
+        set_kakaoInfo({
+          kakaoId: res.data.user.kakaoId,
+          kakaoName: res.data.user.kakaoName,
+          email: res.data.user.email,
+        });
+        showUserNicknameInput();
+      })
+      .catch(() => {
+        alert(LoginConfirmString({ lang: lang, key: 'alert.fail.login' }));
+        handlePage('login');
       });
-    }).catch(err => {
-      console.log(err);
-    });
-    showUserNicknameInput();
   };
 
   const handleSubmit = async (nickname: string) => {
@@ -65,12 +74,19 @@ const LoginConfirm = () => {
       return;
     }
     requestRegisterUser(kakaoInfo, nickname)
-    .then(res => {
-      saveUserInfoGoHome(res.data.user);
-      console.log(res);
-    }).catch(err => {
-      console.log(err);
-    });
+      .then((res) => {
+        const accessToken = res.data.accessToken;
+        const refreshToken = res.data.refreshToken;
+        const roleKey: UserRoleKey = res.data.user.role;
+        saveUserInfoGoHome(
+          { ...res.data.user, role: UserRole[roleKey] as UserRole } as UserInfo,
+          accessToken,
+          refreshToken,
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -78,6 +94,8 @@ const LoginConfirm = () => {
   };
 
   const handleOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    if (nickname != '') handleSubmit(nickname);
+    set_nickname('');
     e.target.placeholder = LoginConfirmString({
       lang: lang,
       key: 'input.placeholder',
@@ -85,7 +103,14 @@ const LoginConfirm = () => {
   };
 
   const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    set_nickname(e.target.value);
+    if (e.key == 'Enter' && inputRef.current) {
+      e.preventDefault();
+      inputRef.current.blur();
+    }
+  };
+
+  const onChange = (text: string) => {
+    set_nickname(text);
   };
 
   return (
@@ -97,8 +122,8 @@ const LoginConfirm = () => {
       onSuccessClick={onSuccessClick}
       handleOnFocus={handleOnFocus}
       handleOnBlur={handleOnBlur}
-      handleSubmit={handleSubmit}
       handleEnter={handleEnter}
+      onChange={onChange}
     />
   );
 };

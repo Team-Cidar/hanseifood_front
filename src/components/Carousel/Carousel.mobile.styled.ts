@@ -1,6 +1,6 @@
-import { EColor } from "@styles/color";
-import { Title4_2, body3 } from "@styles/font";
-import styled from "styled-components";
+import { EColor } from '@styles/color';
+import { Title4_2, body3 } from '@styles/font';
+import styled from 'styled-components';
 
 export const MobileContainer = styled.div`
   display: flex;

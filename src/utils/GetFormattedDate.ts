@@ -1,7 +1,11 @@
 export const getFormattedDate = () => {
-	const today = new Date();
-	const year = today.getFullYear();
-	const month = (today.getMonth() + 1).toString().padStart(2, '0');
-	const day = today.getDate().toString().padStart(2, '0');
-	return `${year}-${month}-${day}`;
+  const today = new Date();
+  return formatDate(today);
+};
+
+export const formatDate = (date: Date) => {
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  return `${year}-${month}-${day}`;
 };

@@ -1,25 +1,23 @@
-import React, {
-  TouchEventHandler,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { TouchEventHandler, useEffect, useRef, useState } from 'react';
+import { useRecoilValue } from 'recoil';
 
-import * as CarouselStyled from "./Carousel.styled";
+import * as CarouselStyled from './Carousel.styled';
 import {
   MobileCarouselItem,
   MobileCarouselWrapper,
   MobileContainer,
   MobileDateText,
   MobileMenuList,
-} from "./Carousel.mobile.styled";
-import { Menu } from "@type/index";
-import SvgIcon from "@components/SvgIcon";
-import { EColor } from "@styles/color";
-import usePageControll from "@hooks/usePageControll";
+} from './Carousel.mobile.styled';
+import { Lang, Menus } from '@type/index';
+import SvgIcon from '@components/SvgIcon';
+import { EColor } from '@styles/color';
+import usePageControll from '@hooks/usePageControll';
+import { langState } from '@modules/atoms';
+import { HomeString } from '@utils/constants/strings';
 
 interface CarouselProps {
-  weeklyMenu: Menu;
+  weeklyMenu: Menus;
 }
 
 const Carousel = ({ weeklyMenu }: CarouselProps) => {
@@ -28,6 +26,7 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
   let touchEndX: number;
   const [currCarousel, setCurrCarousel] = useState(0);
   const carouselRef = useRef<HTMLUListElement>(null);
+  const lang = useRecoilValue<Lang>(langState);
 
   // 요일에 따른 초기 화면 렌더링
   useEffect(() => {
@@ -45,19 +44,13 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
     if (carouselRef.current != null) {
-      applyCarouselStyles(
-        `translateX(-${currCarousel}00%)`,
-        "all 0.5s ease-in-out"
-      );
+      applyCarouselStyles(`translateX(-${currCarousel}00%)`, 'all 0.5s ease-in-out');
     }
   }, [currCarousel]);
 
-  const applyCarouselStyles = (
-    transform: string = "",
-    transition: string = ""
-  ) => {
+  const applyCarouselStyles = (transform: string = '', transition: string = '') => {
     if (carouselRef.current != null) {
       carouselRef.current.style.transform = transform;
       carouselRef.current.style.transition = transition;
@@ -72,7 +65,7 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
     }
     setCurrCarousel(nextCarousel);
 
-    applyCarouselStyles("", "all 0.5s ease-in-out");
+    applyCarouselStyles('', 'all 0.5s ease-in-out');
   };
 
   // 터치 이벤트
@@ -107,7 +100,7 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
     const deltaX = currTouchX - touchStartX;
     const newX = currCarousel * 100 - deltaX;
 
-    applyCarouselStyles(`translateX(-${newX}%)`, "all ease-in-out");
+    applyCarouselStyles(`translateX(-${newX}%)`, 'all ease-in-out');
   };
 
   const handleTouchEnd: TouchEventHandler<HTMLDivElement> = (e) => {
@@ -118,14 +111,15 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
     } else if (touchEndX - touchStartX > 50) {
       handleSwipe(-1);
     } else {
-      applyCarouselStyles(
-        `translateX(-${currCarousel}00%)`,
-        "all 0.3s ease-in-out"
-      );
+      applyCarouselStyles(`translateX(-${currCarousel}00%)`, 'all 0.3s ease-in-out');
     }
   };
 
-  const handleNavigate = async (name: string) => {
+  const handleNavigate = async (name: string, menuId: string) => {
+    if (menuId == '') {
+      alert(HomeString({ lang: lang, key: 'menu.empty' }));
+      return;
+    }
     handlePage(name);
   };
 
@@ -151,34 +145,24 @@ const Carousel = ({ weeklyMenu }: CarouselProps) => {
                 <MobileCarouselItem key={key}>
                   <MobileDateText>{res[0]}</MobileDateText>
                   <CarouselStyled.MenuCard>
-                    {res[1].map((daily, idx) => {
-                      return (
-                        <MobileMenuList key={idx}>{daily}</MobileMenuList>
-                      );
-                    })}
+                    {res[1].menuType == 'N' ? (
+                      <MobileMenuList>{HomeString({ lang: lang, key: 'menu.empty' })}</MobileMenuList>
+                    ) : (
+                      res[1].menu.map((daily, idx) => {
+                        return <MobileMenuList key={idx}>{daily}</MobileMenuList>;
+                      })
+                    )}
                   </CarouselStyled.MenuCard>
-                  <CarouselStyled.FeedbackBottom onClick={() => handleNavigate('home/comment')}>
+                  <CarouselStyled.FeedbackBottom
+                    onClick={() => handleNavigate(`home/comments/${res[1].menuId}`, res[1].menuId)}
+                  >
                     <CarouselStyled.SvgView>
-                      <SvgIcon
-                        name={"comment"}
-                        width={14}
-                        height={14}
-                        fill={EColor.TEXT_500}
-                      />
-                      <CarouselStyled.SvgText>
-                        15
-                      </CarouselStyled.SvgText>
+                      <SvgIcon name={'comment'} width={14} height={14} fill={EColor.TEXT_500} />
+                      <CarouselStyled.SvgText>{res[1].commentCount}</CarouselStyled.SvgText>
                     </CarouselStyled.SvgView>
                     <CarouselStyled.SvgView>
-                      <SvgIcon
-                        name={"like"}
-                        width={14}
-                        height={14}
-                        fill={EColor.TEXT_500}
-                      />
-                      <CarouselStyled.SvgText>
-                        3
-                      </CarouselStyled.SvgText>
+                      <SvgIcon name={'like'} width={14} height={14} fill={EColor.TEXT_500} />
+                      <CarouselStyled.SvgText>{res[1].likeCount}</CarouselStyled.SvgText>
                     </CarouselStyled.SvgView>
                   </CarouselStyled.FeedbackBottom>
                 </MobileCarouselItem>

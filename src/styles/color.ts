@@ -16,4 +16,5 @@ export enum EColor {
   GRAD_BL = "#6ffaff",
   GRAD_BR = "#56a6ff",
   GRAY = "#A5A5A5",
+  RED = "#fa4a4a"
 }
