@@ -3,6 +3,7 @@ services:
   react-builder:
     container_name: react-builder
     build:
+      context: .
       dockerfile: dockerfile
     volumes:
       - ./:/app
