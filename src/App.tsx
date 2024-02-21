@@ -19,8 +19,22 @@ import BackOffice from '@pages/BackOffice';
 import BackOfficeComment from '@pages/BackOfficeComment';
 import BackOfficeUser from '@pages/BackOfficeUser';
 import BackOfficeChart from '@pages/BackOfficeChart';
+import { useEffect } from 'react';
+import { requestPushPermision } from '@utils/FirebaseInstance';
 
 const App = () => {
+  useEffect(() => {
+    requestPushPermision();
+    navigator.serviceWorker.addEventListener('message', handlePushNotification);
+    return () => {
+      navigator.serviceWorker.removeEventListener('message', handlePushNotification);
+    };
+  }, []);
+
+  const handlePushNotification = (event) => {
+    console.log(event);
+  };
+
   return (
     <RecoilRoot>
       <GlobalStyle />
