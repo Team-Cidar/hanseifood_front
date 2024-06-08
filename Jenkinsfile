@@ -15,9 +15,7 @@ pipeline {
         }
         stage('Wipe') {
             steps {
-                sh "docker-compose stop"
-                sh "docker system prune -a -f"
-                sh "docker volume prune -f"
+                sh "docker-compose down --rmi all"
             }
         }
         stage('Build') {
@@ -25,17 +23,17 @@ pipeline {
                 sh "sudo docker-compose build"
             }
         }
-
         stage('Deploy') {
             steps {
-                sh 'docker-compose up -d'
+                sh 'sudo docker-compose up -d'
             }
         }
 
         stage('Finish') {
             steps{
-                sh 'docker stop react-builder'
-                sh 'docker images -qf dangling=true | xargs -I{} docker rmi {}'
+                sh 'sudo docker stop react-builder'
+                sh 'sudo docker rm react-builder'
+                sh 'sudo docker images -qf dangling=true | xargs -I{} docker rmi {}'
             }
         }
     }
