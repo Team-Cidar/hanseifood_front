@@ -9,7 +9,7 @@ pipeline {
             steps {
                 echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
                 git url: "${GIT_URL}", branch: "master", poll: true, changelog: true
-                sh "sudo cp /home/joeykim/ws_data/.env /var/lib/jenkins/workspace/hanseifood_ws"
+                sh "sudo cp /home/joey/hansei_food/ws_data/.env /var/lib/jenkins/workspace/hanseifood_ws"
                 // sh "sudo cp -r /home/joeykim/ws_data/certbot /var/lib/jenkins/workspace/hanseifood_ws"
             }
         }
